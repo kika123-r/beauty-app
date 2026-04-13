@@ -1,0 +1,6 @@
+// src/pages/auth/RegisterPage.jsx
+const RegisterPage = () => {
+  return <div>Register</div>;
+};
+
+export default RegisterPage;
