@@ -129,8 +129,8 @@ const Bookings = () => {
     URL.revokeObjectURL(url);
   };
 
-  const cardStyle = { background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '20px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' };
-  const inputStyle = { padding: '10px 14px', background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '10px', fontSize: '13px', color: '#1C1C1B', outline: 'none', fontFamily: 'Jost, sans-serif', cursor: 'pointer' };
+  const cardStyle = { background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '20px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' };
+  const inputStyle = { padding: '10px 14px', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '10px', fontSize: '13px', color: 'var(--text)', outline: 'none', fontFamily: 'Jost, sans-serif', cursor: 'pointer' };
 
   return (
     <AdminLayout>
@@ -138,12 +138,12 @@ const Bookings = () => {
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px', flexWrap: 'wrap', gap: '12px' }}>
           <div>
-            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#979086', marginBottom: '8px' }}>Správa</p>
-            <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#1C1C1B' }}>Rezervácie</h2>
+            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: '8px' }}>Správa</p>
+            <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: 'var(--text)' }}>Rezervácie</h2>
           </div>
           <button
             onClick={handleExport}
-            style={{ padding: '10px 20px', background: canExport ? '#1C1C1B' : '#E2E2DE', color: canExport ? '#F5F0EA' : '#979086', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: canExport ? 'pointer' : 'not-allowed', fontFamily: 'Jost, sans-serif' }}
+            style={{ padding: '10px 20px', background: canExport ? 'var(--text)' : 'var(--border)', color: canExport ? 'var(--bg-elevated)' : 'var(--text-faint)', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: canExport ? 'pointer' : 'not-allowed', fontFamily: 'Jost, sans-serif' }}
           >
             {canExport ? '↓ Export CSV' : '🔒 Export CSV'}
           </button>
@@ -166,23 +166,23 @@ const Bookings = () => {
           <input type="date" value={filterDate} onChange={e => setFilterDate(e.target.value)} style={inputStyle} />
           {(filterStatus !== 'all' || filterService !== 'all' || filterDate || search) && (
             <button onClick={() => { setFilterStatus('all'); setFilterService('all'); setFilterDate(''); setSearch(''); }}
-              style={{ padding: '10px 14px', background: 'transparent', border: '1px solid #E2E2DE', borderRadius: '10px', fontSize: '12px', color: '#979086', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
+              style={{ padding: '10px 14px', background: 'transparent', border: '1px solid var(--border)', borderRadius: '10px', fontSize: '12px', color: 'var(--text-faint)', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
               Vyčistiť
             </button>
           )}
         </div>
 
         {/* Počet */}
-        <p style={{ fontSize: '12px', color: '#979086', marginBottom: '16px', letterSpacing: '0.05em' }}>
+        <p style={{ fontSize: '12px', color: 'var(--text-faint)', marginBottom: '16px', letterSpacing: '0.05em' }}>
           {filtered.length} rezervácií
         </p>
 
-        {loading && <div style={{ textAlign: 'center', padding: '40px' }}><p style={{ color: '#979086' }}>Načítavam...</p></div>}
+        {loading && <div style={{ textAlign: 'center', padding: '40px' }}><p style={{ color: 'var(--text-faint)' }}>Načítavam...</p></div>}
 
         {!loading && filtered.length === 0 && (
           <div style={{ ...cardStyle, padding: '60px', textAlign: 'center' }}>
-            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#1C1C1B', marginBottom: '8px' }}>Žiadne rezervácie</p>
-            <p style={{ fontSize: '13px', color: '#979086' }}>Skúste zmeniť filtre.</p>
+            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: 'var(--text)', marginBottom: '8px' }}>Žiadne rezervácie</p>
+            <p style={{ fontSize: '13px', color: 'var(--text-faint)' }}>Skúste zmeniť filtre.</p>
           </div>
         )}
 
@@ -197,31 +197,31 @@ const Bookings = () => {
                   <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                     <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: status.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', flexShrink: 0 }}>✂️</div>
                     <div>
-                      <p style={{ fontWeight: 500, color: '#1C1C1B', fontSize: '15px', fontFamily: 'Jost, sans-serif', marginBottom: '3px' }}>{getServiceName(booking.serviceId)}</p>
-                      {slot && <p style={{ fontSize: '13px', color: '#979086' }}>{slot.date} · {slot.time}</p>}
+                      <p style={{ fontWeight: 500, color: 'var(--text)', fontSize: '15px', fontFamily: 'Jost, sans-serif', marginBottom: '3px' }}>{getServiceName(booking.serviceId)}</p>
+                      {slot && <p style={{ fontSize: '13px', color: 'var(--text-faint)' }}>{slot.date} · {slot.time}</p>}
                       {booking.workerId && (() => {
                       const worker = workers.find(w => w.id === booking.workerId);
                       return worker ? (
                         <div style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <span style={{ fontSize: '11px', color: '#6A5D52' }}>👤</span>
-                          <p style={{ fontSize: '12px', color: '#6A5D52', fontWeight: 500 }}>{worker.name} · {worker.position}</p>
+                          <span style={{ fontSize: '11px', color: 'var(--primary)' }}>👤</span>
+                          <p style={{ fontSize: '12px', color: 'var(--primary)', fontWeight: 500 }}>{worker.name} · {worker.position}</p>
                         </div>
                       ) : null;
                     })()}
                     {booking.note && (
                       <div style={{ marginTop: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                         <span style={{ fontSize: '11px', color: '#B07D3A' }}>📝</span>
-                        <p style={{ fontSize: '12px', color: '#979086', fontStyle: 'italic' }}>{booking.note}</p>
+                        <p style={{ fontSize: '12px', color: 'var(--text-faint)', fontStyle: 'italic' }}>{booking.note}</p>
                       </div>
                     )}
                     {client && (
                         <div style={{ marginTop: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                          <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(106,93,82,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 600, color: '#6A5D52' }}>
+                          <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(106,93,82,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 600, color: 'var(--primary)' }}>
                             {client.name?.charAt(0) || '?'}
                           </div>
                           <div>
-                            <p style={{ fontSize: '13px', fontWeight: 500, color: '#1C1C1B', fontFamily: 'Jost, sans-serif' }}>{client.name}</p>
-                            <p style={{ fontSize: '11px', color: '#979086' }}>{client.email}</p>
+                            <p style={{ fontSize: '13px', fontWeight: 500, color: 'var(--text)', fontFamily: 'Jost, sans-serif' }}>{client.name}</p>
+                            <p style={{ fontSize: '11px', color: 'var(--text-faint)' }}>{client.email}</p>
                           </div>
                         </div>
                       )}
@@ -233,7 +233,7 @@ const Bookings = () => {
                 </div>
 
                 {booking.status !== BOOKING_STATUS.CANCELLED && (
-                  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', borderTop: '1px solid #F5F0EA', paddingTop: '14px' }}>
+                  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', borderTop: '1px solid var(--border-light)', paddingTop: '14px' }}>
                     {booking.status !== BOOKING_STATUS.COMPLETED && (
                       <button onClick={() => handleStatus(booking, BOOKING_STATUS.COMPLETED)}
                         style={{ padding: '7px 14px', background: 'transparent', color: '#4A7C59', border: '1px solid #4A7C59', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>

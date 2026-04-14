@@ -41,21 +41,21 @@ const Analytics = () => {
       <AdminLayout>
         <div style={{ maxWidth: '700px' }}>
           <div style={{ marginBottom: '32px' }}>
-            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#979086', marginBottom: '8px' }}>Správa</p>
-            <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#1C1C1B' }}>Analytika</h2>
+            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: '8px' }}>Správa</p>
+            <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: 'var(--text)' }}>Analytika</h2>
           </div>
-          <div style={{ background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '20px', padding: '60px 32px', textAlign: 'center' }}>
+          <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '20px', padding: '60px 32px', textAlign: 'center' }}>
             <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'linear-gradient(135deg, #D4C5B0, #A89070)', margin: '0 auto 20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>📊</div>
-            <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.6rem', color: '#1C1C1B', marginBottom: '12px' }}>Pokročilá analytika</h3>
-            <p style={{ fontSize: '13px', color: '#979086', marginBottom: '8px', lineHeight: 1.7, maxWidth: '400px', margin: '0 auto 24px' }}>
+            <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.6rem', color: 'var(--text)', marginBottom: '12px' }}>Pokročilá analytika</h3>
+            <p style={{ fontSize: '13px', color: 'var(--text-faint)', marginBottom: '8px', lineHeight: 1.7, maxWidth: '400px', margin: '0 auto 24px' }}>
               Sledujte tržby, vyťaženosť a správanie klientov. Dostupné od plánu <strong>Pro</strong>.
             </p>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
               {['Tržby za mesiac', 'No-show štatistiky', 'Vyťaženosť slotov', 'Top služby', 'Verní klienti'].map(f => (
-                <span key={f} style={{ fontSize: '12px', color: '#979086', background: '#F5F0EA', padding: '6px 14px', borderRadius: '20px', opacity: 0.6 }}>{f}</span>
+                <span key={f} style={{ fontSize: '12px', color: 'var(--text-faint)', background: 'var(--bg-elevated)', padding: '6px 14px', borderRadius: '20px', opacity: 0.6 }}>{f}</span>
               ))}
             </div>
-            <button onClick={() => navigate('/admin/pricing')} style={{ padding: '13px 28px', background: '#1C1C1B', color: '#F5F0EA', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
+            <button onClick={() => navigate('/admin/pricing')} style={{ padding: '13px 28px', background: 'var(--primary-dark)', color: 'var(--text)', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
               Upgradovať na Pro →
             </button>
           </div>
@@ -83,14 +83,14 @@ const Analytics = () => {
   const avgRating = ratings.length > 0 ? (ratings.reduce((s, r) => s + r.rating, 0) / ratings.length).toFixed(1) : '—';
   const getUserName = (uid) => users.find(u => u.uid === uid)?.name || 'Klient';
 
-  const cardStyle = { background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '20px', padding: '24px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' };
+  const cardStyle = { background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '20px', padding: '24px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' };
 
   return (
     <AdminLayout>
       <div style={{ maxWidth: '800px' }}>
         <div style={{ marginBottom: '32px' }}>
-          <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#979086', marginBottom: '8px' }}>Správa</p>
-          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#1C1C1B' }}>Analytika</h2>
+          <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: '8px' }}>Správa</p>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: 'var(--text)' }}>Analytika</h2>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '12px', marginBottom: '24px' }}>
@@ -103,26 +103,26 @@ const Analytics = () => {
           ].map(stat => (
             <div key={stat.label} style={cardStyle}>
               <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: stat.color, marginBottom: '4px' }}>{stat.value}</p>
-              <p style={{ fontSize: '11px', color: '#979086', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{stat.label}</p>
+              <p style={{ fontSize: '11px', color: 'var(--text-faint)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{stat.label}</p>
             </div>
           ))}
         </div>
 
         <div style={cardStyle}>
-          <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#979086', marginBottom: '16px' }}>Top služby</p>
+          <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: '16px' }}>Top služby</p>
           {serviceStats.length === 0 ? (
-            <p style={{ fontSize: '13px', color: '#979086' }}>Zatiaľ žiadne dokončené rezervácie.</p>
+            <p style={{ fontSize: '13px', color: 'var(--text-faint)' }}>Zatiaľ žiadne dokončené rezervácie.</p>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {serviceStats.map((s, i) => (
-                <div key={s.name} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', background: '#F5F0EA', borderRadius: '12px' }}>
+                <div key={s.name} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', background: 'var(--bg-elevated)', borderRadius: '12px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.2rem', color: '#B7AC9B' }}>#{i + 1}</span>
-                    <p style={{ fontSize: '14px', fontWeight: 500, color: '#1C1C1B', fontFamily: 'Jost, sans-serif' }}>{s.name}</p>
+                    <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.2rem', color: 'var(--text-faint)' }}>#{i + 1}</span>
+                    <p style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', fontFamily: 'Jost, sans-serif' }}>{s.name}</p>
                   </div>
                   <div style={{ textAlign: 'right' }}>
-                    <p style={{ fontSize: '14px', fontWeight: 500, color: '#1C1C1B', fontFamily: 'Jost, sans-serif' }}>{s.revenue} €</p>
-                    <p style={{ fontSize: '11px', color: '#979086' }}>{s.count}x</p>
+                    <p style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', fontFamily: 'Jost, sans-serif' }}>{s.revenue} €</p>
+                    <p style={{ fontSize: '11px', color: 'var(--text-faint)' }}>{s.count}x</p>
                   </div>
                 </div>
               ))}
@@ -132,18 +132,18 @@ const Analytics = () => {
 
         {/* Hodnotenia */}
         <div style={cardStyle}>
-          <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#979086', marginBottom: '16px' }}>Hodnotenia klientov</p>
+          <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: '16px' }}>Hodnotenia klientov</p>
           {ratings.length === 0 ? (
-            <p style={{ fontSize: '13px', color: '#979086' }}>Zatiaľ žiadne hodnotenia.</p>
+            <p style={{ fontSize: '13px', color: 'var(--text-faint)' }}>Zatiaľ žiadne hodnotenia.</p>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {ratings.slice().sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0)).map(r => (
-                <div key={r.id} style={{ padding: '16px 20px', background: '#F5F0EA', borderRadius: '14px' }}>
+                <div key={r.id} style={{ padding: '16px 20px', background: 'var(--bg-elevated)', borderRadius: '14px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                    <p style={{ fontSize: '14px', fontWeight: 500, color: '#1C1C1B', fontFamily: 'Jost, sans-serif' }}>{getUserName(r.clientId)}</p>
+                    <p style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', fontFamily: 'Jost, sans-serif' }}>{getUserName(r.clientId)}</p>
                     <span style={{ fontSize: '16px', color: '#B07D3A', letterSpacing: '2px' }}>{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</span>
                   </div>
-                  {r.comment && <p style={{ fontSize: '13px', color: '#979086', lineHeight: 1.6 }}>{r.comment}</p>}
+                  {r.comment && <p style={{ fontSize: '13px', color: 'var(--text-faint)', lineHeight: 1.6 }}>{r.comment}</p>}
                 </div>
               ))}
             </div>

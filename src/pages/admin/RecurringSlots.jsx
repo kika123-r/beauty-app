@@ -108,21 +108,21 @@ const RecurringSlots = () => {
     loadData();
   };
 
-  const cardStyle = { background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '20px', padding: '24px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' };
-  const inputStyle = { width: '100%', padding: '12px 16px', background: '#F5F0EA', border: '1px solid #E2E2DE', borderRadius: '10px', fontSize: '14px', color: '#1C1C1B', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' };
-  const labelStyle = { display: 'block', fontSize: '10px', fontWeight: 500, color: '#979086', marginBottom: '7px', letterSpacing: '0.12em', textTransform: 'uppercase' };
+  const cardStyle = { background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '20px', padding: '24px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' };
+  const inputStyle = { width: '100%', padding: '12px 16px', background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: '10px', fontSize: '14px', color: 'var(--text)', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' };
+  const labelStyle = { display: 'block', fontSize: '10px', fontWeight: 500, color: 'var(--text-faint)', marginBottom: '7px', letterSpacing: '0.12em', textTransform: 'uppercase' };
 
   return (
     <AdminLayout>
       <div style={{ maxWidth: '700px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px' }}>
           <div>
-            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#979086', marginBottom: '8px' }}>Správa</p>
-            <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#1C1C1B' }}>Opakované sloty</h2>
-            <p style={{ fontSize: '13px', color: '#979086', marginTop: '4px' }}>Nastavte šablóny a automaticky generujte sloty na týždne dopredu.</p>
+            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: '8px' }}>Správa</p>
+            <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: 'var(--text)' }}>Opakované sloty</h2>
+            <p style={{ fontSize: '13px', color: 'var(--text-faint)', marginTop: '4px' }}>Nastavte šablóny a automaticky generujte sloty na týždne dopredu.</p>
           </div>
           {!showForm && (
-            <button onClick={() => setShowForm(true)} style={{ padding: '10px 20px', background: '#6A5D52', color: '#F5F0EA', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
+            <button onClick={() => setShowForm(true)} style={{ padding: '10px 20px', background: 'var(--primary)', color: 'var(--text)', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
               + Nová šablóna
             </button>
           )}
@@ -130,7 +130,7 @@ const RecurringSlots = () => {
 
         {showForm && (
           <div style={{ ...cardStyle, marginBottom: '24px' }}>
-            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#1C1C1B', marginBottom: '24px' }}>Nová šablóna opakovaných slotov</p>
+            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: 'var(--text)', marginBottom: '24px' }}>Nová šablóna opakovaných slotov</p>
 
             <div style={{ marginBottom: '20px' }}>
               <label style={labelStyle}>Služba *</label>
@@ -145,7 +145,7 @@ const RecurringSlots = () => {
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                 {DAYS.map(day => (
                   <button key={day.key} type="button" onClick={() => toggleDay(day.key)}
-                    style={{ padding: '8px 14px', background: form.days.includes(day.key) ? '#6A5D52' : 'transparent', color: form.days.includes(day.key) ? '#F5F0EA' : '#979086', border: `1px solid ${form.days.includes(day.key) ? '#6A5D52' : '#E2E2DE'}`, borderRadius: '10px', fontSize: '12px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
+                    style={{ padding: '8px 14px', background: form.days.includes(day.key) ? 'var(--primary)' : 'transparent', color: form.days.includes(day.key) ? 'var(--bg-elevated)' : 'var(--text-faint)', border: `1px solid ${form.days.includes(day.key) ? 'var(--primary)' : 'var(--border)'}`, borderRadius: '10px', fontSize: '12px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
                     {day.label}
                   </button>
                 ))}
@@ -164,7 +164,7 @@ const RecurringSlots = () => {
                     )}
                   </div>
                 ))}
-                <button type="button" onClick={addTime} style={{ padding: '8px 16px', background: 'transparent', color: '#6A5D52', border: '1px dashed #D4C5B0', borderRadius: '10px', fontSize: '12px', cursor: 'pointer', fontFamily: 'Jost, sans-serif', textAlign: 'left' }}>
+                <button type="button" onClick={addTime} style={{ padding: '8px 16px', background: 'transparent', color: 'var(--primary)', border: '1px dashed #D4C5B0', borderRadius: '10px', fontSize: '12px', cursor: 'pointer', fontFamily: 'Jost, sans-serif', textAlign: 'left' }}>
                   + Pridať čas
                 </button>
               </div>
@@ -175,7 +175,7 @@ const RecurringSlots = () => {
               <div style={{ display: 'flex', gap: '8px' }}>
                 {[2, 4, 6, 8].map(w => (
                   <button key={w} type="button" onClick={() => setForm({...form, weeksAhead: w})}
-                    style={{ padding: '8px 16px', background: form.weeksAhead === w ? '#6A5D52' : 'transparent', color: form.weeksAhead === w ? '#F5F0EA' : '#979086', border: `1px solid ${form.weeksAhead === w ? '#6A5D52' : '#E2E2DE'}`, borderRadius: '10px', fontSize: '12px', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
+                    style={{ padding: '8px 16px', background: form.weeksAhead === w ? 'var(--primary)' : 'transparent', color: form.weeksAhead === w ? 'var(--bg-elevated)' : 'var(--text-faint)', border: `1px solid ${form.weeksAhead === w ? 'var(--primary)' : 'var(--border)'}`, borderRadius: '10px', fontSize: '12px', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
                     {w} týždne
                   </button>
                 ))}
@@ -183,18 +183,18 @@ const RecurringSlots = () => {
             </div>
 
             <div style={{ display: 'flex', gap: '10px' }}>
-              <button onClick={handleSave} disabled={loading} style={{ padding: '12px 24px', background: loading ? '#B7AC9B' : '#6A5D52', color: '#F5F0EA', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
+              <button onClick={handleSave} disabled={loading} style={{ padding: '12px 24px', background: loading ? 'var(--text-faint)' : 'var(--primary)', color: 'var(--text)', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
                 {loading ? 'Ukladám...' : 'Uložiť šablónu'}
               </button>
-              <button onClick={() => setShowForm(false)} style={{ padding: '12px 24px', background: 'transparent', color: '#979086', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '12px', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>Zrušiť</button>
+              <button onClick={() => setShowForm(false)} style={{ padding: '12px 24px', background: 'transparent', color: 'var(--text-faint)', border: '1px solid var(--border)', borderRadius: '12px', fontSize: '12px', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>Zrušiť</button>
             </div>
           </div>
         )}
 
         {templates.length === 0 ? (
           <div style={{ ...cardStyle, textAlign: 'center', padding: '60px' }}>
-            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#1C1C1B', marginBottom: '8px' }}>Žiadne šablóny</p>
-            <p style={{ fontSize: '13px', color: '#979086' }}>Vytvorte šablónu a generujte sloty automaticky.</p>
+            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: 'var(--text)', marginBottom: '8px' }}>Žiadne šablóny</p>
+            <p style={{ fontSize: '13px', color: 'var(--text-faint)' }}>Vytvorte šablónu a generujte sloty automaticky.</p>
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -205,18 +205,18 @@ const RecurringSlots = () => {
                 <div key={tmpl.id} style={cardStyle}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
                     <div>
-                      <p style={{ fontSize: '15px', fontWeight: 500, color: '#1C1C1B', fontFamily: 'Jost, sans-serif', marginBottom: '4px' }}>{service?.name || 'Neznáma služba'}</p>
-                      <p style={{ fontSize: '12px', color: '#979086', marginBottom: '8px' }}>{dayNames.join(', ')}</p>
+                      <p style={{ fontSize: '15px', fontWeight: 500, color: 'var(--text)', fontFamily: 'Jost, sans-serif', marginBottom: '4px' }}>{service?.name || 'Neznáma služba'}</p>
+                      <p style={{ fontSize: '12px', color: 'var(--text-faint)', marginBottom: '8px' }}>{dayNames.join(', ')}</p>
                       <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                         {(tmpl.times || []).map((t, i) => (
-                          <span key={i} style={{ fontSize: '12px', color: '#6A5D52', background: 'rgba(106,93,82,0.08)', padding: '3px 10px', borderRadius: '8px' }}>{t}</span>
+                          <span key={i} style={{ fontSize: '12px', color: 'var(--primary)', background: 'rgba(106,93,82,0.08)', padding: '3px 10px', borderRadius: '8px' }}>{t}</span>
                         ))}
                       </div>
-                      <p style={{ fontSize: '11px', color: '#B7AC9B', marginTop: '8px' }}>Generuje na {tmpl.weeksAhead} týždne dopredu</p>
+                      <p style={{ fontSize: '11px', color: 'var(--text-faint)', marginTop: '8px' }}>Generuje na {tmpl.weeksAhead} týždne dopredu</p>
                     </div>
                     <div style={{ display: 'flex', gap: '8px', flexShrink: 0 }}>
                       <button onClick={() => handleGenerate(tmpl)} disabled={generating}
-                        style={{ padding: '9px 16px', background: generating ? '#B7AC9B' : '#1C1C1B', color: '#F5F0EA', border: 'none', borderRadius: '10px', fontSize: '11px', fontWeight: 500, cursor: generating ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                        style={{ padding: '9px 16px', background: generating ? 'var(--text-faint)' : 'var(--text)', color: 'var(--text)', border: 'none', borderRadius: '10px', fontSize: '11px', fontWeight: 500, cursor: generating ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                         {generating ? '...' : '⚡ Generovať'}
                       </button>
                       <button onClick={() => handleDelete(tmpl.id)} style={{ padding: '9px 14px', background: 'transparent', color: '#8B3A3A', border: '1px solid #8B3A3A', borderRadius: '10px', fontSize: '11px', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>Vymazať</button>

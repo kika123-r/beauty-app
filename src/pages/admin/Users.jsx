@@ -59,17 +59,17 @@ const Users = () => {
 
   const filtered = users.filter(u => !search || u.name?.toLowerCase().includes(search.toLowerCase()) || u.email?.toLowerCase().includes(search.toLowerCase()));
 
-  const cardStyle = { background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '20px', padding: '22px 24px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' };
+  const cardStyle = { background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '20px', padding: '22px 24px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' };
 
   return (
     <AdminLayout>
       <div style={{ maxWidth: '800px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px', flexWrap: 'wrap', gap: '12px' }}>
           <div>
-            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#979086', marginBottom: '8px' }}>Správa</p>
-            <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#1C1C1B' }}>Klienti</h2>
+            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: '8px' }}>Správa</p>
+            <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: 'var(--text)' }}>Klienti</h2>
           </div>
-          <button onClick={handleExport} style={{ padding: '10px 20px', background: canExport ? '#1C1C1B' : '#E2E2DE', color: canExport ? '#F5F0EA' : '#979086', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: canExport ? 'pointer' : 'not-allowed', fontFamily: 'Jost, sans-serif' }}>
+          <button onClick={handleExport} style={{ padding: '10px 20px', background: canExport ? 'var(--text)' : 'var(--border)', color: canExport ? 'var(--bg-elevated)' : 'var(--text-faint)', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: canExport ? 'pointer' : 'not-allowed', fontFamily: 'Jost, sans-serif' }}>
             {canExport ? '↓ Export CSV' : '🔒 Export CSV'}
           </button>
         </div>
@@ -77,18 +77,18 @@ const Users = () => {
         {/* Hľadanie */}
         <div style={{ ...cardStyle, padding: '14px 20px', marginBottom: '20px' }}>
           <input type="text" placeholder="Hľadať klienta podľa mena alebo emailu..." value={search} onChange={e => setSearch(e.target.value)}
-            style={{ width: '100%', padding: '10px 14px', background: '#F5F0EA', border: '1px solid #E2E2DE', borderRadius: '10px', fontSize: '13px', color: '#1C1C1B', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
-            onFocus={e => e.target.style.borderColor='#6A5D52'} onBlur={e => e.target.style.borderColor='#E2E2DE'} />
+            style={{ width: '100%', padding: '10px 14px', background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: '10px', fontSize: '13px', color: 'var(--text)', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
+            onFocus={e => e.target.style.borderColor='var(--primary)'} onBlur={e => e.target.style.borderColor='var(--border)'} />
         </div>
 
-        <p style={{ fontSize: '12px', color: '#979086', marginBottom: '16px' }}>{filtered.length} klientov</p>
+        <p style={{ fontSize: '12px', color: 'var(--text-faint)', marginBottom: '16px' }}>{filtered.length} klientov</p>
 
-        {loading && <div style={{ textAlign: 'center', padding: '40px' }}><p style={{ color: '#979086' }}>Načítavam...</p></div>}
+        {loading && <div style={{ textAlign: 'center', padding: '40px' }}><p style={{ color: 'var(--text-faint)' }}>Načítavam...</p></div>}
 
         {!loading && filtered.length === 0 && (
           <div style={{ ...cardStyle, textAlign: 'center', padding: '60px' }}>
-            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#1C1C1B', marginBottom: '8px' }}>Žiadni klienti</p>
-            <p style={{ fontSize: '13px', color: '#979086' }}>Klienti sa zobrazia po prvej rezervácii.</p>
+            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: 'var(--text)', marginBottom: '8px' }}>Žiadni klienti</p>
+            <p style={{ fontSize: '13px', color: 'var(--text-faint)' }}>Klienti sa zobrazia po prvej rezervácii.</p>
           </div>
         )}
 
@@ -101,31 +101,31 @@ const Users = () => {
               <div key={user.uid} style={cardStyle}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flex: 1 }}>
-                    <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'linear-gradient(135deg, #D4C5B0, #B7AC9B)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '15px', fontWeight: 600, color: '#F5F0EA', flexShrink: 0, fontFamily: 'Jost, sans-serif' }}>
+                    <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'linear-gradient(135deg, #D4C5B0, #B7AC9B)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '15px', fontWeight: 600, color: 'var(--text)', flexShrink: 0, fontFamily: 'Jost, sans-serif' }}>
                       {user.name?.charAt(0).toUpperCase()}
                     </div>
                     <div style={{ flex: 1 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                        <p style={{ fontWeight: 500, color: '#1C1C1B', fontSize: '14px', fontFamily: 'Jost, sans-serif' }}>{user.name}</p>
+                        <p style={{ fontWeight: 500, color: 'var(--text)', fontSize: '14px', fontFamily: 'Jost, sans-serif' }}>{user.name}</p>
                         {user.blocked && <span style={{ fontSize: '10px', color: '#8B3A3A', background: 'rgba(139,58,58,0.1)', padding: '2px 8px', borderRadius: '20px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Blokovaný</span>}
                         {score < RELIABILITY.BLOCK_THRESHOLD && !user.blocked && <span style={{ fontSize: '10px', color: '#B07D3A', background: 'rgba(176,125,58,0.1)', padding: '2px 8px', borderRadius: '20px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Rizikový</span>}
                       </div>
-                      <p style={{ fontSize: '12px', color: '#979086', marginBottom: '12px' }}>{user.email}</p>
+                      <p style={{ fontSize: '12px', color: 'var(--text-faint)', marginBottom: '12px' }}>{user.email}</p>
                       <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                         {[
-                          { label: 'Rezervácie', value: userBookings.length, color: '#6A5D52', bg: 'rgba(106,93,82,0.08)' },
-                          { label: 'No-show', value: noShows, color: noShows > 0 ? '#8B3A3A' : '#979086', bg: noShows > 0 ? 'rgba(139,58,58,0.08)' : '#F5F0EA' },
+                          { label: 'Rezervácie', value: userBookings.length, color: 'var(--primary)', bg: 'rgba(106,93,82,0.08)' },
+                          { label: 'No-show', value: noShows, color: noShows > 0 ? '#8B3A3A' : 'var(--text-faint)', bg: noShows > 0 ? 'rgba(139,58,58,0.08)' : 'var(--bg-elevated)' },
                           { label: 'Spoľahlivosť', value: `${score}%`, color: getScoreColor(score), bg: getScoreBg(score) },
                         ].map(stat => (
                           <div key={stat.label} style={{ padding: '8px 14px', background: stat.bg, borderRadius: '10px' }}>
                             <p style={{ fontSize: '16px', fontWeight: 600, color: stat.color, fontFamily: 'Cormorant Garamond, serif', marginBottom: '2px' }}>{stat.value}</p>
-                            <p style={{ fontSize: '10px', color: '#979086', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{stat.label}</p>
+                            <p style={{ fontSize: '10px', color: 'var(--text-faint)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{stat.label}</p>
                           </div>
                         ))}
                       </div>
                     </div>
                   </div>
-                  <button onClick={() => handleBlock(user)} style={{ padding: '8px 16px', background: 'transparent', color: user.blocked ? '#6A5D52' : '#8B3A3A', border: `1px solid ${user.blocked ? '#E2E2DE' : '#8B3A3A'}`, borderRadius: '10px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase', flexShrink: 0, marginLeft: '16px' }}>
+                  <button onClick={() => handleBlock(user)} style={{ padding: '8px 16px', background: 'transparent', color: user.blocked ? 'var(--primary)' : '#8B3A3A', border: `1px solid ${user.blocked ? 'var(--border)' : '#8B3A3A'}`, borderRadius: '10px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase', flexShrink: 0, marginLeft: '16px' }}>
                     {user.blocked ? 'Odblokovať' : 'Zablokovať'}
                   </button>
                 </div>

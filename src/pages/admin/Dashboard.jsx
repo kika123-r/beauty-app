@@ -68,24 +68,24 @@ const AdminDashboard = () => {
     pending:   { label: 'Čaká',      color: '#B07D3A' },
   };
 
-  const cardStyle = { background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '20px', padding: '24px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' };
+  const cardStyle = { background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '20px', padding: '24px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' };
 
   const UsageBar = ({ label, current, max, unit = '' }) => {
     if (max === null) return (
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: '1px solid #F5F0EA' }}>
-        <span style={{ fontSize: '13px', color: '#979086', fontFamily: 'Jost, sans-serif' }}>{label}</span>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: '1px solid var(--border-light)' }}>
+        <span style={{ fontSize: '13px', color: 'var(--text-faint)', fontFamily: 'Jost, sans-serif' }}>{label}</span>
         <span style={{ fontSize: '13px', fontWeight: 500, color: '#4A7C59', fontFamily: 'Jost, sans-serif' }}>{current} / ∞</span>
       </div>
     );
     const pct = Math.min(Math.round((current / max) * 100), 100);
     const color = pct >= 90 ? '#8B3A3A' : pct >= 70 ? '#B07D3A' : '#4A7C59';
     return (
-      <div style={{ padding: '10px 0', borderBottom: '1px solid #F5F0EA' }}>
+      <div style={{ padding: '10px 0', borderBottom: '1px solid var(--border-light)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-          <span style={{ fontSize: '13px', color: '#979086', fontFamily: 'Jost, sans-serif' }}>{label}</span>
+          <span style={{ fontSize: '13px', color: 'var(--text-faint)', fontFamily: 'Jost, sans-serif' }}>{label}</span>
           <span style={{ fontSize: '13px', fontWeight: 500, color, fontFamily: 'Jost, sans-serif' }}>{current} / {max}{unit}</span>
         </div>
-        <div style={{ height: '4px', background: '#F5F0EA', borderRadius: '2px', overflow: 'hidden' }}>
+        <div style={{ height: '4px', background: 'var(--bg-elevated)', borderRadius: '2px', overflow: 'hidden' }}>
           <div style={{ height: '100%', width: `${pct}%`, background: color, borderRadius: '2px', transition: 'width 0.5s' }} />
         </div>
       </div>
@@ -98,19 +98,19 @@ const AdminDashboard = () => {
 
         {/* Vitaj */}
         <div style={{ marginBottom: '32px' }}>
-          <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#979086', marginBottom: '8px' }}>Dobré ráno</p>
-          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', marginBottom: '4px', color: '#1C1C1B' }}>{userProfile?.name?.split(' ')[0]}</h2>
-          <p style={{ fontSize: '14px', color: '#979086' }}>{salon?.name}{salon?.address ? ` · ${salon.address}` : ''}</p>
+          <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: '8px' }}>Dobré ráno</p>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', marginBottom: '4px', color: 'var(--text)' }}>{userProfile?.name?.split(' ')[0]}</h2>
+          <p style={{ fontSize: '14px', color: 'var(--text-faint)' }}>{salon?.name}{salon?.address ? ` · ${salon.address}` : ''}</p>
         </div>
 
         {/* Tier upozornenie */}
         {tier === TIERS.FREE && (
           <div style={{ background: 'linear-gradient(135deg, #1C1C1B, #3A3A38)', borderRadius: '20px', padding: '20px 24px', marginBottom: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
             <div>
-              <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#D4C5B0', marginBottom: '4px' }}>Ste na Free pláne</p>
-              <p style={{ fontSize: '13px', color: '#979086' }}>Upgradujte pre neobmedzené rezervácie, analytiku a AI funkcie.</p>
+              <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--primary-light)', marginBottom: '4px' }}>Ste na Free pláne</p>
+              <p style={{ fontSize: '13px', color: 'var(--text-faint)' }}>Upgradujte pre neobmedzené rezervácie, analytiku a AI funkcie.</p>
             </div>
-            <button onClick={() => navigate('/admin/pricing')} style={{ padding: '10px 20px', background: 'linear-gradient(135deg, #D4C5B0, #A89070)', color: '#1C1C1B', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif', whiteSpace: 'nowrap' }}>
+            <button onClick={() => navigate('/admin/pricing')} style={{ padding: '10px 20px', background: 'linear-gradient(135deg, #D4C5B0, #A89070)', color: 'var(--text)', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif', whiteSpace: 'nowrap' }}>
               Upgradovať →
             </button>
           </div>
@@ -121,14 +121,14 @@ const AdminDashboard = () => {
         {/* Štatistiky */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '12px', marginBottom: '24px' }}>
           {[
-            { label: 'Celkom rezervácií', value: totalBookings, color: '#6A5D52' },
+            { label: 'Celkom rezervácií', value: totalBookings, color: 'var(--primary)' },
             { label: 'Dnes',              value: todayBookings,  color: '#4A7C59' },
             { label: 'Voľné sloty',       value: freeSlots,      color: '#3A5A7C' },
             { label: 'Tržby celkom',      value: `${revenue} €`, color: '#B07D3A' },
           ].map(stat => (
             <div key={stat.label} style={cardStyle}>
               <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: stat.color, marginBottom: '6px', lineHeight: 1 }}>{stat.value}</p>
-              <p style={{ fontSize: '11px', color: '#979086', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{stat.label}</p>
+              <p style={{ fontSize: '11px', color: 'var(--text-faint)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{stat.label}</p>
             </div>
           ))}
         </div>
@@ -138,14 +138,14 @@ const AdminDashboard = () => {
           {/* Využitie plánu */}
           <div style={cardStyle}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-              <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#979086' }}>Využitie plánu</p>
-              <span style={{ fontSize: '11px', fontWeight: 500, color: '#6A5D52', background: 'rgba(106,93,82,0.08)', padding: '3px 10px', borderRadius: '20px' }}>{config.name}</span>
+              <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-faint)' }}>Využitie plánu</p>
+              <span style={{ fontSize: '11px', fontWeight: 500, color: 'var(--primary)', background: 'rgba(106,93,82,0.08)', padding: '3px 10px', borderRadius: '20px' }}>{config.name}</span>
             </div>
             <UsageBar label="Rezervácie / mes" current={monthBookings} max={maxBookings} />
             <UsageBar label="Služby" current={services.length} max={maxServices} />
             <UsageBar label="Časové sloty" current={slots.length} max={maxSlots} />
             {(bookingUsage >= 80 || serviceUsage >= 80 || slotUsage >= 80) && (
-              <button onClick={() => navigate('/admin/pricing')} style={{ width: '100%', marginTop: '14px', padding: '10px', background: '#1C1C1B', color: '#F5F0EA', border: 'none', borderRadius: '10px', fontSize: '11px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
+              <button onClick={() => navigate('/admin/pricing')} style={{ width: '100%', marginTop: '14px', padding: '10px', background: 'var(--primary-dark)', color: 'var(--text)', border: 'none', borderRadius: '10px', fontSize: '11px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
                 Upgradovať plán →
               </button>
             )}
@@ -153,7 +153,7 @@ const AdminDashboard = () => {
 
           {/* Rýchle akcie */}
           <div style={cardStyle}>
-            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#979086', marginBottom: '16px' }}>Rýchle akcie</p>
+            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: '16px' }}>Rýchle akcie</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {[
                 { label: '+ Pridať slot',    path: ROUTES.ADMIN_SLOTS },
@@ -163,9 +163,9 @@ const AdminDashboard = () => {
                 { label: 'Analytika',        path: ROUTES.ADMIN_ANALYTICS },
                 { label: 'Cenové plány',     path: '/admin/pricing' },
               ].map(action => (
-                <button key={action.label} onClick={() => navigate(action.path)} style={{ padding: '10px 14px', background: 'transparent', border: '1px solid #E2E2DE', borderRadius: '10px', fontSize: '12px', fontWeight: 500, color: '#6A5D52', cursor: 'pointer', letterSpacing: '0.06em', fontFamily: 'Jost, sans-serif', textAlign: 'left', transition: 'all 0.15s' }}
-                  onMouseEnter={e => { e.target.style.background = '#F5F0EA'; e.target.style.borderColor = '#6A5D52'; }}
-                  onMouseLeave={e => { e.target.style.background = 'transparent'; e.target.style.borderColor = '#E2E2DE'; }}>
+                <button key={action.label} onClick={() => navigate(action.path)} style={{ padding: '10px 14px', background: 'transparent', border: '1px solid var(--border)', borderRadius: '10px', fontSize: '12px', fontWeight: 500, color: 'var(--primary)', cursor: 'pointer', letterSpacing: '0.06em', fontFamily: 'Jost, sans-serif', textAlign: 'left', transition: 'all 0.15s' }}
+                  onMouseEnter={e => { e.target.style.background = 'var(--bg-elevated)'; e.target.style.borderColor = 'var(--primary)'; }}
+                  onMouseLeave={e => { e.target.style.background = 'transparent'; e.target.style.borderColor = 'var(--border)'; }}>
                   {action.label}
                 </button>
               ))}
@@ -176,20 +176,20 @@ const AdminDashboard = () => {
         {/* Posledné rezervácie */}
         <div style={cardStyle}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#979086' }}>Posledné rezervácie</p>
-            <button onClick={() => navigate(ROUTES.ADMIN_BOOKINGS)} style={{ background: 'none', border: 'none', fontSize: '12px', color: '#6A5D52', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>Zobraziť všetky →</button>
+            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-faint)' }}>Posledné rezervácie</p>
+            <button onClick={() => navigate(ROUTES.ADMIN_BOOKINGS)} style={{ background: 'none', border: 'none', fontSize: '12px', color: 'var(--primary)', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>Zobraziť všetky →</button>
           </div>
 
-          {bookings.length === 0 && <p style={{ fontSize: '14px', color: '#979086', textAlign: 'center', padding: '24px 0' }}>Zatiaľ žiadne rezervácie.</p>}
+          {bookings.length === 0 && <p style={{ fontSize: '14px', color: 'var(--text-faint)', textAlign: 'center', padding: '24px 0' }}>Zatiaľ žiadne rezervácie.</p>}
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {bookings.slice(0, 5).map(booking => {
               const status = STATUS_CONFIG[booking.status] || STATUS_CONFIG.confirmed;
               return (
-                <div key={booking.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 16px', background: '#F5F0EA', borderRadius: '12px' }}>
+                <div key={booking.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 16px', background: 'var(--bg-elevated)', borderRadius: '12px' }}>
                   <div>
-                    <p style={{ fontSize: '14px', fontWeight: 500, color: '#1C1C1B', marginBottom: '3px', fontFamily: 'Jost, sans-serif' }}>{getServiceName(booking.serviceId)}</p>
-                    <p style={{ fontSize: '12px', color: '#979086' }}>{getSlotInfo(booking.slotId)}</p>
+                    <p style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', marginBottom: '3px', fontFamily: 'Jost, sans-serif' }}>{getServiceName(booking.serviceId)}</p>
+                    <p style={{ fontSize: '12px', color: 'var(--text-faint)' }}>{getSlotInfo(booking.slotId)}</p>
                   </div>
                   <span style={{ fontSize: '11px', color: status.color, background: 'rgba(255,255,255,0.7)', padding: '4px 12px', borderRadius: '20px', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{status.label}</span>
                 </div>
