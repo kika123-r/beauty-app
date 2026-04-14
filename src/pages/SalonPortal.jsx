@@ -21,6 +21,24 @@ const SalonPortal = () => {
 
   useEffect(() => { loadData(); }, [slug]);
 
+  useEffect(() => {
+    if (salon) {
+      document.title = `${salon.name} — Rezervácie online`;
+      let desc = document.querySelector('meta[name="description"]');
+      if (!desc) { desc = document.createElement('meta'); desc.name = 'description'; document.head.appendChild(desc); }
+      desc.content = salon.description || `Rezervujte si termín v ${salon.name} online. ${salon.category || ''}`;
+
+      let ogTitle = document.querySelector('meta[property="og:title"]');
+      if (!ogTitle) { ogTitle = document.createElement('meta'); ogTitle.setAttribute('property', 'og:title'); document.head.appendChild(ogTitle); }
+      ogTitle.content = salon.name;
+
+      let ogDesc = document.querySelector('meta[property="og:description"]');
+      if (!ogDesc) { ogDesc = document.createElement('meta'); ogDesc.setAttribute('property', 'og:description'); document.head.appendChild(ogDesc); }
+      ogDesc.content = salon.description || `Online rezervácie — ${salon.name}`;
+    }
+    return () => { document.title = 'BeautyTime — Rezervačný systém pre salóny'; };
+  }, [salon]);
+
   const loadData = async () => {
     try {
       const salonData = await getSalonBySlug(slug);
