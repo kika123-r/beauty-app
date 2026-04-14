@@ -16,7 +16,8 @@ const NAV_ITEMS = [
   { label: 'Analytika',     path: ROUTES.ADMIN_ANALYTICS },
   { label: 'Cenové plány',  path: '/admin/pricing' },
   { label: 'Pracovníci',     path: '/admin/workers' },
-  { label: 'Nastavenia',     path: '/admin/settings' },
+  { label: 'Opakované sloty', path: '/admin/recurring' },
+  { label: 'Nastavenia',      path: '/admin/settings' },
 ];
 
 const TIER_COLORS = {
