@@ -20,6 +20,7 @@ import SalonOnboarding from './pages/admin/SalonOnboarding';
 import PricingPage from './pages/admin/Pricing';
 import SalonSettings from './pages/admin/SalonSettings';
 import Workers from './pages/admin/Workers';
+import RecurringSlots from './pages/admin/RecurringSlots';
 import LandingPage from './pages/LandingPage';
 import SalonPortal from './pages/SalonPortal';
 import SalonLogin from './pages/SalonLogin';
@@ -68,6 +69,7 @@ const AppRoutes = () => {
       <Route path="/admin/pricing" element={<AdminRoute><PricingPage /></AdminRoute>} />
       <Route path="/admin/settings" element={<AdminRoute><SalonSettings /></AdminRoute>} />
       <Route path="/admin/workers" element={<AdminRoute><Workers /></AdminRoute>} />
+      <Route path="/admin/recurring" element={<AdminRoute><RecurringSlots /></AdminRoute>} />
       <Route path="*" element={<Navigate to={ROUTES.HOME} replace />} />
     </Routes>
   );
