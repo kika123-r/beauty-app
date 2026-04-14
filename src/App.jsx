@@ -20,6 +20,9 @@ import SalonOnboarding from './pages/admin/SalonOnboarding';
 import PricingPage from './pages/admin/Pricing';
 import SalonSettings from './pages/admin/SalonSettings';
 import LandingPage from './pages/LandingPage';
+import SalonPortal from './pages/SalonPortal';
+import SalonLogin from './pages/SalonLogin';
+import SalonRegister from './pages/SalonRegister';
 
 const PrivateRoute = ({ children }) => {
   const { firebaseUser } = useAuth();
@@ -39,6 +42,12 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/landing" element={<LandingPage />} />
+      <Route path="/s/:slug" element={<SalonPortal />} />
+      <Route path="/s/:slug/login" element={<SalonLogin />} />
+      <Route path="/s/:slug/register" element={<SalonRegister />} />
+      <Route path="/s/:slug/dashboard" element={<PrivateRoute><ClientDashboard /></PrivateRoute>} />
+      <Route path="/s/:slug/book" element={<PrivateRoute><BookingFlow /></PrivateRoute>} />
+      <Route path="/s/:slug/calendar" element={<PrivateRoute><Calendar /></PrivateRoute>} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       <Route path={ROUTES.ADMIN_REGISTER} element={<AdminRegisterPage />} />
