@@ -7,6 +7,7 @@ import { createBooking } from '../../services/bookingService';
 import { getSalon } from '../../services/salonService';
 import { getDocuments, usersCol } from '../../firebase/firestore';
 import { sendBookingConfirmation } from '../../services/emailService';
+import { addToWaitingList } from '../../services/waitingListService';
 import { SLOT_STATUS, ROUTES } from '../../constants';
 import toast from 'react-hot-toast';
 
@@ -30,6 +31,8 @@ const BookingFlow = () => {
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [loading, setLoading]           = useState(false);
+  const [waitingLoading, setWaitingLoading] = useState(false);
+  const [onWaitingList, setOnWaitingList] = useState(false);
   const [year, setYear]                 = useState(today.getFullYear());
   const [month, setMonth]               = useState(today.getMonth());
 
@@ -57,6 +60,17 @@ const BookingFlow = () => {
       s.date === selectedDate && s.serviceId === selectedService.id &&
       (s.status === SLOT_STATUS.AVAILABLE || s.status === SLOT_STATUS.LAST_MINUTE)
     );
+  };
+
+  const handleWaitingList = async () => {
+    if (!selectedService) return;
+    setWaitingLoading(true);
+    try {
+      await addToWaitingList(salonId, selectedService.id, firebaseUser.uid, firebaseUser.email, firebaseUser.displayName || 'Klient');
+      setOnWaitingList(true);
+      toast.success('Pridaný na čakaciu listinu! Upozorníme vás keď sa uvoľní termín.');
+    } catch { toast.error('Chyba. Skús znova.'); }
+    finally { setWaitingLoading(false); }
   };
 
   const handleBook = async () => {
@@ -157,6 +171,18 @@ const BookingFlow = () => {
               })}
             </div>
             <button style={{ ...btnStyle, width: '100%', opacity: selectedService ? 1 : 0.4 }} disabled={!selectedService} onClick={() => setStep(2)}>Pokračovať →</button>
+            {selectedService && getAvailableDatesForService(selectedService).size === 0 && (
+              <div style={{ marginTop: '16px', background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '16px', padding: '20px', textAlign: 'center' }}>
+                <p style={{ fontSize: '13px', color: '#979086', marginBottom: '12px' }}>Momentálne nie sú voľné termíny pre túto službu.</p>
+                {onWaitingList ? (
+                  <p style={{ fontSize: '13px', color: '#4A7C59', fontWeight: 500 }}>✓ Ste na čakacej listine</p>
+                ) : (
+                  <button onClick={handleWaitingList} disabled={waitingLoading} style={{ padding: '10px 20px', background: 'transparent', color: '#6A5D52', border: '1px solid #6A5D52', borderRadius: '10px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
+                    {waitingLoading ? 'Pridávam...' : '+ Čakacia listina'}
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         )}
 

@@ -3,6 +3,7 @@ import AdminLayout from '../../components/layout/AdminLayout';
 import { useAuth } from '../../context/AuthContext';
 import { useTier } from '../../hooks/useTier';
 import { sendBookingCancellation } from '../../services/emailService';
+import { getWaitingList } from '../../services/waitingListService';
 import { getBookingsForSalon, cancelBooking } from '../../services/bookingService';
 import { getServices } from '../../services/serviceService';
 import { getSlots } from '../../services/slotService';
@@ -78,6 +79,29 @@ const Bookings = () => {
             date: slot?.date || '',
             time: slot?.time || '',
           });
+        }
+        const waiting = await getWaitingList(salonId, booking.serviceId);
+        if (waiting.length > 0) {
+          const salonData = await import('../../services/salonService').then(m => m.getSalon(salonId));
+          await Promise.all(waiting.map(w =>
+            fetch('/api/send-email', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                type: 'last_minute',
+                to: w.clientEmail,
+                data: {
+                  salonName: salonData?.name || 'Salón',
+                  serviceName: getServiceName(booking.serviceId),
+                  date: slot?.date || '',
+                  time: slot?.time || '',
+                  price: services.find(s => s.id === booking.serviceId)?.price || 0,
+                  bookingUrl: window.location.origin + '/book/' + salonId,
+                },
+              }),
+            })
+          ));
+          toast.success('Čakajúci klienti boli upozornení!');
         }
       } else {
         await updateDocument(bookingsCol(salonId), booking.id, { status });
