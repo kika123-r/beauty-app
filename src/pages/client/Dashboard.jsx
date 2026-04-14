@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { getBookingsForClient } from '../../services/bookingService';
+import { getBookingsForClient, cancelBooking } from '../../services/bookingService';
+import { sendBookingCancellation } from '../../services/emailService';
 import { getServices } from '../../services/serviceService';
 import { getSlots } from '../../services/slotService';
 import { getDocuments } from '../../firebase/firestore';
@@ -10,6 +11,7 @@ import { db } from '../../firebase/config';
 import { logoutUser } from '../../firebase/auth';
 import { BOOKING_STATUS, ROUTES } from '../../constants';
 import toast from 'react-hot-toast';
+import { getSalon } from '../../services/salonService';
 
 const STATUS_CONFIG = {
   confirmed: { label: 'Potvrdená', color: '#4A7C59', bg: 'rgba(74,124,89,0.1)' },
@@ -74,6 +76,22 @@ const ClientDashboard = () => {
   const getSlotInfo = (slotId) => {
     const s = slots.find((s) => s.id === slotId);
     return s ? { date: s.date, time: s.time } : null;
+  };
+
+  const handleCancel = async (booking) => {
+    if (!window.confirm('Zrušiť túto rezerváciu?')) return;
+    try {
+      await cancelBooking(booking.salonId, booking.id, booking.slotId);
+      const slot = slots.find(s => s.id === booking.slotId);
+      await sendBookingCancellation({
+        clientEmail: firebaseUser.email,
+        serviceName: getServiceName(booking.serviceId),
+        date: slot?.date || '',
+        time: slot?.time || '',
+      });
+      toast.success('Rezervácia zrušená.');
+      loadData();
+    } catch { toast.error('Chyba. Skús znova.'); }
   };
 
   const getSalonName = (salonId) => {
@@ -196,9 +214,16 @@ const ClientDashboard = () => {
                     <p style={{ fontSize: '12px', color: '#6A5D52', marginTop: '2px' }}>{getServicePrice(booking.serviceId)}</p>
                   </div>
                 </div>
-                <span style={{ fontSize: '11px', color: status.color, background: status.bg, padding: '5px 12px', borderRadius: '20px', fontWeight: 500, flexShrink: 0, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-                  {status.label}
-                </span>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px', flexShrink: 0 }}>
+                  <span style={{ fontSize: '11px', color: status.color, background: status.bg, padding: '5px 12px', borderRadius: '20px', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                    {status.label}
+                  </span>
+                  {booking.status === BOOKING_STATUS.CONFIRMED && (
+                    <button onClick={() => handleCancel(booking)} style={{ fontSize: '11px', color: '#8B3A3A', background: 'transparent', border: '1px solid #8B3A3A', borderRadius: '8px', padding: '5px 12px', cursor: 'pointer', fontFamily: 'Jost, sans-serif', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                      Zrušiť
+                    </button>
+                  )}
+                </div>
               </div>
             );
           })}
