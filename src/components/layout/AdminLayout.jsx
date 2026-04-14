@@ -15,6 +15,7 @@ const NAV_ITEMS = [
   { label: 'Klienti',       path: ROUTES.ADMIN_USERS },
   { label: 'Analytika',     path: ROUTES.ADMIN_ANALYTICS },
   { label: 'Cenové plány',  path: '/admin/pricing' },
+  { label: 'Pracovníci',     path: '/admin/workers' },
   { label: 'Nastavenia',     path: '/admin/settings' },
 ];
 

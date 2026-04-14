@@ -4,9 +4,10 @@ import AdminLayout from '../../components/layout/AdminLayout';
 import { useAuth } from '../../context/AuthContext';
 import { useTier } from '../../hooks/useTier';
 import { createService, getServices, updateService, deleteService } from '../../services/serviceService';
+import { uploadServiceImage } from '../../services/uploadService';
 import toast from 'react-hot-toast';
 
-const EMPTY_FORM = { name: '', price: '', duration: '', description: '' };
+const EMPTY_FORM = { name: '', price: '', duration: '', description: '', imageUrl: '' };
 
 const Services = () => {
   const { salonId } = useAuth();
@@ -17,6 +18,9 @@ const Services = () => {
   const [editId, setEditId]     = useState(null);
   const [loading, setLoading]   = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => { loadServices(); }, []);
 
@@ -50,11 +54,19 @@ const Services = () => {
     }
     setLoading(true);
     try {
+      let imageUrl = form.imageUrl;
+      const serviceId = editId || `service_${Date.now()}`;
+      if (imageFile) {
+        setUploading(true);
+        imageUrl = await uploadServiceImage(salonId, serviceId, imageFile);
+        setUploading(false);
+      }
       const data = {
         name:        form.name,
         price:       Number(form.price),
         duration:    Number(form.duration),
         description: form.description,
+        imageUrl,
       };
       if (editId) {
         await updateService(salonId, editId, data);
@@ -66,6 +78,8 @@ const Services = () => {
       setForm(EMPTY_FORM);
       setEditId(null);
       setShowForm(false);
+      setImageFile(null);
+      setImagePreview(null);
       loadServices();
     } catch {
       toast.error('Chyba. Skús znova.');
@@ -91,6 +105,8 @@ const Services = () => {
     setForm(EMPTY_FORM);
     setEditId(null);
     setShowForm(false);
+    setImageFile(null);
+    setImagePreview(null);
   };
 
   const cardStyle = { background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '20px', padding: '24px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' };
@@ -165,6 +181,13 @@ const Services = () => {
               {editId ? 'Upraviť službu' : 'Nová služba'}
             </p>
             <form onSubmit={handleSubmit}>
+              <div style={{ marginBottom: '20px' }}>
+                <label style={labelStyle}>Fotografia služby</label>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                  {imagePreview && <img src={imagePreview} alt="preview" style={{ width: '80px', height: '60px', objectFit: 'cover', borderRadius: '10px', border: '1px solid #E2E2DE' }} />}
+                  <input type="file" accept="image/*" onChange={e => { const f = e.target.files[0]; if (f) { setImageFile(f); setImagePreview(URL.createObjectURL(f)); } }} style={{ fontSize: '13px', color: '#6A5D52', fontFamily: 'Jost, sans-serif' }} />
+                </div>
+              </div>
               <div style={{ marginBottom: '16px' }}>
                 <label style={labelStyle}>Názov služby *</label>
                 <input type="text" name="name" placeholder="napr. Strihanie vlasov" value={form.name} onChange={handleChange} style={inputStyle}
