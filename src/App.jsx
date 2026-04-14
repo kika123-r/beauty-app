@@ -17,6 +17,7 @@ import AdminTimeSlots from './pages/admin/TimeSlots';
 import AdminUsers from './pages/admin/Users';
 import AdminAnalytics from './pages/admin/Analytics';
 import SalonOnboarding from './pages/admin/SalonOnboarding';
+import PricingPage from './pages/admin/Pricing';
 
 const PrivateRoute = ({ children }) => {
   const { firebaseUser } = useAuth();
@@ -51,6 +52,7 @@ const AppRoutes = () => {
       <Route path={ROUTES.ADMIN_SLOTS} element={<AdminRoute><AdminTimeSlots /></AdminRoute>} />
       <Route path={ROUTES.ADMIN_USERS} element={<AdminRoute><AdminUsers /></AdminRoute>} />
       <Route path={ROUTES.ADMIN_ANALYTICS} element={<AdminRoute><AdminAnalytics /></AdminRoute>} />
+      <Route path="/admin/pricing" element={<AdminRoute><PricingPage /></AdminRoute>} />
       <Route path="*" element={<Navigate to={ROUTES.HOME} replace />} />
     </Routes>
   );

@@ -17,3 +17,7 @@ export const ROUTES = {
   ADMIN_USERS: '/admin/users',
   ADMIN_ANALYTICS: '/admin/analytics',
 };
+
+export const ROUTES_EXTRA = {
+  ADMIN_PRICING: '/admin/pricing',
+};
