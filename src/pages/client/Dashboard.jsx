@@ -13,6 +13,9 @@ import { BOOKING_STATUS, ROUTES } from '../../constants';
 import toast from 'react-hot-toast';
 import { getSalon } from '../../services/salonService';
 import { createRating, hasRated } from '../../services/ratingService';
+import { getRepeatBookings, createRepeatBooking, deleteRepeatBooking } from '../../services/repeatBookingService';
+import { getDocuments, collection } from 'firebase/firestore';
+import { db } from '../../firebase/config';
 
 const STATUS_CONFIG = {
   confirmed: { label: 'Potvrdená', color: '#4A7C59', bg: 'rgba(74,124,89,0.1)' },
@@ -35,9 +38,15 @@ const ClientDashboard = () => {
   const [ratingValue, setRatingValue] = useState(5);
   const [ratingComment, setRatingComment] = useState('');
   const [ratedBookings, setRatedBookings] = useState([]);
+  const [repeatBookings, setRepeatBookings] = useState([]);
+  const [showRepeatModal, setShowRepeatModal] = useState(false);
+  const [repeatService, setRepeatService] = useState('');
+  const [repeatInterval, setRepeatInterval] = useState('weekly');
+  const [repeatTime, setRepeatTime] = useState('10:00');
+  const [savingRepeat, setSavingRepeat] = useState(false);
   const [submittingRating, setSubmittingRating] = useState(false);
 
-  useEffect(() => { loadData(); }, []);
+  useEffect(() => { loadData(); loadRepeatBookings(); }, []);
 
   const loadData = async () => {
     try {
@@ -82,6 +91,27 @@ const ClientDashboard = () => {
   const getSlotInfo = (slotId) => {
     const s = slots.find((s) => s.id === slotId);
     return s ? { date: s.date, time: s.time } : null;
+  };
+
+  const handleSaveRepeat = async () => {
+    if (!repeatService) { toast.error('Vyber službu.'); return; }
+    setSavingRepeat(true);
+    try {
+      const salons = await getDocuments(collection(db, 'salons'));
+      const salon = salons[0];
+      await createRepeatBooking(salon.id, firebaseUser.uid, repeatService, repeatInterval, new Date().toISOString().split('T')[0], repeatTime);
+      toast.success('Opakovaná rezervácia nastavená!');
+      setShowRepeatModal(false);
+      loadRepeatBookings();
+    } catch { toast.error('Chyba. Skús znova.'); }
+    finally { setSavingRepeat(false); }
+  };
+
+  const handleDeleteRepeat = async (repeat) => {
+    if (!window.confirm('Zrušiť opakovanú rezerváciu?')) return;
+    await deleteRepeatBooking(repeat.salonId, repeat.id);
+    toast.success('Opakovaná rezervácia zrušená.');
+    loadRepeatBookings();
   };
 
   const handleRate = async () => {
@@ -160,6 +190,39 @@ const ClientDashboard = () => {
   return (
     <div style={{ minHeight: '100vh', background: '#F5F0EA' }}>
       {showModal}
+      {showRepeatModal && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(28,28,27,0.5)', zIndex: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+          <div style={{ background: '#FFFFFF', borderRadius: '24px', padding: '32px', maxWidth: '420px', width: '100%' }}>
+            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#979086', marginBottom: '8px' }}>Nastavenie</p>
+            <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', color: '#1C1C1B', marginBottom: '24px' }}>Opakovaná rezervácia</h3>
+            <div style={{ marginBottom: '16px' }}>
+              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#979086', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Služba</label>
+              <select value={repeatService} onChange={e => setRepeatService(e.target.value)} style={{ width: '100%', padding: '12px 16px', background: '#F5F0EA', border: '1px solid #E2E2DE', borderRadius: '10px', fontSize: '14px', color: '#1C1C1B', outline: 'none', fontFamily: 'Jost, sans-serif' }}>
+                <option value=''>Vyber službu...</option>
+                {services.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
+              </select>
+            </div>
+            <div style={{ marginBottom: '16px' }}>
+              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#979086', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Opakovanie</label>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                {[{ val: 'weekly', label: 'Každý týždeň' }, { val: 'monthly', label: 'Každý mesiac' }].map(opt => (
+                  <button key={opt.val} onClick={() => setRepeatInterval(opt.val)} style={{ flex: 1, padding: '10px', background: repeatInterval === opt.val ? '#6A5D52' : 'transparent', color: repeatInterval === opt.val ? '#F5F0EA' : '#979086', border: '1px solid #E2E2DE', borderRadius: '10px', fontSize: '12px', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>{opt.label}</button>
+                ))}
+              </div>
+            </div>
+            <div style={{ marginBottom: '24px' }}>
+              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#979086', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Preferovaný čas</label>
+              <input type='time' value={repeatTime} onChange={e => setRepeatTime(e.target.value)} style={{ width: '100%', padding: '12px 16px', background: '#F5F0EA', border: '1px solid #E2E2DE', borderRadius: '10px', fontSize: '14px', color: '#1C1C1B', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }} />
+            </div>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <button onClick={() => setShowRepeatModal(false)} style={{ padding: '12px 20px', background: 'transparent', color: '#979086', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '12px', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>Zrušiť</button>
+              <button onClick={handleSaveRepeat} disabled={savingRepeat} style={{ flex: 1, padding: '12px', background: savingRepeat ? '#B7AC9B' : '#6A5D52', color: '#F5F0EA', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: savingRepeat ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif' }}>
+                {savingRepeat ? 'Ukladám...' : 'Uložiť'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <header style={{ background: '#FFFFFF', borderBottom: '1px solid #E2E2DE', padding: '0 20px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 100, boxShadow: '0 1px 12px rgba(28,28,27,0.04)' }}>
         <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', color: '#6A5D52' }}>BeautyTime</span>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
