@@ -12,6 +12,7 @@ import { logoutUser } from '../../firebase/auth';
 import { BOOKING_STATUS, ROUTES } from '../../constants';
 import toast from 'react-hot-toast';
 import { getSalon } from '../../services/salonService';
+import { createRating, hasRated } from '../../services/ratingService';
 
 const STATUS_CONFIG = {
   confirmed: { label: 'Potvrdená', color: '#4A7C59', bg: 'rgba(74,124,89,0.1)' },
@@ -30,6 +31,11 @@ const ClientDashboard = () => {
   const [salons, setSalons]       = useState([]);
   const [loading, setLoading]     = useState(true);
   const [activeTab, setActiveTab] = useState('upcoming');
+  const [ratingModal, setRatingModal] = useState(null);
+  const [ratingValue, setRatingValue] = useState(5);
+  const [ratingComment, setRatingComment] = useState('');
+  const [ratedBookings, setRatedBookings] = useState([]);
+  const [submittingRating, setSubmittingRating] = useState(false);
 
   useEffect(() => { loadData(); }, []);
 
@@ -78,6 +84,20 @@ const ClientDashboard = () => {
     return s ? { date: s.date, time: s.time } : null;
   };
 
+  const handleRate = async () => {
+    if (!ratingModal) return;
+    setSubmittingRating(true);
+    try {
+      await createRating(ratingModal.salonId, firebaseUser.uid, ratingModal.id, ratingValue, ratingComment);
+      setRatedBookings(prev => [...prev, ratingModal.id]);
+      setRatingModal(null);
+      setRatingValue(5);
+      setRatingComment('');
+      toast.success('Ďakujeme za hodnotenie!');
+    } catch { toast.error('Chyba. Skús znova.'); }
+    finally { setSubmittingRating(false); }
+  };
+
   const handleCancel = async (booking) => {
     if (!window.confirm('Zrušiť túto rezerváciu?')) return;
     try {
@@ -108,6 +128,21 @@ const ClientDashboard = () => {
   const upcomingBookings = bookings.filter((b) =>
     b.status === BOOKING_STATUS.CONFIRMED || b.status === BOOKING_STATUS.PENDING
   );
+
+  const showModal = ratingModal && (
+    <RatingModal
+      booking={ratingModal}
+      getServiceName={getServiceName}
+      getSalonName={getSalonName}
+      value={ratingValue}
+      setValue={setRatingValue}
+      comment={ratingComment}
+      setComment={setRatingComment}
+      onSubmit={handleRate}
+      onClose={() => setRatingModal(null)}
+      submitting={submittingRating}
+    />
+  );
   const pastBookings = bookings.filter((b) =>
     b.status === BOOKING_STATUS.COMPLETED ||
     b.status === BOOKING_STATUS.CANCELLED ||
@@ -124,6 +159,7 @@ const ClientDashboard = () => {
 
   return (
     <div style={{ minHeight: '100vh', background: '#F5F0EA' }}>
+      {showModal}
       <header style={{ background: '#FFFFFF', borderBottom: '1px solid #E2E2DE', padding: '0 20px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 100, boxShadow: '0 1px 12px rgba(28,28,27,0.04)' }}>
         <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', color: '#6A5D52' }}>BeautyTime</span>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -218,6 +254,11 @@ const ClientDashboard = () => {
                   <span style={{ fontSize: '11px', color: status.color, background: status.bg, padding: '5px 12px', borderRadius: '20px', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
                     {status.label}
                   </span>
+                  {booking.status === BOOKING_STATUS.COMPLETED && !ratedBookings.includes(booking.id) && (
+                    <button onClick={() => setRatingModal(booking)} style={{ fontSize: '11px', color: '#6A5D52', background: 'transparent', border: '1px solid #6A5D52', borderRadius: '8px', padding: '5px 12px', cursor: 'pointer', fontFamily: 'Jost, sans-serif', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                      ★ Hodnotiť
+                    </button>
+                  )}
                   {booking.status === BOOKING_STATUS.CONFIRMED && (
                     <button onClick={() => handleCancel(booking)} style={{ fontSize: '11px', color: '#8B3A3A', background: 'transparent', border: '1px solid #8B3A3A', borderRadius: '8px', padding: '5px 12px', cursor: 'pointer', fontFamily: 'Jost, sans-serif', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
                       Zrušiť
@@ -232,5 +273,27 @@ const ClientDashboard = () => {
     </div>
   );
 };
+
+const RatingModal = ({ booking, getServiceName, getSalonName, value, setValue, comment, setComment, onSubmit, onClose, submitting }) => (
+  <div style={{ position: 'fixed', inset: 0, background: 'rgba(28,28,27,0.5)', zIndex: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+    <div style={{ background: '#FFFFFF', borderRadius: '24px', padding: '32px', maxWidth: '420px', width: '100%', boxShadow: '0 20px 60px rgba(28,28,27,0.2)' }}>
+      <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#979086', marginBottom: '8px' }}>Hodnotenie</p>
+      <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', color: '#1C1C1B', marginBottom: '4px' }}>{getServiceName(booking.serviceId)}</h3>
+      <p style={{ fontSize: '13px', color: '#979086', marginBottom: '24px' }}>{getSalonName(booking.salonId)}</p>
+      <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginBottom: '24px' }}>
+        {[1,2,3,4,5].map(star => (
+          <button key={star} onClick={() => setValue(star)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '32px', opacity: star <= value ? 1 : 0.3, transition: 'opacity 0.15s' }}>★</button>
+        ))}
+      </div>
+      <textarea value={comment} onChange={e => setComment(e.target.value)} placeholder="Váš komentár (nepovinné)..." rows={3} style={{ width: '100%', padding: '12px 16px', background: '#F5F0EA', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '14px', color: '#1C1C1B', outline: 'none', fontFamily: 'Jost, sans-serif', resize: 'vertical', boxSizing: 'border-box', marginBottom: '20px' }} />
+      <div style={{ display: 'flex', gap: '10px' }}>
+        <button onClick={onClose} style={{ padding: '12px 20px', background: 'transparent', color: '#979086', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '12px', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>Zrušiť</button>
+        <button onClick={onSubmit} disabled={submitting} style={{ flex: 1, padding: '12px', background: submitting ? '#B7AC9B' : '#6A5D52', color: '#F5F0EA', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: submitting ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif' }}>
+          {submitting ? 'Odosielam...' : 'Odoslať hodnotenie'}
+        </button>
+      </div>
+    </div>
+  </div>
+);
 
 export default ClientDashboard;
