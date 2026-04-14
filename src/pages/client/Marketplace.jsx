@@ -9,12 +9,15 @@ import { collection } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import { logoutUser } from '../../firebase/auth';
 import { SLOT_STATUS, ROUTES } from '../../constants';
+import { getRatings } from '../../services/ratingService';
 import toast from 'react-hot-toast';
 
 const Marketplace = () => {
   const { firebaseUser } = useAuth();
   const navigate = useNavigate();
   const [salons, setSalons]     = useState([]);
+  const [ratings, setRatings]   = useState({});
+  const [selectedSalonDetail, setSelectedSalonDetail] = useState(null);
   const [slots, setSlots]       = useState([]);
   const [services, setServices] = useState([]);
   const [loading, setLoading]   = useState(true);
@@ -36,6 +39,13 @@ const Marketplace = () => {
       }));
       setSlots(allSlots);
       setServices(allServices);
+      const ratingsMap = {};
+      await Promise.all(salonsData.map(async salon => {
+        const rt = await getRatings(salon.id);
+        const avg = rt.length > 0 ? (rt.reduce((s, r) => s + r.rating, 0) / rt.length).toFixed(1) : null;
+        ratingsMap[salon.id] = { avg, count: rt.length };
+      }));
+      setRatings(ratingsMap);
     } catch (err) { console.error(err); }
     finally { setLoading(false); }
   };
@@ -100,6 +110,46 @@ const Marketplace = () => {
         <div style={{ background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '14px', padding: '4px', marginBottom: '12px', display: 'flex', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' }}>
           <button style={btnStyle(filter === 'all')} onClick={() => setFilter('all')}>Všetky termíny</button>
           <button style={btnStyle(filter === 'last_minute')} onClick={() => setFilter('last_minute')}>⚡ Last Minute</button>
+        </div>
+
+        {/* Salon karty */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
+          {salons.map(salon => {
+            const rt = ratings[salon.id];
+            const todayKey = ['sun','mon','tue','wed','thu','fri','sat'][new Date().getDay()];
+            const hours = salon.openHours?.[todayKey];
+            const isOpen = hours && !hours.closed;
+            return (
+              <div key={salon.id} onClick={() => setSelectedSalonDetail(selectedSalonDetail === salon.id ? null : salon.id)}
+                style={{ background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '16px', padding: '16px 20px', cursor: 'pointer', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                      <p style={{ fontSize: '15px', fontWeight: 500, color: '#1C1C1B', fontFamily: 'Jost, sans-serif' }}>{salon.name}</p>
+                      {salon.category && <span style={{ fontSize: '10px', color: '#6A5D52', background: 'rgba(106,93,82,0.08)', padding: '2px 8px', borderRadius: '20px', letterSpacing: '0.06em' }}>{salon.category}</span>}
+                    </div>
+                    <p style={{ fontSize: '12px', color: '#979086', marginBottom: '4px' }}>{salon.address}</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      {rt?.avg && <span style={{ fontSize: '12px', color: '#B07D3A' }}>★ {rt.avg} ({rt.count})</span>}
+                      <span style={{ fontSize: '11px', color: isOpen ? '#4A7C59' : '#8B3A3A', fontWeight: 500 }}>{isOpen ? `Otvorené · ${hours.open}–${hours.close}` : 'Zatvorené'}</span>
+                    </div>
+                  </div>
+                  <span style={{ fontSize: '12px', color: '#979086' }}>{selectedSalonDetail === salon.id ? '▲' : '▼'}</span>
+                </div>
+                {selectedSalonDetail === salon.id && (
+                  <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid #F5F0EA' }}>
+                    {salon.description && <p style={{ fontSize: '13px', color: '#979086', lineHeight: 1.6, marginBottom: '12px' }}>{salon.description}</p>}
+                    <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                      {salon.phone && <a href={`tel:${salon.phone}`} style={{ fontSize: '12px', color: '#6A5D52', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>📞 {salon.phone}</a>}
+                      {salon.email && <a href={`mailto:${salon.email}`} style={{ fontSize: '12px', color: '#6A5D52', textDecoration: 'none' }}>✉️ {salon.email}</a>}
+                      {salon.instagram && <a href={`https://instagram.com/${salon.instagram.replace('@','')}`} target="_blank" rel="noreferrer" style={{ fontSize: '12px', color: '#6A5D52', textDecoration: 'none' }}>Instagram {salon.instagram}</a>}
+                      {salon.website && <a href={salon.website.startsWith('http') ? salon.website : `https://${salon.website}`} target="_blank" rel="noreferrer" style={{ fontSize: '12px', color: '#6A5D52', textDecoration: 'none' }}>🌐 Web</a>}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {salons.length > 1 && (
