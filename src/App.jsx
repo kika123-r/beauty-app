@@ -18,6 +18,7 @@ import AdminUsers from './pages/admin/Users';
 import AdminAnalytics from './pages/admin/Analytics';
 import SalonOnboarding from './pages/admin/SalonOnboarding';
 import PricingPage from './pages/admin/Pricing';
+import LandingPage from './pages/LandingPage';
 
 const PrivateRoute = ({ children }) => {
   const { firebaseUser } = useAuth();
@@ -36,6 +37,7 @@ const AppRoutes = () => {
   const { firebaseUser, isAdmin } = useAuth();
   return (
     <Routes>
+      <Route path="/landing" element={<LandingPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       <Route path={ROUTES.ADMIN_REGISTER} element={<AdminRegisterPage />} />
