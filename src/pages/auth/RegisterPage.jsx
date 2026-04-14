@@ -35,58 +35,42 @@ const RegisterPage = () => {
     }
   };
 
-  const inputStyle = {
-    width: '100%', padding: '14px 18px',
-    background: '#FFFFFF', border: '1px solid #E2E2DE',
-    borderRadius: '12px', fontSize: '14px', color: '#1C1C1B',
-    outline: 'none', fontFamily: 'Jost, sans-serif',
-    fontWeight: 300, transition: 'border-color 0.2s', boxSizing: 'border-box',
-  };
-
-  const labelStyle = {
-    display: 'block', fontSize: '10px', fontWeight: 500,
-    color: '#979086', marginBottom: '8px',
-    letterSpacing: '0.12em', textTransform: 'uppercase',
-  };
-
   return (
     <div style={{ minHeight: '100vh', display: 'flex', background: '#F5F0EA' }}>
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', overflowY: 'auto' }}>
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 24px' }}>
         <div style={{ width: '100%', maxWidth: '400px' }}>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'linear-gradient(135deg, #D4C5B0            <div sty '0 auto 16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'linear-gradient(135deg, #D4C5B0, #A89070)', margin: '0 auto 16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.8rem', color: '#F5F0EA', fontWeight: 300 }}>B</span>
             </div>
             <h1 style={{ fontSize: '1.8rem', color: '#1C1C1B', marginBottom: '6px', fontFamily: 'Cormorant Garamond, serif' }}>BeautyTime</h1>
-            <p style={{ fontSize: '            <p style={{ fontSize: '     '0.08em' }}>Vytvor si nový účet</p>
+            <p style={{ fontSize: '13px', color: '#979086' }}>Vytvor si nový účet</p>
           </div>
           <form onSubmit={handleSubmit}>
             <div style={{ marginBottom: '16px' }}>
-              <label style={labelStyle}>Meno a priezvisko</label>
-              <input type="text" name="name" placeholder="Jana Nováková" value={form.name} onChange={handleChange} style={inputStyle}
+              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#979086', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Meno a priezvisko</label>
+              <input type="text" name="name" placeholder="Jana Nováková" value={form.name} onChange={handleChange}
+                style={{ width: '100%', padding: '14px 18px', background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '14px', color: '#1C1C1B', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
                 onFocus={(e) => e.target.style.borderColor = '#6A5D52'} onBlur={(e) => e.target.style.borderColor = '#E2E2DE'} />
             </div>
             <div style={{ marginBottom: '16px' }}>
-              <label style={labelStyle}>Email</label>
-              <input type="email" name="email" placeholder="tvoj@email.com" value={form.email} onChange={handleChange} style={inputStyle}
+              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#979086', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Email</label>
+              <input type="email" name="email" placeholder="tvoj@email.com" value={form.email} onChange={handleChange}
+                style={{ width: '100%', padding: '14px 18px', background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '14px', color: '#1C1C1B', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
                 onFocus={(e) => e.target.style.borderColor = '#6A5D52'} onBlur={(e) => e.target.style.borderColor = '#E2E2DE'} />
             </div>
             <div style={{ marginBottom: '24px' }}>
-              <label style={labelStyle}>Heslo</label>
-              <input type="password" name="password" placeholder="min. 6 znakov" value={form.password} onChange={handleChange} style={inputStyle}
+              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#979086', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Heslo</label>
+              <input type="password" name="password" placeholder="min. 6 znakov" value={form.password} onChange={handleChange}
+                style={{ width: '100%', padding: '14px 18px', background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '14px', color: '#1C1C1B', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
                 onFocus={(e) => e.target.style.borderColor = '#6A5D52'} onBlur={(e) => e.target.style.borderColor = '#E2E2DE'} />
             </div>
             {error && <p style={{ fontSize: '13px', color: '#8B3A3A', marginBottom: '16px', textAlign: 'center' }}>{error}</p>}
-            <button type="submit" disabled={loading} style={{
-              width: '100%', padding: '15px',
-              background: loading ? '#B7AC9B' : '#6A5D52',
-              color: '#F5F0EA', border: 'none', borderRadius: '12px',
-              fontSize: '12px', fontWeight: 500, letterSpacing: '0.12em',
-              textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer',
-              fontFamily: 'Jost, sans-serif',
-            }}>
+            <button type="submit" disabled={loading} style={{ width: '100%', padding: '15px', background: loading ? '#B7AC9B' : '#6A5D52', color: '#F5F0EA', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif' }}>
               {loading ? 'Vytváram účet...' : 'Zaregistrovať sa'}
-            </but            </but            </but            </bulign: 'center', marginTop: '28px', fontSize: '13px', color: '#979086' }}>
+            </button>
+          </form>
+          <p style={{ textAlign: 'center', marginTop: '28px', fontSize: '13px', color: '#979086' }}>
             Už máš účet?{' '}
             <Link to={ROUTES.LOGIN} style={{ color: '#6A5D52', fontWeight: 500 }}>Prihlás sa</Link>
           </p>
