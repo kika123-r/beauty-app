@@ -11,7 +11,7 @@ import { BOOKING_STATUS, SLOT_STATUS } from '../constants';
 import { doc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 
-export const createBooking = async (salonId, clientId, slotId, serviceId, note = '') => {
+export const createBooking = async (salonId, clientId, slotId, serviceId, note = '', workerId = null) => {
   const slotRef = doc(db, 'salons', salonId, 'timeSlots', slotId);
 
   await runBatch((batch) => {
@@ -22,6 +22,7 @@ export const createBooking = async (salonId, clientId, slotId, serviceId, note =
       slotId,
       serviceId,
       note: note || '',
+      workerId: workerId || null,
       status:    BOOKING_STATUS.CONFIRMED,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),

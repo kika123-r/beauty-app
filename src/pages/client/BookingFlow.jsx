@@ -8,6 +8,7 @@ import { getSalon } from '../../services/salonService';
 import { getDocuments, usersCol } from '../../firebase/firestore';
 import { sendBookingConfirmation } from '../../services/emailService';
 import { addToWaitingList } from '../../services/waitingListService';
+import { getWorkers } from '../../services/workerService';
 import { SLOT_STATUS, ROUTES } from '../../constants';
 import toast from 'react-hot-toast';
 
@@ -31,6 +32,8 @@ const BookingFlow = () => {
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [loading, setLoading]           = useState(false);
+  const [workers, setWorkers]             = useState([]);
+  const [selectedWorker, setSelectedWorker] = useState(null);
   const [waitingLoading, setWaitingLoading] = useState(false);
   const [onWaitingList, setOnWaitingList] = useState(false);
   const [note, setNote] = useState('');
@@ -40,9 +43,10 @@ const BookingFlow = () => {
   useEffect(() => { loadInitialData(); }, [salonId]);
 
   const loadInitialData = async () => {
-    const [salonData, servicesData, slotsData] = await Promise.all([
-      getSalon(salonId), getServices(salonId), getSlots(salonId),
+    const [salonData, servicesData, slotsData, workersData] = await Promise.all([
+      getSalon(salonId), getServices(salonId), getSlots(salonId), getWorkers(salonId),
     ]);
+    setWorkers(workersData);
     setSalon(salonData); setServices(servicesData); setAllSlots(slotsData);
   };
 
@@ -78,7 +82,7 @@ const BookingFlow = () => {
     if (!selectedSlot) return;
     setLoading(true);
     try {
-      await createBooking(salonId, firebaseUser.uid, selectedSlot.id, selectedService.id, note);
+      await createBooking(salonId, firebaseUser.uid, selectedSlot.id, selectedService.id, note, selectedWorker?.id || null);
 
       // Odoslať email potvrdenie
       const clientEmail = firebaseUser.email;
@@ -171,6 +175,35 @@ const BookingFlow = () => {
                 );
               })}
             </div>
+            {/* Výber pracovníka */}
+            {selectedService && (() => {
+              const serviceWorkers = workers.filter(w => (w.serviceIds || []).includes(selectedService.id));
+              return serviceWorkers.length > 0 ? (
+                <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+                  <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#979086', marginBottom: '12px' }}>Vyber pracovníka</p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <div onClick={() => setSelectedWorker(null)} style={{ padding: '12px 16px', background: !selectedWorker ? 'rgba(106,93,82,0.06)' : '#FFFFFF', border: `1.5px solid ${!selectedWorker ? '#6A5D52' : '#E2E2DE'}`, borderRadius: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#F5F0EA', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', flexShrink: 0 }}>👤</div>
+                      <div>
+                        <p style={{ fontSize: '13px', fontWeight: 500, color: '#1C1C1B', fontFamily: 'Jost, sans-serif' }}>Ktokoľvek dostupný</p>
+                        <p style={{ fontSize: '11px', color: '#979086' }}>Prvý voľný pracovník</p>
+                      </div>
+                    </div>
+                    {serviceWorkers.map(worker => (
+                      <div key={worker.id} onClick={() => setSelectedWorker(worker)} style={{ padding: '12px 16px', background: selectedWorker?.id === worker.id ? 'rgba(106,93,82,0.06)' : '#FFFFFF', border: `1.5px solid ${selectedWorker?.id === worker.id ? '#6A5D52' : '#E2E2DE'}`, borderRadius: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'linear-gradient(135deg, #D4C5B0, #B7AC9B)', overflow: 'hidden', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          {worker.photoUrl ? <img src={worker.photoUrl} alt={worker.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1rem', color: '#F5F0EA' }}>{worker.name?.charAt(0)}</span>}
+                        </div>
+                        <div>
+                          <p style={{ fontSize: '13px', fontWeight: 500, color: '#1C1C1B', fontFamily: 'Jost, sans-serif' }}>{worker.name}</p>
+                          <p style={{ fontSize: '11px', color: '#979086' }}>{worker.position}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : null;
+            })()}
             <button style={{ ...btnStyle, width: '100%', opacity: selectedService ? 1 : 0.4 }} disabled={!selectedService} onClick={() => setStep(2)}>Pokračovať →</button>
             {selectedService && getAvailableDatesForService(selectedService).size === 0 && (
               <div style={{ marginTop: '16px', background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '16px', padding: '20px', textAlign: 'center' }}>
@@ -272,6 +305,7 @@ const BookingFlow = () => {
                   { label: 'Salón',   value: salon?.name,            sub: salon?.address },
                   { label: 'Služba',  value: selectedService?.name,  sub: `${selectedService?.duration} min · ${selectedService?.price} €` },
                   { label: 'Termín',  value: selectedDate,           sub: `o ${selectedSlot?.time}` },
+                  ...(selectedWorker ? [{ label: 'Pracovník', value: selectedWorker.name, sub: selectedWorker.position }] : []),
                 ].map((item, i) => (
                   <div key={i}>
                     {i > 0 && <div style={{ height: '1px', background: '#F5F0EA', margin: '20px 0' }} />}

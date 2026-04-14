@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useTier } from '../../hooks/useTier';
 import { sendBookingCancellation } from '../../services/emailService';
 import { getWaitingList } from '../../services/waitingListService';
+import { getWorkers } from '../../services/workerService';
 import { getBookingsForSalon, cancelBooking } from '../../services/bookingService';
 import { getServices } from '../../services/serviceService';
 import { getSlots } from '../../services/slotService';
@@ -27,6 +28,7 @@ const Bookings = () => {
   const [slots, setSlots]       = useState([]);
   const [users, setUsers]       = useState([]);
   const [loading, setLoading]   = useState(true);
+  const [workers, setWorkers]   = useState([]);
   const [filterStatus, setFilterStatus] = useState('all');
   const [filterService, setFilterService] = useState('all');
   const [filterDate, setFilterDate] = useState('');
@@ -38,13 +40,14 @@ const Bookings = () => {
 
   const loadData = async () => {
     try {
-      const [b, sv, sl, u] = await Promise.all([
+      const [b, sv, sl, u, w] = await Promise.all([
         getBookingsForSalon(salonId),
         getServices(salonId),
         getSlots(salonId),
         getDocuments(usersCol()),
+        getWorkers(salonId),
       ]);
-      setBookings(b); setServices(sv); setSlots(sl); setUsers(u);
+      setBookings(b); setServices(sv); setSlots(sl); setUsers(u); setWorkers(w);
     } catch (err) { console.error(err); }
     finally { setLoading(false); }
   };
@@ -196,7 +199,16 @@ const Bookings = () => {
                     <div>
                       <p style={{ fontWeight: 500, color: '#1C1C1B', fontSize: '15px', fontFamily: 'Jost, sans-serif', marginBottom: '3px' }}>{getServiceName(booking.serviceId)}</p>
                       {slot && <p style={{ fontSize: '13px', color: '#979086' }}>{slot.date} · {slot.time}</p>}
-                      {booking.note && (
+                      {booking.workerId && (() => {
+                      const worker = workers.find(w => w.id === booking.workerId);
+                      return worker ? (
+                        <div style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          <span style={{ fontSize: '11px', color: '#6A5D52' }}>👤</span>
+                          <p style={{ fontSize: '12px', color: '#6A5D52', fontWeight: 500 }}>{worker.name} · {worker.position}</p>
+                        </div>
+                      ) : null;
+                    })()}
+                    {booking.note && (
                       <div style={{ marginTop: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                         <span style={{ fontSize: '11px', color: '#B07D3A' }}>📝</span>
                         <p style={{ fontSize: '12px', color: '#979086', fontStyle: 'italic' }}>{booking.note}</p>
