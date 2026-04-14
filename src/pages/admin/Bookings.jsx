@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import AdminLayout from '../../components/layout/AdminLayout';
 import { useAuth } from '../../context/AuthContext';
 import { useTier } from '../../hooks/useTier';
+import { sendBookingCancellation } from '../../services/emailService';
 import { getBookingsForSalon, cancelBooking } from '../../services/bookingService';
 import { getServices } from '../../services/serviceService';
 import { getSlots } from '../../services/slotService';
@@ -65,9 +66,19 @@ const Bookings = () => {
   });
 
   const handleStatus = async (booking, status) => {
+    const slot = getSlotInfo(booking.slotId);
+    const client = getClient(booking.clientId);
     try {
       if (status === BOOKING_STATUS.CANCELLED) {
         await cancelBooking(salonId, booking.id, booking.slotId);
+        if (client?.email) {
+          await sendBookingCancellation({
+            clientEmail: client.email,
+            serviceName: getServiceName(booking.serviceId),
+            date: slot?.date || '',
+            time: slot?.time || '',
+          });
+        }
       } else {
         await updateDocument(bookingsCol(salonId), booking.id, { status });
       }
