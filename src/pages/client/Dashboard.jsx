@@ -63,9 +63,9 @@ const ClientDashboard = () => {
           getServices(salon.id),
           getSlots(salon.id),
         ]);
-        allBookings.push(...b);
-        allServices.push(...sv);
-        allSlots.push(...sl);
+        allBookings.push(...b.map(booking => ({ ...booking, salonId: salon.id })));
+        allServices.push(...sv.map(service => ({ ...service, salonId: salon.id })));
+        allSlots.push(...sl.map(slot => ({ ...slot, salonId: salon.id })));
       }));
 
       setBookings(allBookings);
