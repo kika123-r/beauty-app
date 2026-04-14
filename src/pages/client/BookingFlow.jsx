@@ -33,6 +33,7 @@ const BookingFlow = () => {
   const [loading, setLoading]           = useState(false);
   const [waitingLoading, setWaitingLoading] = useState(false);
   const [onWaitingList, setOnWaitingList] = useState(false);
+  const [note, setNote] = useState('');
   const [year, setYear]                 = useState(today.getFullYear());
   const [month, setMonth]               = useState(today.getMonth());
 
@@ -77,7 +78,7 @@ const BookingFlow = () => {
     if (!selectedSlot) return;
     setLoading(true);
     try {
-      await createBooking(salonId, firebaseUser.uid, selectedSlot.id, selectedService.id);
+      await createBooking(salonId, firebaseUser.uid, selectedSlot.id, selectedService.id, note);
 
       // Odoslať email potvrdenie
       const clientEmail = firebaseUser.email;
@@ -280,6 +281,20 @@ const BookingFlow = () => {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* Poznámka */}
+            <div style={{ marginBottom: '16px' }}>
+              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#979086', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Poznámka pre salón</label>
+              <textarea
+                value={note}
+                onChange={e => setNote(e.target.value)}
+                placeholder="napr. Alergia na farbivo, preferujem ticho..."
+                rows={3}
+                style={{ width: '100%', padding: '12px 16px', background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '14px', color: '#1C1C1B', outline: 'none', fontFamily: 'Jost, sans-serif', resize: 'vertical', boxSizing: 'border-box' }}
+                onFocus={e => e.target.style.borderColor='#6A5D52'}
+                onBlur={e => e.target.style.borderColor='#E2E2DE'}
+              />
             </div>
 
             {/* Email info */}

@@ -196,7 +196,13 @@ const Bookings = () => {
                     <div>
                       <p style={{ fontWeight: 500, color: '#1C1C1B', fontSize: '15px', fontFamily: 'Jost, sans-serif', marginBottom: '3px' }}>{getServiceName(booking.serviceId)}</p>
                       {slot && <p style={{ fontSize: '13px', color: '#979086' }}>{slot.date} · {slot.time}</p>}
-                      {client && (
+                      {booking.note && (
+                      <div style={{ marginTop: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ fontSize: '11px', color: '#B07D3A' }}>📝</span>
+                        <p style={{ fontSize: '12px', color: '#979086', fontStyle: 'italic' }}>{booking.note}</p>
+                      </div>
+                    )}
+                    {client && (
                         <div style={{ marginTop: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                           <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(106,93,82,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 600, color: '#6A5D52' }}>
                             {client.name?.charAt(0) || '?'}
