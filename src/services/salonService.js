@@ -23,3 +23,9 @@ export const getSalon = async (salonId) => {
   const snap = await getDoc(doc(db, 'salons', salonId));
   return snap.exists() ? { id: snap.id, ...snap.data() } : null;
 };
+export const updateSalon = async (salonId, data) => {
+  await setDoc(doc(db, 'salons', salonId), {
+    ...data,
+    updatedAt: serverTimestamp(),
+  }, { merge: true });
+};

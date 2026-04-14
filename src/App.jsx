@@ -18,6 +18,7 @@ import AdminUsers from './pages/admin/Users';
 import AdminAnalytics from './pages/admin/Analytics';
 import SalonOnboarding from './pages/admin/SalonOnboarding';
 import PricingPage from './pages/admin/Pricing';
+import SalonSettings from './pages/admin/SalonSettings';
 import LandingPage from './pages/LandingPage';
 
 const PrivateRoute = ({ children }) => {
@@ -55,6 +56,7 @@ const AppRoutes = () => {
       <Route path={ROUTES.ADMIN_USERS} element={<AdminRoute><AdminUsers /></AdminRoute>} />
       <Route path={ROUTES.ADMIN_ANALYTICS} element={<AdminRoute><AdminAnalytics /></AdminRoute>} />
       <Route path="/admin/pricing" element={<AdminRoute><PricingPage /></AdminRoute>} />
+      <Route path="/admin/settings" element={<AdminRoute><SalonSettings /></AdminRoute>} />
       <Route path="*" element={<Navigate to={ROUTES.HOME} replace />} />
     </Routes>
   );
