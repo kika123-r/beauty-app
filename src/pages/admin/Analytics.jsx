@@ -7,6 +7,8 @@ import { getBookingsForSalon } from '../../services/bookingService';
 import { getServices } from '../../services/serviceService';
 import { getSlots } from '../../services/slotService';
 import { BOOKING_STATUS } from '../../constants';
+import { getRatings } from '../../services/ratingService';
+import { getDocuments, usersCol } from '../../firebase/firestore';
 
 const Analytics = () => {
   const { salonId } = useAuth();
@@ -16,6 +18,8 @@ const Analytics = () => {
   const [services, setServices] = useState([]);
   const [slots, setSlots] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [ratings, setRatings] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const canUse = hasFeature('analytics');
 
@@ -25,8 +29,10 @@ const Analytics = () => {
       getBookingsForSalon(salonId),
       getServices(salonId),
       getSlots(salonId),
-    ]).then(([b, sv, sl]) => {
-      setBookings(b); setServices(sv); setSlots(sl);
+      getRatings(salonId),
+      getDocuments(usersCol()),
+    ]).then(([b, sv, sl, rt, u]) => {
+      setBookings(b); setServices(sv); setSlots(sl); setRatings(rt); setUsers(u);
     }).finally(() => setLoading(false));
   }, []);
 
@@ -74,6 +80,9 @@ const Analytics = () => {
     revenue: bookings.filter(b => b.serviceId === s.id && b.status === BOOKING_STATUS.COMPLETED).length * s.price,
   })).sort((a, b) => b.count - a.count);
 
+  const avgRating = ratings.length > 0 ? (ratings.reduce((s, r) => s + r.rating, 0) / ratings.length).toFixed(1) : '—';
+  const getUserName = (uid) => users.find(u => u.uid === uid)?.name || 'Klient';
+
   const cardStyle = { background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '20px', padding: '24px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' };
 
   return (
@@ -90,6 +99,7 @@ const Analytics = () => {
             { label: 'Dokončené rezervácie', value: completed, color: '#4A7C59' },
             { label: 'Úspešnosť', value: `${completionRate}%`, color: '#3A5A7C' },
             { label: 'No-show', value: noShow, color: '#8B3A3A' },
+            { label: 'Priemerné hodnotenie', value: `${avgRating} ★`, color: '#B07D3A' },
           ].map(stat => (
             <div key={stat.label} style={cardStyle}>
               <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: stat.color, marginBottom: '4px' }}>{stat.value}</p>
@@ -114,6 +124,26 @@ const Analytics = () => {
                     <p style={{ fontSize: '14px', fontWeight: 500, color: '#1C1C1B', fontFamily: 'Jost, sans-serif' }}>{s.revenue} €</p>
                     <p style={{ fontSize: '11px', color: '#979086' }}>{s.count}x</p>
                   </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Hodnotenia */}
+        <div style={cardStyle}>
+          <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#979086', marginBottom: '16px' }}>Hodnotenia klientov</p>
+          {ratings.length === 0 ? (
+            <p style={{ fontSize: '13px', color: '#979086' }}>Zatiaľ žiadne hodnotenia.</p>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {ratings.slice().sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0)).map(r => (
+                <div key={r.id} style={{ padding: '16px 20px', background: '#F5F0EA', borderRadius: '14px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                    <p style={{ fontSize: '14px', fontWeight: 500, color: '#1C1C1B', fontFamily: 'Jost, sans-serif' }}>{getUserName(r.clientId)}</p>
+                    <span style={{ fontSize: '16px', color: '#B07D3A', letterSpacing: '2px' }}>{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</span>
+                  </div>
+                  {r.comment && <p style={{ fontSize: '13px', color: '#979086', lineHeight: 1.6 }}>{r.comment}</p>}
                 </div>
               ))}
             </div>
