@@ -6,7 +6,8 @@ import { ROUTES } from '../../constants';
 import { TIER_CONFIG, TIERS } from '../../constants/tiers';
 import toast from 'react-hot-toast';
 
-const C = { green: '#6D6943', brown: '#48372F', cream: '#F4F3EE', pink: '#C8A1B1', muted: '#9B8E7E', border: '#E8E4DC', white: '#142F52', sidebar: '#2C2218' };
+// Colors
+const C = { green: '#6DB88A', brown: '#0D2744', cream: '#0D2744', pink: '#FF929A', muted: '#7691AD', border: 'rgba(185,207,221,0.12)', white: '#142F52', sidebar: '#0A1F36' };
 
 const NAV_ITEMS = [
   { label: 'Dashboard',        path: ROUTES.ADMIN_DASHBOARD },
@@ -60,7 +61,7 @@ const AdminLayout = ({ children }) => {
       `}</style>
 
       {/* Sidebar */}
-      <aside className="admin-sidebar" style={{ width: '260px', background: C.sidebar, display: 'flex', flexDirection: 'column', position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 100, transform: menuOpen ? 'translateX(0)' : 'translateX(-100%)', transition: 'transform 0.25s ease', boxShadow: '4px 0 32px rgba(0,0,0,0.15)' }}>
+      <aside className="admin-sidebar" style={{ width: '260px', background: '#061828', display: 'flex', flexDirection: 'column', position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 100, transform: menuOpen ? 'translateX(0)' : 'translateX(-100%)', transition: 'transform 0.25s ease', boxShadow: '4px 0 32px rgba(0,0,0,0.15)' }}>
 
         {/* Logo */}
         <div style={{ padding: '28px 24px', borderBottom: '1px solid rgba(244,243,238,0.06)' }}>
@@ -133,7 +134,7 @@ const AdminLayout = ({ children }) => {
       <div className="admin-main" style={{ flex: 1, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
 
         {/* Header */}
-        <header style={{ height: '60px', background: C.white, borderBottom: `1px solid ${C.border}`, display: 'flex', alignItems: 'center', padding: '0 24px', position: 'sticky', top: 0, zIndex: 98, boxShadow: '0 1px 8px rgba(72,55,47,0.04)' }}>
+        <header style={{ height: '60px', background: '#0D2744', borderBottom: `1px solid ${C.border}`, display: 'flex', alignItems: 'center', padding: '0 24px', position: 'sticky', top: 0, zIndex: 98, boxShadow: '0 1px 8px rgba(72,55,47,0.04)' }}>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '6px', borderRadius: '8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
             {[0,1,2].map(i => <div key={i} style={{ width: '20px', height: '2px', background: C.brown, borderRadius: '1px' }} />)}
           </button>

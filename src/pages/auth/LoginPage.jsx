@@ -56,7 +56,7 @@ const LoginPage = () => {
 
         <p style={{ textAlign: 'center', marginTop: '28px', fontSize: '13px', color: '#7691AD' }}>
           Nemáte účet?{' '}
-          <Link to={ROUTES.REGISTER} style={{ color: '#C8A1B1', fontWeight: 500 }}>Zaregistrujte sa</Link>
+          <Link to={ROUTES.REGISTER} style={{ color: '#FF929A', fontWeight: 500 }}>Zaregistrujte sa</Link>
         </p>
       </div>
     </div>
