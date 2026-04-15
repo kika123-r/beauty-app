@@ -36,43 +36,43 @@ const RegisterPage = () => {
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', background: '#0A1F36' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', background: '#E8E4D0' }}>
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 24px' }}>
         <div style={{ width: '100%', maxWidth: '400px' }}>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'linear-gradient(135deg, #D4C5B0, #A89070)', margin: '0 auto 16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.8rem', color: '#0A1F36', fontWeight: 300 }}>B</span>
+              <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.8rem', color: '#E8E4D0', fontWeight: 300 }}>B</span>
             </div>
-            <h1 style={{ fontSize: '1.8rem', color: '#E8F0F8', marginBottom: '6px', fontFamily: 'Cormorant Garamond, serif' }}>BeautyTime</h1>
-            <p style={{ fontSize: '13px', color: '#7691AD' }}>Vytvor si nový účet</p>
+            <h1 style={{ fontSize: '1.8rem', color: '#3D2B1F', marginBottom: '6px', fontFamily: 'Cormorant Garamond, serif' }}>BeautyTime</h1>
+            <p style={{ fontSize: '13px', color: '#845F4A' }}>Vytvor si nový účet</p>
           </div>
           <form onSubmit={handleSubmit}>
             <div style={{ marginBottom: '16px' }}>
-              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#7691AD', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Meno a priezvisko</label>
+              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#845F4A', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Meno a priezvisko</label>
               <input type="text" name="name" placeholder="Jana Nováková" value={form.name} onChange={handleChange}
-                style={{ width: '100%', padding: '14px 18px', background: '#142F52', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '14px', color: '#E8F0F8', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
-                onFocus={(e) => e.target.style.borderColor = '#FF929A'} onBlur={(e) => e.target.style.borderColor = 'rgba(185,207,221,0.12)'} />
+                style={{ width: '100%', padding: '14px 18px', background: '#FAFAF5', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '14px', color: '#3D2B1F', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
+                onFocus={(e) => e.target.style.borderColor = '#DFA0AA'} onBlur={(e) => e.target.style.borderColor = 'rgba(132,95,74,0.15)'} />
             </div>
             <div style={{ marginBottom: '16px' }}>
-              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#7691AD', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Email</label>
+              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#845F4A', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Email</label>
               <input type="email" name="email" placeholder="tvoj@email.com" value={form.email} onChange={handleChange}
-                style={{ width: '100%', padding: '14px 18px', background: '#142F52', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '14px', color: '#E8F0F8', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
-                onFocus={(e) => e.target.style.borderColor = '#FF929A'} onBlur={(e) => e.target.style.borderColor = 'rgba(185,207,221,0.12)'} />
+                style={{ width: '100%', padding: '14px 18px', background: '#FAFAF5', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '14px', color: '#3D2B1F', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
+                onFocus={(e) => e.target.style.borderColor = '#DFA0AA'} onBlur={(e) => e.target.style.borderColor = 'rgba(132,95,74,0.15)'} />
             </div>
             <div style={{ marginBottom: '24px' }}>
-              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#7691AD', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Heslo</label>
+              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#845F4A', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Heslo</label>
               <input type="password" name="password" placeholder="min. 6 znakov" value={form.password} onChange={handleChange}
-                style={{ width: '100%', padding: '14px 18px', background: '#142F52', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '14px', color: '#E8F0F8', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
-                onFocus={(e) => e.target.style.borderColor = '#FF929A'} onBlur={(e) => e.target.style.borderColor = 'rgba(185,207,221,0.12)'} />
+                style={{ width: '100%', padding: '14px 18px', background: '#FAFAF5', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '14px', color: '#3D2B1F', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
+                onFocus={(e) => e.target.style.borderColor = '#DFA0AA'} onBlur={(e) => e.target.style.borderColor = 'rgba(132,95,74,0.15)'} />
             </div>
-            {error && <p style={{ fontSize: '13px', color: '#FF929A', marginBottom: '16px', textAlign: 'center' }}>{error}</p>}
-            <button type="submit" disabled={loading} style={{ width: '100%', padding: '15px', background: loading ? '#53728A' : '#FF929A', color: '#0A1F36', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif' }}>
+            {error && <p style={{ fontSize: '13px', color: '#DFA0AA', marginBottom: '16px', textAlign: 'center' }}>{error}</p>}
+            <button type="submit" disabled={loading} style={{ width: '100%', padding: '15px', background: loading ? '#B9AC8C' : '#DFA0AA', color: '#E8E4D0', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif' }}>
               {loading ? 'Vytváram účet...' : 'Zaregistrovať sa'}
             </button>
           </form>
-          <p style={{ textAlign: 'center', marginTop: '28px', fontSize: '13px', color: '#7691AD' }}>
+          <p style={{ textAlign: 'center', marginTop: '28px', fontSize: '13px', color: '#845F4A' }}>
             Už máš účet?{' '}
-            <Link to={ROUTES.LOGIN} style={{ color: '#FF929A', fontWeight: 500 }}>Prihlás sa</Link>
+            <Link to={ROUTES.LOGIN} style={{ color: '#DFA0AA', fontWeight: 500 }}>Prihlás sa</Link>
           </p>
         </div>
       </div>

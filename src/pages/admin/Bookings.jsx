@@ -13,11 +13,11 @@ import { BOOKING_STATUS } from '../../constants';
 import toast from 'react-hot-toast';
 
 const STATUS_CONFIG = {
-  confirmed: { label: 'Potvrdená', color: '#6DB88A', bg: 'rgba(74,124,89,0.1)' },
+  confirmed: { label: 'Potvrdená', color: '#7A9E7E', bg: 'rgba(74,124,89,0.1)' },
   pending:   { label: 'Čaká',      color: '#D4A85A', bg: 'rgba(176,125,58,0.1)' },
-  cancelled: { label: 'Zrušená',   color: '#FF929A', bg: 'rgba(139,58,58,0.1)' },
-  completed: { label: 'Dokončená', color: '#7691AD', bg: 'rgba(58,90,124,0.1)' },
-  no_show:   { label: 'No-show',   color: '#FF929A', bg: 'rgba(139,58,58,0.1)' },
+  cancelled: { label: 'Zrušená',   color: '#DFA0AA', bg: 'rgba(139,58,58,0.1)' },
+  completed: { label: 'Dokončená', color: '#845F4A', bg: 'rgba(58,90,124,0.1)' },
+  no_show:   { label: 'No-show',   color: '#DFA0AA', bg: 'rgba(139,58,58,0.1)' },
 };
 
 const Bookings = () => {
@@ -236,7 +236,7 @@ const Bookings = () => {
                   <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', borderTop: '1px solid var(--border-light)', paddingTop: '14px' }}>
                     {booking.status !== BOOKING_STATUS.COMPLETED && (
                       <button onClick={() => handleStatus(booking, BOOKING_STATUS.COMPLETED)}
-                        style={{ padding: '7px 14px', background: 'transparent', color: '#6DB88A', border: '1px solid #4A7C59', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                        style={{ padding: '7px 14px', background: 'transparent', color: '#7A9E7E', border: '1px solid #4A7C59', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                         Dokončená
                       </button>
                     )}
@@ -247,7 +247,7 @@ const Bookings = () => {
                       </button>
                     )}
                     <button onClick={() => handleStatus(booking, BOOKING_STATUS.CANCELLED)}
-                      style={{ padding: '7px 14px', background: 'transparent', color: '#FF929A', border: '1px solid #8B3A3A', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                      style={{ padding: '7px 14px', background: 'transparent', color: '#DFA0AA', border: '1px solid #8B3A3A', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                       Zrušiť
                     </button>
                   </div>

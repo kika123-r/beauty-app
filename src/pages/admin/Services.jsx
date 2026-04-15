@@ -242,7 +242,7 @@ const Services = () => {
                   <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: 'var(--text)' }}>{service.price} €</p>
                   <div style={{ display: 'flex', gap: '8px' }}>
                     <button onClick={() => handleEdit(service)} style={{ padding: '7px 14px', background: 'transparent', color: 'var(--primary)', border: '1px solid var(--border)', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Upraviť</button>
-                    <button onClick={() => handleDelete(service.id)} style={{ padding: '7px 14px', background: 'transparent', color: '#FF929A', border: '1px solid #8B3A3A', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Vymazať</button>
+                    <button onClick={() => handleDelete(service.id)} style={{ padding: '7px 14px', background: 'transparent', color: '#DFA0AA', border: '1px solid #8B3A3A', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Vymazať</button>
                   </div>
                 </div>
               </div>

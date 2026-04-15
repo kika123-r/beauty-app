@@ -61,10 +61,10 @@ const AdminDashboard = () => {
   const getSlotInfo = (id) => { const s = slots.find(s => s.id === id); return s ? `${s.date} · ${s.time}` : ''; };
 
   const STATUS_CONFIG = {
-    confirmed: { label: 'Potvrdená', color: '#6DB88A' },
-    completed: { label: 'Dokončená', color: '#7691AD' },
-    cancelled: { label: 'Zrušená',   color: '#FF929A' },
-    no_show:   { label: 'No-show',   color: '#FF929A' },
+    confirmed: { label: 'Potvrdená', color: '#7A9E7E' },
+    completed: { label: 'Dokončená', color: '#845F4A' },
+    cancelled: { label: 'Zrušená',   color: '#DFA0AA' },
+    no_show:   { label: 'No-show',   color: '#DFA0AA' },
     pending:   { label: 'Čaká',      color: '#D4A85A' },
   };
 
@@ -74,11 +74,11 @@ const AdminDashboard = () => {
     if (max === null) return (
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: '1px solid var(--border-light)' }}>
         <span style={{ fontSize: '13px', color: 'var(--text-faint)', fontFamily: 'Jost, sans-serif' }}>{label}</span>
-        <span style={{ fontSize: '13px', fontWeight: 500, color: '#6DB88A', fontFamily: 'Jost, sans-serif' }}>{current} / ∞</span>
+        <span style={{ fontSize: '13px', fontWeight: 500, color: '#7A9E7E', fontFamily: 'Jost, sans-serif' }}>{current} / ∞</span>
       </div>
     );
     const pct = Math.min(Math.round((current / max) * 100), 100);
-    const color = pct >= 90 ? '#FF929A' : pct >= 70 ? '#D4A85A' : '#6DB88A';
+    const color = pct >= 90 ? '#DFA0AA' : pct >= 70 ? '#D4A85A' : '#7A9E7E';
     return (
       <div style={{ padding: '10px 0', borderBottom: '1px solid var(--border-light)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
@@ -122,8 +122,8 @@ const AdminDashboard = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '12px', marginBottom: '24px' }}>
           {[
             { label: 'Celkom rezervácií', value: totalBookings, color: 'var(--primary)' },
-            { label: 'Dnes',              value: todayBookings,  color: '#6DB88A' },
-            { label: 'Voľné sloty',       value: freeSlots,      color: '#7691AD' },
+            { label: 'Dnes',              value: todayBookings,  color: '#7A9E7E' },
+            { label: 'Voľné sloty',       value: freeSlots,      color: '#845F4A' },
             { label: 'Tržby celkom',      value: `${revenue} €`, color: '#D4A85A' },
           ].map(stat => (
             <div key={stat.label} style={cardStyle}>

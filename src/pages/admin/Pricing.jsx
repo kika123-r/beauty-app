@@ -134,7 +134,7 @@ const PricingPage = () => {
             <div key={feature.key} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr', padding: '14px 24px', background: i % 2 === 0 ? 'var(--bg-card)' : 'var(--bg-elevated)', borderBottom: i < FEATURES.length - 1 ? '1px solid #F5F0EA' : 'none' }}>
               <p style={{ fontSize: '13px', color: 'var(--text)', fontFamily: 'Jost, sans-serif' }}>{feature.label}</p>
               {tiers.map(t => (
-                <p key={t} style={{ textAlign: 'center', fontSize: '14px', color: TIER_CONFIG[t].features[feature.key] ? '#6DB88A' : '#C4B49A', fontWeight: 500 }}>
+                <p key={t} style={{ textAlign: 'center', fontSize: '14px', color: TIER_CONFIG[t].features[feature.key] ? '#7A9E7E' : '#C4B49A', fontWeight: 500 }}>
                   {TIER_CONFIG[t].features[feature.key] ? '✓' : '—'}
                 </p>
               ))}

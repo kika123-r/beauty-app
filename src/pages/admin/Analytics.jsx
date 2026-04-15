@@ -96,9 +96,9 @@ const Analytics = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '12px', marginBottom: '24px' }}>
           {[
             { label: 'Celkové tržby', value: `${totalRevenue} €`, color: '#D4A85A' },
-            { label: 'Dokončené rezervácie', value: completed, color: '#6DB88A' },
-            { label: 'Úspešnosť', value: `${completionRate}%`, color: '#7691AD' },
-            { label: 'No-show', value: noShow, color: '#FF929A' },
+            { label: 'Dokončené rezervácie', value: completed, color: '#7A9E7E' },
+            { label: 'Úspešnosť', value: `${completionRate}%`, color: '#845F4A' },
+            { label: 'No-show', value: noShow, color: '#DFA0AA' },
             { label: 'Priemerné hodnotenie', value: `${avgRating} ★`, color: '#D4A85A' },
           ].map(stat => (
             <div key={stat.label} style={cardStyle}>
