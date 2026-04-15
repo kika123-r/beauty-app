@@ -95,11 +95,11 @@ const Analytics = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '12px', marginBottom: '24px' }}>
           {[
-            { label: 'Celkové tržby', value: `${totalRevenue} €`, color: '#B07D3A' },
-            { label: 'Dokončené rezervácie', value: completed, color: '#4A7C59' },
-            { label: 'Úspešnosť', value: `${completionRate}%`, color: '#3A5A7C' },
-            { label: 'No-show', value: noShow, color: '#8B3A3A' },
-            { label: 'Priemerné hodnotenie', value: `${avgRating} ★`, color: '#B07D3A' },
+            { label: 'Celkové tržby', value: `${totalRevenue} €`, color: '#D4A85A' },
+            { label: 'Dokončené rezervácie', value: completed, color: '#6DB88A' },
+            { label: 'Úspešnosť', value: `${completionRate}%`, color: '#7691AD' },
+            { label: 'No-show', value: noShow, color: '#FF929A' },
+            { label: 'Priemerné hodnotenie', value: `${avgRating} ★`, color: '#D4A85A' },
           ].map(stat => (
             <div key={stat.label} style={cardStyle}>
               <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: stat.color, marginBottom: '4px' }}>{stat.value}</p>
@@ -141,7 +141,7 @@ const Analytics = () => {
                 <div key={r.id} style={{ padding: '16px 20px', background: 'var(--bg-elevated)', borderRadius: '14px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
                     <p style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', fontFamily: 'Jost, sans-serif' }}>{getUserName(r.clientId)}</p>
-                    <span style={{ fontSize: '16px', color: '#B07D3A', letterSpacing: '2px' }}>{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</span>
+                    <span style={{ fontSize: '16px', color: '#D4A85A', letterSpacing: '2px' }}>{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</span>
                   </div>
                   {r.comment && <p style={{ fontSize: '13px', color: 'var(--text-faint)', lineHeight: 1.6 }}>{r.comment}</p>}
                 </div>

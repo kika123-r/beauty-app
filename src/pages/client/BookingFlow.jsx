@@ -114,33 +114,33 @@ const BookingFlow = () => {
   const daysInMonth = getDaysInMonth(year, month);
   const firstDay = getFirstDay(year, month);
 
-  const btnStyle = { padding: '13px 28px', background: '#6A5D52', color: '#F5F0EA', border: 'none', borderRadius: '12px', fontSize: '11px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' };
-  const btnGhostStyle = { padding: '13px 28px', background: 'transparent', color: '#979086', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '11px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' };
+  const btnStyle = { padding: '13px 28px', background: '#FF929A', color: '#0A1F36', border: 'none', borderRadius: '12px', fontSize: '11px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' };
+  const btnGhostStyle = { padding: '13px 28px', background: 'transparent', color: '#7691AD', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '11px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#F5F0EA' }}>
-      <header style={{ background: '#FFFFFF', borderBottom: '1px solid #E2E2DE', padding: '0 24px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 100, boxShadow: '0 1px 12px rgba(28,28,27,0.04)' }}>
-        <button onClick={() => navigate(-1)} style={{ background: 'none', border: 'none', color: '#979086', cursor: 'pointer', fontSize: '13px', letterSpacing: '0.08em', fontFamily: 'Jost, sans-serif' }}>← Späť</button>
-        <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#6A5D52' }}>BeautyTime</span>
+    <div style={{ minHeight: '100vh', background: '#0A1F36' }}>
+      <header style={{ background: '#142F52', borderBottom: '1px solid #E2E2DE', padding: '0 24px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 100, boxShadow: '0 1px 12px rgba(28,28,27,0.04)' }}>
+        <button onClick={() => navigate(-1)} style={{ background: 'none', border: 'none', color: '#7691AD', cursor: 'pointer', fontSize: '13px', letterSpacing: '0.08em', fontFamily: 'Jost, sans-serif' }}>← Späť</button>
+        <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#FF929A' }}>BeautyTime</span>
         <div style={{ width: '60px' }} />
       </header>
 
       <div style={{ maxWidth: '560px', margin: '0 auto', padding: '40px 20px' }}>
 
         <div style={{ marginBottom: '36px' }}>
-          <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#979086', marginBottom: '8px' }}>Rezervácia</p>
+          <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7691AD', marginBottom: '8px' }}>Rezervácia</p>
           <h2 style={{ fontFamily: 'Cormorant Garamond, serif', marginBottom: '4px' }}>{salon?.name}</h2>
-          <p style={{ fontSize: '13px', color: '#979086' }}>{salon?.address}</p>
+          <p style={{ fontSize: '13px', color: '#7691AD' }}>{salon?.address}</p>
         </div>
 
         {/* Steps */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '40px' }}>
           {[1,2,3].map(s => (
             <div key={s} style={{ display: 'flex', alignItems: 'center', gap: '8px', flex: s < 3 ? 1 : 'none' }}>
-              <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: s <= step ? '#6A5D52' : '#E2E2DE', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 500, color: s <= step ? '#F5F0EA' : '#979086', flexShrink: 0, fontFamily: 'Jost, sans-serif' }}>
+              <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: s <= step ? '#FF929A' : 'rgba(185,207,221,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 500, color: s <= step ? '#0A1F36' : '#7691AD', flexShrink: 0, fontFamily: 'Jost, sans-serif' }}>
                 {s < step ? '✓' : s}
               </div>
-              {s < 3 && <div style={{ flex: 1, height: '1px', background: s < step ? '#6A5D52' : '#E2E2DE' }} />}
+              {s < 3 && <div style={{ flex: 1, height: '1px', background: s < step ? '#FF929A' : 'rgba(185,207,221,0.12)' }} />}
             </div>
           ))}
         </div>
@@ -159,17 +159,17 @@ const BookingFlow = () => {
                 ).length;
                 return (
                   <div key={service.id} onClick={() => { setSelectedService(service); setSelectedDate(''); setSelectedSlot(null); }}
-                    style={{ padding: '20px 24px', background: '#FFFFFF', border: `1.5px solid ${isSelected ? '#6A5D52' : '#E2E2DE'}`, borderRadius: '16px', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: isSelected ? '0 4px 20px rgba(106,93,82,0.1)' : '0 2px 8px rgba(28,28,27,0.04)' }}>
+                    style={{ padding: '20px 24px', background: '#142F52', border: `1.5px solid ${isSelected ? '#FF929A' : 'rgba(185,207,221,0.12)'}`, borderRadius: '16px', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: isSelected ? '0 4px 20px rgba(106,93,82,0.1)' : '0 2px 8px rgba(28,28,27,0.04)' }}>
                     <div>
-                      <p style={{ fontWeight: 500, color: '#1C1C1B', fontSize: '15px', marginBottom: '4px', fontFamily: 'Jost, sans-serif' }}>{service.name}</p>
-                      <p style={{ fontSize: '13px', color: '#979086' }}>{service.duration} min</p>
-                      <p style={{ fontSize: '11px', color: availableCount > 0 ? '#4A7C59' : '#979086', marginTop: '4px', fontWeight: 500 }}>
+                      <p style={{ fontWeight: 500, color: '#E8F0F8', fontSize: '15px', marginBottom: '4px', fontFamily: 'Jost, sans-serif' }}>{service.name}</p>
+                      <p style={{ fontSize: '13px', color: '#7691AD' }}>{service.duration} min</p>
+                      <p style={{ fontSize: '11px', color: availableCount > 0 ? '#6DB88A' : '#7691AD', marginTop: '4px', fontWeight: 500 }}>
                         {availableCount > 0 ? `${availableCount} voľných termínov` : 'Momentálne nedostupné'}
                       </p>
                     </div>
                     <div style={{ textAlign: 'right' }}>
-                      <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#1C1C1B' }}>{service.price} €</p>
-                      {isSelected && <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: '#6A5D52', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: 'auto', marginTop: '4px' }}><span style={{ color: '#F5F0EA', fontSize: '11px' }}>✓</span></div>}
+                      <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#E8F0F8' }}>{service.price} €</p>
+                      {isSelected && <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: '#FF929A', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: 'auto', marginTop: '4px' }}><span style={{ color: '#0A1F36', fontSize: '11px' }}>✓</span></div>}
                     </div>
                   </div>
                 );
@@ -180,23 +180,23 @@ const BookingFlow = () => {
               const serviceWorkers = workers.filter(w => (w.serviceIds || []).includes(selectedService.id));
               return serviceWorkers.length > 0 ? (
                 <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-                  <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#979086', marginBottom: '12px' }}>Vyber pracovníka</p>
+                  <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#7691AD', marginBottom: '12px' }}>Vyber pracovníka</p>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <div onClick={() => setSelectedWorker(null)} style={{ padding: '12px 16px', background: !selectedWorker ? 'rgba(106,93,82,0.06)' : '#FFFFFF', border: `1.5px solid ${!selectedWorker ? '#6A5D52' : '#E2E2DE'}`, borderRadius: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#F5F0EA', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', flexShrink: 0 }}>👤</div>
+                    <div onClick={() => setSelectedWorker(null)} style={{ padding: '12px 16px', background: !selectedWorker ? 'rgba(106,93,82,0.06)' : '#142F52', border: `1.5px solid ${!selectedWorker ? '#FF929A' : 'rgba(185,207,221,0.12)'}`, borderRadius: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#0A1F36', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', flexShrink: 0 }}>👤</div>
                       <div>
-                        <p style={{ fontSize: '13px', fontWeight: 500, color: '#1C1C1B', fontFamily: 'Jost, sans-serif' }}>Ktokoľvek dostupný</p>
-                        <p style={{ fontSize: '11px', color: '#979086' }}>Prvý voľný pracovník</p>
+                        <p style={{ fontSize: '13px', fontWeight: 500, color: '#E8F0F8', fontFamily: 'Jost, sans-serif' }}>Ktokoľvek dostupný</p>
+                        <p style={{ fontSize: '11px', color: '#7691AD' }}>Prvý voľný pracovník</p>
                       </div>
                     </div>
                     {serviceWorkers.map(worker => (
-                      <div key={worker.id} onClick={() => setSelectedWorker(worker)} style={{ padding: '12px 16px', background: selectedWorker?.id === worker.id ? 'rgba(106,93,82,0.06)' : '#FFFFFF', border: `1.5px solid ${selectedWorker?.id === worker.id ? '#6A5D52' : '#E2E2DE'}`, borderRadius: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <div key={worker.id} onClick={() => setSelectedWorker(worker)} style={{ padding: '12px 16px', background: selectedWorker?.id === worker.id ? 'rgba(106,93,82,0.06)' : '#142F52', border: `1.5px solid ${selectedWorker?.id === worker.id ? '#FF929A' : 'rgba(185,207,221,0.12)'}`, borderRadius: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px' }}>
                         <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'linear-gradient(135deg, #D4C5B0, #B7AC9B)', overflow: 'hidden', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                          {worker.photoUrl ? <img src={worker.photoUrl} alt={worker.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1rem', color: '#F5F0EA' }}>{worker.name?.charAt(0)}</span>}
+                          {worker.photoUrl ? <img src={worker.photoUrl} alt={worker.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1rem', color: '#0A1F36' }}>{worker.name?.charAt(0)}</span>}
                         </div>
                         <div>
-                          <p style={{ fontSize: '13px', fontWeight: 500, color: '#1C1C1B', fontFamily: 'Jost, sans-serif' }}>{worker.name}</p>
-                          <p style={{ fontSize: '11px', color: '#979086' }}>{worker.position}</p>
+                          <p style={{ fontSize: '13px', fontWeight: 500, color: '#E8F0F8', fontFamily: 'Jost, sans-serif' }}>{worker.name}</p>
+                          <p style={{ fontSize: '11px', color: '#7691AD' }}>{worker.position}</p>
                         </div>
                       </div>
                     ))}
@@ -206,12 +206,12 @@ const BookingFlow = () => {
             })()}
             <button style={{ ...btnStyle, width: '100%', opacity: selectedService ? 1 : 0.4 }} disabled={!selectedService} onClick={() => setStep(2)}>Pokračovať →</button>
             {selectedService && getAvailableDatesForService(selectedService).size === 0 && (
-              <div style={{ marginTop: '16px', background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '16px', padding: '20px', textAlign: 'center' }}>
-                <p style={{ fontSize: '13px', color: '#979086', marginBottom: '12px' }}>Momentálne nie sú voľné termíny pre túto službu.</p>
+              <div style={{ marginTop: '16px', background: '#142F52', border: '1px solid #E2E2DE', borderRadius: '16px', padding: '20px', textAlign: 'center' }}>
+                <p style={{ fontSize: '13px', color: '#7691AD', marginBottom: '12px' }}>Momentálne nie sú voľné termíny pre túto službu.</p>
                 {onWaitingList ? (
-                  <p style={{ fontSize: '13px', color: '#4A7C59', fontWeight: 500 }}>✓ Ste na čakacej listine</p>
+                  <p style={{ fontSize: '13px', color: '#6DB88A', fontWeight: 500 }}>✓ Ste na čakacej listine</p>
                 ) : (
-                  <button onClick={handleWaitingList} disabled={waitingLoading} style={{ padding: '10px 20px', background: 'transparent', color: '#6A5D52', border: '1px solid #6A5D52', borderRadius: '10px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
+                  <button onClick={handleWaitingList} disabled={waitingLoading} style={{ padding: '10px 20px', background: 'transparent', color: '#FF929A', border: '1px solid #6A5D52', borderRadius: '10px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>
                     {waitingLoading ? 'Pridávam...' : '+ Čakacia listina'}
                   </button>
                 )}
@@ -224,14 +224,14 @@ const BookingFlow = () => {
         {step === 2 && (
           <div>
             <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', marginBottom: '20px' }}>Vyber termín</h3>
-            <div style={{ background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '20px', padding: '24px', marginBottom: '20px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' }}>
+            <div style={{ background: '#142F52', border: '1px solid #E2E2DE', borderRadius: '20px', padding: '24px', marginBottom: '20px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                <button onClick={prevMonth} style={{ background: 'none', border: '1px solid #E2E2DE', borderRadius: '8px', width: '32px', height: '32px', cursor: 'pointer', color: '#6A5D52', fontSize: '14px' }}>←</button>
-                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.1rem', color: '#1C1C1B' }}>{MONTHS[month]} {year}</p>
-                <button onClick={nextMonth} style={{ background: 'none', border: '1px solid #E2E2DE', borderRadius: '8px', width: '32px', height: '32px', cursor: 'pointer', color: '#6A5D52', fontSize: '14px' }}>→</button>
+                <button onClick={prevMonth} style={{ background: 'none', border: '1px solid #E2E2DE', borderRadius: '8px', width: '32px', height: '32px', cursor: 'pointer', color: '#FF929A', fontSize: '14px' }}>←</button>
+                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.1rem', color: '#E8F0F8' }}>{MONTHS[month]} {year}</p>
+                <button onClick={nextMonth} style={{ background: 'none', border: '1px solid #E2E2DE', borderRadius: '8px', width: '32px', height: '32px', cursor: 'pointer', color: '#FF929A', fontSize: '14px' }}>→</button>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: '4px', marginBottom: '8px' }}>
-                {DAYS.map(d => <div key={d} style={{ textAlign: 'center', fontSize: '11px', color: '#B7AC9B', fontWeight: 500, padding: '4px', letterSpacing: '0.05em' }}>{d}</div>)}
+                {DAYS.map(d => <div key={d} style={{ textAlign: 'center', fontSize: '11px', color: '#53728A', fontWeight: 500, padding: '4px', letterSpacing: '0.05em' }}>{d}</div>)}
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: '4px' }}>
                 {Array.from({ length: firstDay }).map((_, i) => <div key={`e-${i}`} />)}
@@ -245,18 +245,18 @@ const BookingFlow = () => {
                   const hasLastMin = isAvailable && allSlots.some(s => s.date === dateStr && s.serviceId === selectedService?.id && s.status === SLOT_STATUS.LAST_MINUTE);
                   return (
                     <div key={day} onClick={() => { if (!isAvailable || isPast) return; setSelectedDate(dateStr); setSelectedSlot(null); }}
-                      style={{ padding: '8px 4px', borderRadius: '10px', textAlign: 'center', cursor: isAvailable && !isPast ? 'pointer' : 'default', background: isSelected ? '#6A5D52' : isAvailable && !isPast ? hasLastMin ? 'rgba(212,197,176,0.3)' : 'rgba(106,93,82,0.08)' : 'transparent', border: isToday && !isSelected ? '1.5px solid #D4C5B0' : '1.5px solid transparent' }}>
-                      <span style={{ fontSize: '13px', color: isSelected ? '#F5F0EA' : isPast ? '#D4C5B0' : isAvailable ? '#1C1C1B' : '#C4B49A', fontWeight: isAvailable && !isPast ? 500 : 300, fontFamily: 'Jost, sans-serif' }}>{day}</span>
-                      {isAvailable && !isPast && !isSelected && <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: hasLastMin ? '#D4C5B0' : '#6A5D52', margin: '2px auto 0' }} />}
+                      style={{ padding: '8px 4px', borderRadius: '10px', textAlign: 'center', cursor: isAvailable && !isPast ? 'pointer' : 'default', background: isSelected ? '#FF929A' : isAvailable && !isPast ? hasLastMin ? 'rgba(212,197,176,0.3)' : 'rgba(106,93,82,0.08)' : 'transparent', border: isToday && !isSelected ? '1.5px solid #D4C5B0' : '1.5px solid transparent' }}>
+                      <span style={{ fontSize: '13px', color: isSelected ? '#0A1F36' : isPast ? '#B9CFDD' : isAvailable ? '#E8F0F8' : '#C4B49A', fontWeight: isAvailable && !isPast ? 500 : 300, fontFamily: 'Jost, sans-serif' }}>{day}</span>
+                      {isAvailable && !isPast && !isSelected && <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: hasLastMin ? '#B9CFDD' : '#FF929A', margin: '2px auto 0' }} />}
                     </div>
                   );
                 })}
               </div>
               <div style={{ display: 'flex', gap: '16px', marginTop: '16px', paddingTop: '16px', borderTop: '1px solid #F5F0EA' }}>
-                {[{ bg: '#6A5D52', label: 'Voľný' }, { bg: '#D4C5B0', label: 'Last Minute' }].map(l => (
+                {[{ bg: '#FF929A', label: 'Voľný' }, { bg: '#B9CFDD', label: 'Last Minute' }].map(l => (
                   <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: l.bg }} />
-                    <span style={{ fontSize: '11px', color: '#979086' }}>{l.label}</span>
+                    <span style={{ fontSize: '11px', color: '#7691AD' }}>{l.label}</span>
                   </div>
                 ))}
               </div>
@@ -264,15 +264,15 @@ const BookingFlow = () => {
 
             {selectedDate && slotsForDate.length > 0 && (
               <div style={{ marginBottom: '24px' }}>
-                <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#979086', marginBottom: '12px' }}>Dostupné časy</p>
+                <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#7691AD', marginBottom: '12px' }}>Dostupné časy</p>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '8px' }}>
                   {slotsForDate.map(slot => {
                     const isSel = selectedSlot?.id === slot.id;
                     const isLM = slot.status === SLOT_STATUS.LAST_MINUTE;
                     return (
-                      <div key={slot.id} onClick={() => setSelectedSlot(slot)} style={{ padding: '12px 8px', background: isSel ? '#6A5D52' : '#FFFFFF', border: `1.5px solid ${isSel ? '#6A5D52' : isLM ? '#D4C5B0' : '#E2E2DE'}`, borderRadius: '12px', cursor: 'pointer', textAlign: 'center' }}>
-                        <p style={{ fontWeight: 500, color: isSel ? '#F5F0EA' : '#1C1C1B', fontSize: '14px', fontFamily: 'Jost, sans-serif' }}>{slot.time}</p>
-                        {isLM && !isSel && <p style={{ fontSize: '9px', color: '#A89070', marginTop: '2px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Last min</p>}
+                      <div key={slot.id} onClick={() => setSelectedSlot(slot)} style={{ padding: '12px 8px', background: isSel ? '#FF929A' : '#142F52', border: `1.5px solid ${isSel ? '#FF929A' : isLM ? '#B9CFDD' : 'rgba(185,207,221,0.12)'}`, borderRadius: '12px', cursor: 'pointer', textAlign: 'center' }}>
+                        <p style={{ fontWeight: 500, color: isSel ? '#0A1F36' : '#E8F0F8', fontSize: '14px', fontFamily: 'Jost, sans-serif' }}>{slot.time}</p>
+                        {isLM && !isSel && <p style={{ fontSize: '9px', color: '#7691AD', marginTop: '2px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Last min</p>}
                       </div>
                     );
                   })}
@@ -281,9 +281,9 @@ const BookingFlow = () => {
             )}
 
             {selectedDate && slotsForDate.length === 0 && (
-              <div style={{ background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '16px', padding: '24px', textAlign: 'center', marginBottom: '24px' }}>
-                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.1rem', color: '#1C1C1B', marginBottom: '4px' }}>Žiadne voľné časy</p>
-                <p style={{ fontSize: '13px', color: '#979086' }}>Vyber iný dátum</p>
+              <div style={{ background: '#142F52', border: '1px solid #E2E2DE', borderRadius: '16px', padding: '24px', textAlign: 'center', marginBottom: '24px' }}>
+                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.1rem', color: '#E8F0F8', marginBottom: '4px' }}>Žiadne voľné časy</p>
+                <p style={{ fontSize: '13px', color: '#7691AD' }}>Vyber iný dátum</p>
               </div>
             )}
 
@@ -298,7 +298,7 @@ const BookingFlow = () => {
         {step === 3 && (
           <div>
             <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', marginBottom: '20px' }}>Potvrdenie</h3>
-            <div style={{ background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '20px', overflow: 'hidden', marginBottom: '16px', boxShadow: '0 4px 20px rgba(28,28,27,0.06)' }}>
+            <div style={{ background: '#142F52', border: '1px solid #E2E2DE', borderRadius: '20px', overflow: 'hidden', marginBottom: '16px', boxShadow: '0 4px 20px rgba(28,28,27,0.06)' }}>
               <div style={{ height: '4px', background: 'linear-gradient(90deg, #D4C5B0, #6A5D52)' }} />
               <div style={{ padding: '28px' }}>
                 {[
@@ -308,10 +308,10 @@ const BookingFlow = () => {
                   ...(selectedWorker ? [{ label: 'Pracovník', value: selectedWorker.name, sub: selectedWorker.position }] : []),
                 ].map((item, i) => (
                   <div key={i}>
-                    {i > 0 && <div style={{ height: '1px', background: '#F5F0EA', margin: '20px 0' }} />}
-                    <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#979086', marginBottom: '6px' }}>{item.label}</p>
-                    <p style={{ fontWeight: 500, color: '#1C1C1B', fontSize: '15px', marginBottom: '2px', fontFamily: 'Jost, sans-serif' }}>{item.value}</p>
-                    <p style={{ fontSize: '13px', color: '#979086' }}>{item.sub}</p>
+                    {i > 0 && <div style={{ height: '1px', background: '#0A1F36', margin: '20px 0' }} />}
+                    <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#7691AD', marginBottom: '6px' }}>{item.label}</p>
+                    <p style={{ fontWeight: 500, color: '#E8F0F8', fontSize: '15px', marginBottom: '2px', fontFamily: 'Jost, sans-serif' }}>{item.value}</p>
+                    <p style={{ fontSize: '13px', color: '#7691AD' }}>{item.sub}</p>
                   </div>
                 ))}
               </div>
@@ -319,22 +319,22 @@ const BookingFlow = () => {
 
             {/* Poznámka */}
             <div style={{ marginBottom: '16px' }}>
-              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#979086', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Poznámka pre salón</label>
+              <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#7691AD', marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Poznámka pre salón</label>
               <textarea
                 value={note}
                 onChange={e => setNote(e.target.value)}
                 placeholder="napr. Alergia na farbivo, preferujem ticho..."
                 rows={3}
-                style={{ width: '100%', padding: '12px 16px', background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '14px', color: '#1C1C1B', outline: 'none', fontFamily: 'Jost, sans-serif', resize: 'vertical', boxSizing: 'border-box' }}
-                onFocus={e => e.target.style.borderColor='#6A5D52'}
-                onBlur={e => e.target.style.borderColor='#E2E2DE'}
+                style={{ width: '100%', padding: '12px 16px', background: '#142F52', border: '1px solid #E2E2DE', borderRadius: '12px', fontSize: '14px', color: '#E8F0F8', outline: 'none', fontFamily: 'Jost, sans-serif', resize: 'vertical', boxSizing: 'border-box' }}
+                onFocus={e => e.target.style.borderColor='#FF929A'}
+                onBlur={e => e.target.style.borderColor='rgba(185,207,221,0.12)'}
               />
             </div>
 
             {/* Email info */}
             <div style={{ background: 'rgba(106,93,82,0.06)', border: '1px solid rgba(106,93,82,0.15)', borderRadius: '14px', padding: '14px 18px', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '10px' }}>
               <span style={{ fontSize: '16px' }}>📧</span>
-              <p style={{ fontSize: '12px', color: '#6A5D52' }}>Potvrdenie pošleme na <strong>{firebaseUser?.email}</strong></p>
+              <p style={{ fontSize: '12px', color: '#FF929A' }}>Potvrdenie pošleme na <strong>{firebaseUser?.email}</strong></p>
             </div>
 
             <div style={{ display: 'flex', gap: '10px' }}>

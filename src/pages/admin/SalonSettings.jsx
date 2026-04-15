@@ -146,7 +146,7 @@ const SalonSettings = () => {
                     <input type="time" value={form.openHours[key]?.close || '18:00'} onChange={e => handleHours(key, 'close', e.target.value)} style={{ padding: '6px 10px', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '8px', fontSize: '13px', color: 'var(--text)', outline: 'none', fontFamily: 'Jost, sans-serif' }} />
                   </div>
                 )}
-                <button onClick={() => handleHours(key, 'closed', !form.openHours[key]?.closed)} style={{ fontSize: '11px', color: form.openHours[key]?.closed ? '#4A7C59' : '#8B3A3A', background: 'transparent', border: 'none', cursor: 'pointer', fontFamily: 'Jost, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>
+                <button onClick={() => handleHours(key, 'closed', !form.openHours[key]?.closed)} style={{ fontSize: '11px', color: form.openHours[key]?.closed ? '#6DB88A' : '#FF929A', background: 'transparent', border: 'none', cursor: 'pointer', fontFamily: 'Jost, sans-serif', fontWeight: 500, whiteSpace: 'nowrap' }}>
                   {form.openHours[key]?.closed ? 'Otvoriť' : 'Zatvoriť'}
                 </button>
               </div>

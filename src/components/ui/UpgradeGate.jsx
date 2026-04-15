@@ -13,7 +13,7 @@ const UpgradeGate = ({ feature, requiredTier, currentTier, children, inline = fa
           onClick={() => navigate('/admin/pricing')}
           style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', borderRadius: '8px', background: 'rgba(245,240,234,0.85)' }}
         >
-          <span style={{ fontSize: '10px', fontWeight: 500, color: '#6A5D52', letterSpacing: '0.1em', textTransform: 'uppercase', background: '#F5F0EA', border: '1px solid #D4C5B0', borderRadius: '8px', padding: '4px 10px' }}>
+          <span style={{ fontSize: '10px', fontWeight: 500, color: '#FF929A', letterSpacing: '0.1em', textTransform: 'uppercase', background: '#0A1F36', border: '1px solid #D4C5B0', borderRadius: '8px', padding: '4px 10px' }}>
             {required?.name}+
           </span>
         </div>
@@ -22,23 +22,23 @@ const UpgradeGate = ({ feature, requiredTier, currentTier, children, inline = fa
   }
 
   return (
-    <div style={{ background: '#FFFFFF', border: '1px solid #E2E2DE', borderRadius: '20px', padding: '40px 32px', textAlign: 'center', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' }}>
+    <div style={{ background: '#142F52', border: '1px solid #E2E2DE', borderRadius: '20px', padding: '40px 32px', textAlign: 'center', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' }}>
       <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'linear-gradient(135deg, #D4C5B0, #A89070)', margin: '0 auto 20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <span style={{ fontSize: '22px' }}>🔒</span>
       </div>
-      <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', color: '#1C1C1B', marginBottom: '8px' }}>
+      <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', color: '#E8F0F8', marginBottom: '8px' }}>
         {feature}
       </h3>
-      <p style={{ fontSize: '13px', color: '#979086', marginBottom: '8px', lineHeight: 1.6 }}>
+      <p style={{ fontSize: '13px', color: '#7691AD', marginBottom: '8px', lineHeight: 1.6 }}>
         Táto funkcia je dostupná od plánu
       </p>
-      <span style={{ display: 'inline-block', fontSize: '12px', fontWeight: 500, color: '#6A5D52', background: 'rgba(106,93,82,0.1)', padding: '4px 14px', borderRadius: '20px', marginBottom: '24px', letterSpacing: '0.08em' }}>
+      <span style={{ display: 'inline-block', fontSize: '12px', fontWeight: 500, color: '#FF929A', background: 'rgba(106,93,82,0.1)', padding: '4px 14px', borderRadius: '20px', marginBottom: '24px', letterSpacing: '0.08em' }}>
         {required?.name} · {required?.price} € / mes
       </span>
       <div>
         <button
           onClick={() => navigate('/admin/pricing')}
-          style={{ padding: '12px 28px', background: '#1C1C1B', color: '#F5F0EA', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}
+          style={{ padding: '12px 28px', background: '#E8F0F8', color: '#0A1F36', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}
         >
           Upgradovať plán →
         </button>

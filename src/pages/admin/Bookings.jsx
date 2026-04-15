@@ -13,11 +13,11 @@ import { BOOKING_STATUS } from '../../constants';
 import toast from 'react-hot-toast';
 
 const STATUS_CONFIG = {
-  confirmed: { label: 'Potvrdená', color: '#4A7C59', bg: 'rgba(74,124,89,0.1)' },
-  pending:   { label: 'Čaká',      color: '#B07D3A', bg: 'rgba(176,125,58,0.1)' },
-  cancelled: { label: 'Zrušená',   color: '#8B3A3A', bg: 'rgba(139,58,58,0.1)' },
-  completed: { label: 'Dokončená', color: '#3A5A7C', bg: 'rgba(58,90,124,0.1)' },
-  no_show:   { label: 'No-show',   color: '#8B3A3A', bg: 'rgba(139,58,58,0.1)' },
+  confirmed: { label: 'Potvrdená', color: '#6DB88A', bg: 'rgba(74,124,89,0.1)' },
+  pending:   { label: 'Čaká',      color: '#D4A85A', bg: 'rgba(176,125,58,0.1)' },
+  cancelled: { label: 'Zrušená',   color: '#FF929A', bg: 'rgba(139,58,58,0.1)' },
+  completed: { label: 'Dokončená', color: '#7691AD', bg: 'rgba(58,90,124,0.1)' },
+  no_show:   { label: 'No-show',   color: '#FF929A', bg: 'rgba(139,58,58,0.1)' },
 };
 
 const Bookings = () => {
@@ -210,7 +210,7 @@ const Bookings = () => {
                     })()}
                     {booking.note && (
                       <div style={{ marginTop: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <span style={{ fontSize: '11px', color: '#B07D3A' }}>📝</span>
+                        <span style={{ fontSize: '11px', color: '#D4A85A' }}>📝</span>
                         <p style={{ fontSize: '12px', color: 'var(--text-faint)', fontStyle: 'italic' }}>{booking.note}</p>
                       </div>
                     )}
@@ -236,18 +236,18 @@ const Bookings = () => {
                   <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', borderTop: '1px solid var(--border-light)', paddingTop: '14px' }}>
                     {booking.status !== BOOKING_STATUS.COMPLETED && (
                       <button onClick={() => handleStatus(booking, BOOKING_STATUS.COMPLETED)}
-                        style={{ padding: '7px 14px', background: 'transparent', color: '#4A7C59', border: '1px solid #4A7C59', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                        style={{ padding: '7px 14px', background: 'transparent', color: '#6DB88A', border: '1px solid #4A7C59', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                         Dokončená
                       </button>
                     )}
                     {booking.status !== BOOKING_STATUS.NO_SHOW && (
                       <button onClick={() => handleStatus(booking, BOOKING_STATUS.NO_SHOW)}
-                        style={{ padding: '7px 14px', background: 'transparent', color: '#B07D3A', border: '1px solid #B07D3A', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                        style={{ padding: '7px 14px', background: 'transparent', color: '#D4A85A', border: '1px solid #B07D3A', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                         No-show
                       </button>
                     )}
                     <button onClick={() => handleStatus(booking, BOOKING_STATUS.CANCELLED)}
-                      style={{ padding: '7px 14px', background: 'transparent', color: '#8B3A3A', border: '1px solid #8B3A3A', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                      style={{ padding: '7px 14px', background: 'transparent', color: '#FF929A', border: '1px solid #8B3A3A', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                       Zrušiť
                     </button>
                   </div>

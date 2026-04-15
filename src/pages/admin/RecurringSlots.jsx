@@ -160,7 +160,7 @@ const RecurringSlots = () => {
                     <input type="time" value={time} onChange={e => updateTime(i, e.target.value)}
                       style={{ ...inputStyle, width: 'auto', flex: 1 }} />
                     {form.times.length > 1 && (
-                      <button type="button" onClick={() => removeTime(i)} style={{ padding: '8px 12px', background: 'transparent', color: '#8B3A3A', border: '1px solid #8B3A3A', borderRadius: '8px', fontSize: '12px', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>×</button>
+                      <button type="button" onClick={() => removeTime(i)} style={{ padding: '8px 12px', background: 'transparent', color: '#FF929A', border: '1px solid #8B3A3A', borderRadius: '8px', fontSize: '12px', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>×</button>
                     )}
                   </div>
                 ))}
@@ -219,7 +219,7 @@ const RecurringSlots = () => {
                         style={{ padding: '9px 16px', background: generating ? 'var(--text-faint)' : 'var(--text)', color: 'var(--text)', border: 'none', borderRadius: '10px', fontSize: '11px', fontWeight: 500, cursor: generating ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                         {generating ? '...' : '⚡ Generovať'}
                       </button>
-                      <button onClick={() => handleDelete(tmpl.id)} style={{ padding: '9px 14px', background: 'transparent', color: '#8B3A3A', border: '1px solid #8B3A3A', borderRadius: '10px', fontSize: '11px', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>Vymazať</button>
+                      <button onClick={() => handleDelete(tmpl.id)} style={{ padding: '9px 14px', background: 'transparent', color: '#FF929A', border: '1px solid #8B3A3A', borderRadius: '10px', fontSize: '11px', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}>Vymazať</button>
                     </div>
                   </div>
                 </div>

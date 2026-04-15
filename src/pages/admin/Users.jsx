@@ -31,7 +31,7 @@ const Users = () => {
   const getUserBookings = (uid) => bookings.filter(b => b.clientId === uid);
   const getNoShows = (uid) => bookings.filter(b => b.clientId === uid && b.status === BOOKING_STATUS.NO_SHOW).length;
 
-  const getScoreColor = (score) => score >= RELIABILITY.WARNING_THRESHOLD ? '#4A7C59' : score >= RELIABILITY.BLOCK_THRESHOLD ? '#B07D3A' : '#8B3A3A';
+  const getScoreColor = (score) => score >= RELIABILITY.WARNING_THRESHOLD ? '#6DB88A' : score >= RELIABILITY.BLOCK_THRESHOLD ? '#D4A85A' : '#FF929A';
   const getScoreBg = (score) => score >= RELIABILITY.WARNING_THRESHOLD ? 'rgba(74,124,89,0.1)' : score >= RELIABILITY.BLOCK_THRESHOLD ? 'rgba(176,125,58,0.1)' : 'rgba(139,58,58,0.1)';
 
   const handleBlock = async (user) => {
@@ -107,14 +107,14 @@ const Users = () => {
                     <div style={{ flex: 1 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
                         <p style={{ fontWeight: 500, color: 'var(--text)', fontSize: '14px', fontFamily: 'Jost, sans-serif' }}>{user.name}</p>
-                        {user.blocked && <span style={{ fontSize: '10px', color: '#8B3A3A', background: 'rgba(139,58,58,0.1)', padding: '2px 8px', borderRadius: '20px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Blokovaný</span>}
-                        {score < RELIABILITY.BLOCK_THRESHOLD && !user.blocked && <span style={{ fontSize: '10px', color: '#B07D3A', background: 'rgba(176,125,58,0.1)', padding: '2px 8px', borderRadius: '20px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Rizikový</span>}
+                        {user.blocked && <span style={{ fontSize: '10px', color: '#FF929A', background: 'rgba(139,58,58,0.1)', padding: '2px 8px', borderRadius: '20px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Blokovaný</span>}
+                        {score < RELIABILITY.BLOCK_THRESHOLD && !user.blocked && <span style={{ fontSize: '10px', color: '#D4A85A', background: 'rgba(176,125,58,0.1)', padding: '2px 8px', borderRadius: '20px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Rizikový</span>}
                       </div>
                       <p style={{ fontSize: '12px', color: 'var(--text-faint)', marginBottom: '12px' }}>{user.email}</p>
                       <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                         {[
                           { label: 'Rezervácie', value: userBookings.length, color: 'var(--primary)', bg: 'rgba(106,93,82,0.08)' },
-                          { label: 'No-show', value: noShows, color: noShows > 0 ? '#8B3A3A' : 'var(--text-faint)', bg: noShows > 0 ? 'rgba(139,58,58,0.08)' : 'var(--bg-elevated)' },
+                          { label: 'No-show', value: noShows, color: noShows > 0 ? '#FF929A' : 'var(--text-faint)', bg: noShows > 0 ? 'rgba(139,58,58,0.08)' : 'var(--bg-elevated)' },
                           { label: 'Spoľahlivosť', value: `${score}%`, color: getScoreColor(score), bg: getScoreBg(score) },
                         ].map(stat => (
                           <div key={stat.label} style={{ padding: '8px 14px', background: stat.bg, borderRadius: '10px' }}>
@@ -125,7 +125,7 @@ const Users = () => {
                       </div>
                     </div>
                   </div>
-                  <button onClick={() => handleBlock(user)} style={{ padding: '8px 16px', background: 'transparent', color: user.blocked ? 'var(--primary)' : '#8B3A3A', border: `1px solid ${user.blocked ? 'var(--border)' : '#8B3A3A'}`, borderRadius: '10px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase', flexShrink: 0, marginLeft: '16px' }}>
+                  <button onClick={() => handleBlock(user)} style={{ padding: '8px 16px', background: 'transparent', color: user.blocked ? 'var(--primary)' : '#FF929A', border: `1px solid ${user.blocked ? 'var(--border)' : '#FF929A'}`, borderRadius: '10px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase', flexShrink: 0, marginLeft: '16px' }}>
                     {user.blocked ? 'Odblokovať' : 'Zablokovať'}
                   </button>
                 </div>

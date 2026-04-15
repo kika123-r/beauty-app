@@ -13,7 +13,7 @@ const C = {
   pink:   '#C8A1B1',
   muted:  '#9B8E7E',
   border: '#E8E4DC',
-  white:  '#FFFFFF',
+  white:  '#142F52',
 };
 
 const DAY_KEYS = ['mon','tue','wed','thu','fri','sat','sun'];

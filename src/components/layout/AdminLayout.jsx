@@ -6,7 +6,7 @@ import { ROUTES } from '../../constants';
 import { TIER_CONFIG, TIERS } from '../../constants/tiers';
 import toast from 'react-hot-toast';
 
-const C = { green: '#6D6943', brown: '#48372F', cream: '#F4F3EE', pink: '#C8A1B1', muted: '#9B8E7E', border: '#E8E4DC', white: '#FFFFFF', sidebar: '#2C2218' };
+const C = { green: '#6D6943', brown: '#48372F', cream: '#F4F3EE', pink: '#C8A1B1', muted: '#9B8E7E', border: '#E8E4DC', white: '#142F52', sidebar: '#2C2218' };
 
 const NAV_ITEMS = [
   { label: 'Dashboard',        path: ROUTES.ADMIN_DASHBOARD },
