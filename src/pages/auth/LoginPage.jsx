@@ -22,11 +22,11 @@ const LoginPage = () => {
     finally { setLoading(false); }
   };
 
-  const inp = { width: '100%', padding: '14px 18px', background: 'rgba(255,244,225,0.06)', border: `1px solid ${C.border}`, borderRadius: '6px', fontSize: '14px', color: C.milk, outline: 'none', fontFamily: 'Raleway, sans-serif', boxSizing: 'border-box', transition: 'border-color 0.2s' };
+  const inp = { width: '100%', padding: '14px 18px', background: 'rgba(255,244,225,0.06)', border: `1px solid ${C.border}`, borderRadius: '6px', fontSize: '14px', color: C.milk, outline: 'none', fontFamily: 'Julius Sans One, sans-serif', boxSizing: 'border-box', transition: 'border-color 0.2s' };
   const lbl = { display: 'block', fontSize: '11px', fontWeight: 600, color: C.faint, marginBottom: '8px', letterSpacing: '0.15em', textTransform: 'uppercase' };
 
   return (
-    <div style={{ minHeight: '100vh', background: C.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', fontFamily: 'Raleway, sans-serif' }}>
+    <div style={{ minHeight: '100vh', background: C.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', fontFamily: 'Julius Sans One, sans-serif' }}>
       <div style={{ width: '100%', maxWidth: '400px' }}>
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '32px', color: C.milk, fontWeight: 300, marginBottom: '8px' }}>BeautyTime</div>
@@ -45,7 +45,7 @@ const LoginPage = () => {
               onFocus={e => e.target.style.borderColor=C.accent} onBlur={e => e.target.style.borderColor=C.border} />
           </div>
           {error && <p style={{ fontSize: '13px', color: '#C87070', marginBottom: '16px', padding: '12px 16px', background: 'rgba(200,112,112,0.08)', borderRadius: '6px', border: '1px solid rgba(200,112,112,0.2)' }}>{error}</p>}
-          <button type="submit" disabled={loading} style={{ width: '100%', padding: '15px', background: loading ? C.faint : C.accent, color: C.bg, border: 'none', borderRadius: '6px', fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'Raleway, sans-serif' }}>
+          <button type="submit" disabled={loading} style={{ width: '100%', padding: '15px', background: loading ? C.faint : C.accent, color: C.bg, border: 'none', borderRadius: '6px', fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'Julius Sans One, sans-serif' }}>
             {loading ? 'Prihlasujem...' : 'Prihlásiť sa'}
           </button>
         </form>

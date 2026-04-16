@@ -61,7 +61,7 @@ const SalonPortal = () => {
     <div style={{ minHeight: '100vh', background: C.egg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div style={{ textAlign: 'center' }}>
         <div style={{ width: '32px', height: '32px', border: `1px solid ${C.border}`, borderTopColor: C.pink, borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 16px' }} />
-        <p style={{ fontSize: '11px', letterSpacing: '0.2em', color: C.stone, fontFamily: 'Raleway, sans-serif', textTransform: 'uppercase' }}>Načítavam</p>
+        <p style={{ fontSize: '11px', letterSpacing: '0.2em', color: C.stone, fontFamily: 'Julius Sans One, sans-serif', textTransform: 'uppercase' }}>Načítavam</p>
       </div>
       <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
     </div>
@@ -70,7 +70,7 @@ const SalonPortal = () => {
   if (notFound) return (
     <div style={{ minHeight: '100vh', background: C.egg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '16px' }}>
       <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: C.dark }}>Salón nenájdený</p>
-      <p style={{ fontSize: '13px', color: C.stone, fontFamily: 'Raleway, sans-serif' }}>Skontrolujte odkaz ktorý vám bol zaslaný.</p>
+      <p style={{ fontSize: '13px', color: C.stone, fontFamily: 'Julius Sans One, sans-serif' }}>Skontrolujte odkaz ktorý vám bol zaslaný.</p>
     </div>
   );
 
@@ -83,9 +83,9 @@ const SalonPortal = () => {
   const availableSlots = slots.filter(s => (s.status === SLOT_STATUS.AVAILABLE || s.status === SLOT_STATUS.LAST_MINUTE) && s.date >= todayStr);
 
   return (
-    <div style={{ minHeight: '100vh', background: C.egg, fontFamily: 'Raleway, sans-serif' }}>
+    <div style={{ minHeight: '100vh', background: C.egg, fontFamily: 'Julius Sans One, sans-serif' }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Julius+Sans+One:wght@300;400;500&display=swap');
         *{box-sizing:border-box;margin:0;padding:0;}
         @keyframes spin{to{transform:rotate(360deg)}}
         @media(max-width:768px){
@@ -109,8 +109,8 @@ const SalonPortal = () => {
             <a href="#services" style={{ fontSize: '10px', letterSpacing: '0.18em', color: C.stone, textDecoration: 'none', textTransform: 'uppercase' }}>Služby</a>
             <a href="#hours" style={{ fontSize: '10px', letterSpacing: '0.18em', color: C.stone, textDecoration: 'none', textTransform: 'uppercase' }}>Hodiny</a>
             <a href="#contact" style={{ fontSize: '10px', letterSpacing: '0.18em', color: C.stone, textDecoration: 'none', textTransform: 'uppercase' }}>Kontakt</a>
-            <button onClick={() => navigate(`/s/${slug}/login`)} style={{ fontSize: '10px', letterSpacing: '0.18em', color: C.coffee, background: 'transparent', border: 'none', cursor: 'pointer', fontFamily: 'Raleway, sans-serif', textTransform: 'uppercase' }}>Prihlásiť sa</button>
-            <button onClick={() => navigate(`/s/${slug}/register`)} style={{ fontSize: '10px', letterSpacing: '0.18em', background: C.coffee, color: C.egg, border: 'none', padding: '9px 20px', cursor: 'pointer', fontFamily: 'Raleway, sans-serif', textTransform: 'uppercase' }}>Rezervovať</button>
+            <button onClick={() => navigate(`/s/${slug}/login`)} style={{ fontSize: '10px', letterSpacing: '0.18em', color: C.coffee, background: 'transparent', border: 'none', cursor: 'pointer', fontFamily: 'Julius Sans One, sans-serif', textTransform: 'uppercase' }}>Prihlásiť sa</button>
+            <button onClick={() => navigate(`/s/${slug}/register`)} style={{ fontSize: '10px', letterSpacing: '0.18em', background: C.coffee, color: C.egg, border: 'none', padding: '9px 20px', cursor: 'pointer', fontFamily: 'Julius Sans One, sans-serif', textTransform: 'uppercase' }}>Rezervovať</button>
           </div>
           <button className="portal-menu-btn" onClick={() => setMenuOpen(!menuOpen)} style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', flexDirection: 'column', gap: '5px' }}>
             {[0,1,2].map(i => <div key={i} style={{ width: '20px', height: '1px', background: C.coffee }} />)}
@@ -122,8 +122,8 @@ const SalonPortal = () => {
               <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} style={{ fontSize: '12px', letterSpacing: '0.18em', color: C.coffee, textDecoration: 'none', textTransform: 'uppercase', padding: '8px 0', borderBottom: `1px solid ${C.border}` }}>{l}</a>
             ))}
             <div style={{ display: 'flex', gap: '10px', paddingTop: '4px' }}>
-              <button onClick={() => navigate(`/s/${slug}/login`)} style={{ flex: 1, padding: '11px', background: 'transparent', color: C.coffee, border: `1px solid ${C.border}`, cursor: 'pointer', fontFamily: 'Raleway, sans-serif', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Prihlásiť</button>
-              <button onClick={() => navigate(`/s/${slug}/register`)} style={{ flex: 1, padding: '11px', background: C.coffee, color: C.egg, border: 'none', cursor: 'pointer', fontFamily: 'Raleway, sans-serif', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Rezervovať</button>
+              <button onClick={() => navigate(`/s/${slug}/login`)} style={{ flex: 1, padding: '11px', background: 'transparent', color: C.coffee, border: `1px solid ${C.border}`, cursor: 'pointer', fontFamily: 'Julius Sans One, sans-serif', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Prihlásiť</button>
+              <button onClick={() => navigate(`/s/${slug}/register`)} style={{ flex: 1, padding: '11px', background: C.coffee, color: C.egg, border: 'none', cursor: 'pointer', fontFamily: 'Julius Sans One, sans-serif', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Rezervovať</button>
             </div>
           </div>
         )}
@@ -147,8 +147,8 @@ const SalonPortal = () => {
         </p>
 
         <div className="portal-cta-btns" style={{ display: 'flex', justifyContent: 'center', gap: '12px' }}>
-          <button onClick={() => navigate(`/s/${slug}/register`)} style={{ background: C.coffee, color: C.egg, border: 'none', padding: '15px 40px', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Raleway, sans-serif' }}>Rezervovať termín</button>
-          <button onClick={() => navigate(`/s/${slug}/login`)} style={{ background: 'transparent', color: C.coffee, border: `1px solid rgba(132,95,74,0.25)`, padding: '15px 28px', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Raleway, sans-serif' }}>Prihlásiť sa</button>
+          <button onClick={() => navigate(`/s/${slug}/register`)} style={{ background: C.coffee, color: C.egg, border: 'none', padding: '15px 40px', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Julius Sans One, sans-serif' }}>Rezervovať termín</button>
+          <button onClick={() => navigate(`/s/${slug}/login`)} style={{ background: 'transparent', color: C.coffee, border: `1px solid rgba(132,95,74,0.25)`, padding: '15px 28px', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Julius Sans One, sans-serif' }}>Prihlásiť sa</button>
         </div>
       </section>
 
@@ -188,7 +188,7 @@ const SalonPortal = () => {
                 </div>
                 <p style={{ fontSize: '11px', color: C.stone, letterSpacing: '0.1em', marginBottom: '12px' }}>{service.duration} min</p>
                 {service.description && <p style={{ fontSize: '13px', color: C.stone, lineHeight: 1.7, marginBottom: '20px', fontWeight: 300 }}>{service.description}</p>}
-                <button onClick={() => navigate(`/s/${slug}/register`)} style={{ width: '100%', padding: '11px', background: 'transparent', color: C.coffee, border: `1px solid rgba(132,95,74,0.2)`, fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Raleway, sans-serif', transition: 'all 0.2s' }}
+                <button onClick={() => navigate(`/s/${slug}/register`)} style={{ width: '100%', padding: '11px', background: 'transparent', color: C.coffee, border: `1px solid rgba(132,95,74,0.2)`, fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Julius Sans One, sans-serif', transition: 'all 0.2s' }}
                   onMouseEnter={e => { e.target.style.background=C.coffee; e.target.style.color=C.egg; }}
                   onMouseLeave={e => { e.target.style.background='transparent'; e.target.style.color=C.coffee; }}>
                   Rezervovať
@@ -218,7 +218,7 @@ const SalonPortal = () => {
                     <p style={{ fontSize: '12px', color: C.stone, marginBottom: '16px' }}>{slot.date} · {slot.time}</p>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '18px', color: C.coffee }}>{service?.price} €</span>
-                      <button onClick={() => navigate(`/s/${slug}/register`)} style={{ padding: '8px 16px', background: C.coffee, color: C.egg, border: 'none', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Raleway, sans-serif' }}>Rezervovať</button>
+                      <button onClick={() => navigate(`/s/${slug}/register`)} style={{ padding: '8px 16px', background: C.coffee, color: C.egg, border: 'none', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Julius Sans One, sans-serif' }}>Rezervovať</button>
                     </div>
                   </div>
                 );
@@ -256,7 +256,7 @@ const SalonPortal = () => {
               {salon.email && <div><p style={{ fontSize: '10px', letterSpacing: '0.15em', color: 'rgba(240,237,220,0.35)', textTransform: 'uppercase', marginBottom: '6px' }}>Email</p><a href={`mailto:${salon.email}`} style={{ fontSize: '14px', color: C.pink, textDecoration: 'none', fontWeight: 300 }}>{salon.email}</a></div>}
               {salon.instagram && <div><p style={{ fontSize: '10px', letterSpacing: '0.15em', color: 'rgba(240,237,220,0.35)', textTransform: 'uppercase', marginBottom: '6px' }}>Instagram</p><a href={`https://instagram.com/${salon.instagram.replace('@','')}`} target="_blank" rel="noreferrer" style={{ fontSize: '14px', color: C.pink, textDecoration: 'none', fontWeight: 300 }}>{salon.instagram}</a></div>}
             </div>
-            <button onClick={() => navigate(`/s/${slug}/register`)} style={{ width: '100%', padding: '15px', background: C.egg, color: C.coffee, border: 'none', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Raleway, sans-serif', fontWeight: 500 }}>
+            <button onClick={() => navigate(`/s/${slug}/register`)} style={{ width: '100%', padding: '15px', background: C.egg, color: C.coffee, border: 'none', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Julius Sans One, sans-serif', fontWeight: 500 }}>
               Rezervovať termín →
             </button>
           </div>
