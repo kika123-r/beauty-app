@@ -13,7 +13,7 @@ const UpgradeGate = ({ feature, requiredTier, currentTier, children, inline = fa
           onClick={() => navigate('/admin/pricing')}
           style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', borderRadius: '8px', background: 'rgba(245,240,234,0.85)' }}
         >
-          <span style={{ fontSize: '10px', fontWeight: 500, color: '#DFA0AA', letterSpacing: '0.1em', textTransform: 'uppercase', background: '#E8E4D0', border: '1px solid #D4C5B0', borderRadius: '8px', padding: '4px 10px' }}>
+          <span style={{ fontSize: '10px', fontWeight: 500, color: '#DFA0AA', letterSpacing: '0.1em', textTransform: 'uppercase', background: '#E4E0CC', border: '1px solid #D4C5B0', borderRadius: '8px', padding: '4px 10px' }}>
             {required?.name}+
           </span>
         </div>
@@ -26,7 +26,7 @@ const UpgradeGate = ({ feature, requiredTier, currentTier, children, inline = fa
       <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'linear-gradient(135deg, #D4C5B0, #A89070)', margin: '0 auto 20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <span style={{ fontSize: '22px' }}>🔒</span>
       </div>
-      <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', color: '#3D2B1F', marginBottom: '8px' }}>
+      <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', color: '#2A1A10', marginBottom: '8px' }}>
         {feature}
       </h3>
       <p style={{ fontSize: '13px', color: '#845F4A', marginBottom: '8px', lineHeight: 1.6 }}>
@@ -38,7 +38,7 @@ const UpgradeGate = ({ feature, requiredTier, currentTier, children, inline = fa
       <div>
         <button
           onClick={() => navigate('/admin/pricing')}
-          style={{ padding: '12px 28px', background: '#3D2B1F', color: '#E8E4D0', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}
+          style={{ padding: '12px 28px', background: '#2A1A10', color: '#E4E0CC', border: 'none', borderRadius: '12px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif' }}
         >
           Upgradovať plán →
         </button>

@@ -31,7 +31,7 @@ const LoginPage = () => {
           <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: '#DFA0AA', margin: '0 auto 20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.6rem', color: '#F0EDDC', fontWeight: 400 }}>B</span>
           </div>
-          <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#3D2B1F', marginBottom: '8px', fontWeight: 400 }}>BeautyTime</h1>
+          <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#2A1A10', marginBottom: '8px', fontWeight: 400 }}>BeautyTime</h1>
           <p style={{ fontSize: '13px', color: '#845F4A' }}>Prihláste sa do svojho účtu</p>
         </div>
 
@@ -39,17 +39,17 @@ const LoginPage = () => {
           <div style={{ marginBottom: '16px' }}>
             <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#845F4A', marginBottom: '8px', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Email</label>
             <input type="email" name="email" placeholder="vas@email.com" value={form.email} onChange={handleChange}
-              style={{ width: '100%', padding: '14px 18px', background: 'rgba(132,95,74,0.08)', border: '1px solid rgba(132,95,74,0.15)', borderRadius: '10px', fontSize: '14px', color: '#3D2B1F', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
-              onFocus={e => e.target.style.borderColor='#DFA0AA'} onBlur={e => e.target.style.borderColor='rgba(132,95,74,0.15)'} />
+              style={{ width: '100%', padding: '14px 18px', background: 'rgba(90,60,40,0.08)', border: '1px solid rgba(90,60,40,0.18)', borderRadius: '10px', fontSize: '14px', color: '#2A1A10', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
+              onFocus={e => e.target.style.borderColor='#DFA0AA'} onBlur={e => e.target.style.borderColor='rgba(90,60,40,0.18)'} />
           </div>
           <div style={{ marginBottom: '28px' }}>
             <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#845F4A', marginBottom: '8px', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Heslo</label>
             <input type="password" name="password" placeholder="••••••••" value={form.password} onChange={handleChange}
-              style={{ width: '100%', padding: '14px 18px', background: 'rgba(132,95,74,0.08)', border: '1px solid rgba(132,95,74,0.15)', borderRadius: '10px', fontSize: '14px', color: '#3D2B1F', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
-              onFocus={e => e.target.style.borderColor='#DFA0AA'} onBlur={e => e.target.style.borderColor='rgba(132,95,74,0.15)'} />
+              style={{ width: '100%', padding: '14px 18px', background: 'rgba(90,60,40,0.08)', border: '1px solid rgba(90,60,40,0.18)', borderRadius: '10px', fontSize: '14px', color: '#2A1A10', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
+              onFocus={e => e.target.style.borderColor='#DFA0AA'} onBlur={e => e.target.style.borderColor='rgba(90,60,40,0.18)'} />
           </div>
           {error && <p style={{ fontSize: '13px', color: '#D4827A', marginBottom: '16px', padding: '12px 16px', background: 'rgba(212,130,122,0.08)', borderRadius: '8px', border: '1px solid rgba(212,130,122,0.2)' }}>{error}</p>}
-          <button type="submit" disabled={loading} style={{ width: '100%', padding: '15px', background: loading ? '#B9AC8C' : '#DFA0AA', color: '#F0EDDC', border: 'none', borderRadius: '10px', fontSize: '12px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif' }}>
+          <button type="submit" disabled={loading} style={{ width: '100%', padding: '15px', background: loading ? '#8A7260' : '#DFA0AA', color: '#F0EDDC', border: 'none', borderRadius: '10px', fontSize: '12px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif' }}>
             {loading ? 'Prihlasujem...' : 'Prihlásiť sa'}
           </button>
         </form>

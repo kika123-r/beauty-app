@@ -81,13 +81,13 @@ const Marketplace = () => {
   const btnStyle = (active) => ({
     flex: 1, padding: '10px', border: 'none', borderRadius: '10px',
     background: active ? '#DFA0AA' : 'transparent',
-    color: active ? '#E8E4D0' : '#845F4A',
+    color: active ? '#E4E0CC' : '#845F4A',
     fontSize: '12px', fontWeight: 500, letterSpacing: '0.06em',
     textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Jost, sans-serif',
   });
 
   return (
-    <div style={{ minHeight: '100vh', background: '#E8E4D0' }}>
+    <div style={{ minHeight: '100vh', background: '#E4E0CC' }}>
       <header style={{ background: '#FAFAF5', borderBottom: '1px solid #E2E2DE', padding: '0 24px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 100, boxShadow: '0 1px 12px rgba(28,28,27,0.04)' }}>
         <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', color: '#DFA0AA' }}>BeautyTime</span>
         <div style={{ display: 'flex', gap: '8px' }}>
@@ -100,7 +100,7 @@ const Marketplace = () => {
       <div style={{ background: 'linear-gradient(135deg, #D4C5B0 0%, #B7AC9B 100%)', padding: '48px 24px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '-40px', right: '-40px', width: '200px', height: '200px', borderRadius: '50%', border: '1px solid rgba(245,240,234,0.3)' }} />
         <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(245,240,234,0.8)', marginBottom: '12px' }}>Exkluzívne ponuky</p>
-        <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.8rem, 5vw, 2.8rem)', color: '#E8E4D0', fontWeight: 400, marginBottom: '12px', lineHeight: 1.2 }}>Last Minute & Voľné termíny</h2>
+        <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.8rem, 5vw, 2.8rem)', color: '#E4E0CC', fontWeight: 400, marginBottom: '12px', lineHeight: 1.2 }}>Last Minute & Voľné termíny</h2>
         <p style={{ fontSize: '14px', color: 'rgba(245,240,234,0.75)', maxWidth: '400px', margin: '0 auto' }}>Rezervuj dostupné termíny v najlepších salónoch</p>
       </div>
 
@@ -125,7 +125,7 @@ const Marketplace = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                      <p style={{ fontSize: '15px', fontWeight: 500, color: '#3D2B1F', fontFamily: 'Jost, sans-serif' }}>{salon.name}</p>
+                      <p style={{ fontSize: '15px', fontWeight: 500, color: '#2A1A10', fontFamily: 'Jost, sans-serif' }}>{salon.name}</p>
                       {salon.category && <span style={{ fontSize: '10px', color: '#DFA0AA', background: 'rgba(106,93,82,0.08)', padding: '2px 8px', borderRadius: '20px', letterSpacing: '0.06em' }}>{salon.category}</span>}
                     </div>
                     <p style={{ fontSize: '12px', color: '#845F4A', marginBottom: '4px' }}>{salon.address}</p>
@@ -166,7 +166,7 @@ const Marketplace = () => {
         {!loading && filtered.length === 0 && (
           <div style={{ background: '#FAFAF5', border: '1px solid #E2E2DE', borderRadius: '20px', padding: '60px 24px', textAlign: 'center', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' }}>
             <p style={{ fontSize: '2rem', marginBottom: '16px' }}>🌿</p>
-            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#3D2B1F', marginBottom: '8px' }}>Momentálne žiadne voľné termíny</p>
+            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#2A1A10', marginBottom: '8px' }}>Momentálne žiadne voľné termíny</p>
             <p style={{ fontSize: '13px', color: '#845F4A' }}>Skontroluj neskôr alebo si rezervuj cez kalendár</p>
           </div>
         )}
@@ -175,7 +175,7 @@ const Marketplace = () => {
           <div style={{ marginBottom: '32px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
               <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#845F4A' }}>Dnes</p>
-              <div style={{ flex: 1, height: '1px', background: 'rgba(132,95,74,0.15)' }} />
+              <div style={{ flex: 1, height: '1px', background: 'rgba(90,60,40,0.18)' }} />
               <span style={{ fontSize: '10px', color: '#DFA0AA', fontWeight: 500, background: 'rgba(106,93,82,0.08)', padding: '3px 10px', borderRadius: '20px' }}>{todaySlots.length} dostupných</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -188,7 +188,7 @@ const Marketplace = () => {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
               <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#845F4A' }}>Nadchádzajúce</p>
-              <div style={{ flex: 1, height: '1px', background: 'rgba(132,95,74,0.15)' }} />
+              <div style={{ flex: 1, height: '1px', background: 'rgba(90,60,40,0.18)' }} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {upcomingSlots.map(slot => <SlotCard key={slot.id} slot={slot} service={getService(slot.serviceId)} salon={getSalon(slot.salonId)} onBook={handleBook} isBooking={booking === slot.id} />)}
@@ -203,20 +203,20 @@ const Marketplace = () => {
 const SlotCard = ({ slot, service, salon, onBook, isBooking }) => {
   const isLastMinute = slot.status === SLOT_STATUS.LAST_MINUTE;
   return (
-    <div style={{ background: '#FAFAF5', border: `1px solid ${isLastMinute ? '#B9AC8C' : 'rgba(132,95,74,0.15)'}`, borderRadius: '20px', padding: '20px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: isLastMinute ? '0 4px 20px rgba(106,93,82,0.08)' : '0 2px 12px rgba(28,28,27,0.04)', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ background: '#FAFAF5', border: `1px solid ${isLastMinute ? '#8A7260' : 'rgba(90,60,40,0.18)'}`, borderRadius: '20px', padding: '20px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: isLastMinute ? '0 4px 20px rgba(106,93,82,0.08)' : '0 2px 12px rgba(28,28,27,0.04)', position: 'relative', overflow: 'hidden' }}>
       {isLastMinute && <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg, #D4C5B0, #6A5D52)' }} />}
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <div style={{ width: '52px', height: '52px', borderRadius: '14px', background: isLastMinute ? 'linear-gradient(135deg, #D4C5B0, #B7AC9B)' : '#E8E4D0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', flexShrink: 0 }}>✂️</div>
+        <div style={{ width: '52px', height: '52px', borderRadius: '14px', background: isLastMinute ? 'linear-gradient(135deg, #D4C5B0, #B7AC9B)' : '#E4E0CC', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', flexShrink: 0 }}>✂️</div>
         <div>
           {isLastMinute && <span style={{ fontSize: '9px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#DFA0AA', background: 'rgba(106,93,82,0.08)', padding: '2px 8px', borderRadius: '20px', display: 'inline-block', marginBottom: '6px' }}>⚡ Last Minute</span>}
-          <p style={{ fontWeight: 500, color: '#3D2B1F', fontSize: '15px', marginBottom: '4px', fontFamily: 'Jost, sans-serif' }}>{service?.name || 'Služba'}</p>
+          <p style={{ fontWeight: 500, color: '#2A1A10', fontSize: '15px', marginBottom: '4px', fontFamily: 'Jost, sans-serif' }}>{service?.name || 'Služba'}</p>
           <p style={{ fontSize: '13px', color: '#845F4A' }}>{slot.date} · {slot.time}</p>
           <p style={{ fontSize: '12px', color: '#DFA0AA', marginTop: '2px' }}>{salon?.name}</p>
         </div>
       </div>
       <div style={{ textAlign: 'right', flexShrink: 0, marginLeft: '16px' }}>
-        <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', color: '#3D2B1F', marginBottom: '8px' }}>{service?.price} €</p>
-        <button onClick={() => onBook(slot)} disabled={isBooking} style={{ padding: '9px 20px', background: isBooking ? '#B9AC8C' : '#DFA0AA', color: '#E8E4D0', border: 'none', borderRadius: '10px', fontSize: '11px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: isBooking ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif', whiteSpace: 'nowrap' }}>
+        <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', color: '#2A1A10', marginBottom: '8px' }}>{service?.price} €</p>
+        <button onClick={() => onBook(slot)} disabled={isBooking} style={{ padding: '9px 20px', background: isBooking ? '#8A7260' : '#DFA0AA', color: '#E4E0CC', border: 'none', borderRadius: '10px', fontSize: '11px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: isBooking ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif', whiteSpace: 'nowrap' }}>
           {isBooking ? '...' : 'Rezervovať'}
         </button>
       </div>

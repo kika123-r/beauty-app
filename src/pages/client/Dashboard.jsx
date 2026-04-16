@@ -14,7 +14,7 @@ import { getRepeatBookings, createRepeatBooking, deleteRepeatBooking } from '../
 import { sendBookingCancellation } from '../../services/emailService';
 import toast from 'react-hot-toast';
 
-const C = { green: '#7A9E7E', brown: '#F0EDDC', cream: '#F0EDDC', pink: '#DFA0AA', muted: '#845F4A', border: 'rgba(132,95,74,0.15)', white: '#FAFAF5' };
+const C = { green: '#7A9E7E', brown: '#F0EDDC', cream: '#F0EDDC', pink: '#DFA0AA', muted: '#845F4A', border: 'rgba(90,60,40,0.18)', white: '#FAFAF5' };
 
 const STATUS_CONFIG = {
   confirmed: { label: 'Potvrdená', color: '#5A7A4A', bg: 'rgba(90,122,74,0.08)' },

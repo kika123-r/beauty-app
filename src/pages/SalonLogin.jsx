@@ -5,7 +5,7 @@ import { getSalonBySlug } from '../services/salonService';
 import { useAuth } from '../context/AuthContext';
 import { ROUTES } from '../constants';
 
-const C = { green: '#7A9E7E', brown: '#F0EDDC', cream: '#F0EDDC', pink: '#DFA0AA', muted: '#845F4A', border: 'rgba(132,95,74,0.15)' };
+const C = { green: '#7A9E7E', brown: '#F0EDDC', cream: '#F0EDDC', pink: '#DFA0AA', muted: '#845F4A', border: 'rgba(90,60,40,0.18)' };
 
 const SalonLogin = () => {
   const { slug } = useParams();

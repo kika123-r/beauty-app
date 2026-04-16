@@ -8,12 +8,12 @@ import { SLOT_STATUS } from '../constants';
 
 const C = {
   egg:    '#F0EDDC',
-  stone:  '#B9AC8C',
+  stone:  '#8A7260',
   coffee: '#845F4A',
   pink:   '#DFA0AA',
-  dark:   '#3D2B1F',
-  light:  '#E8E4D0',
-  border: 'rgba(132,95,74,0.1)',
+  dark:   '#2A1A10',
+  light:  '#E4E0CC',
+  border: 'rgba(90,60,40,0.15)',
 };
 
 const DAY_KEYS = ['mon','tue','wed','thu','fri','sat','sun'];
