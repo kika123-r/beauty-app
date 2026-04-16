@@ -15,9 +15,9 @@ import toast from 'react-hot-toast';
 const STATUS_CONFIG = {
   confirmed: { label: 'Potvrdená', color: '#7A9E7E', bg: 'rgba(74,124,89,0.1)' },
   pending:   { label: 'Čaká',      color: '#D4A85A', bg: 'rgba(176,125,58,0.1)' },
-  cancelled: { label: 'Zrušená',   color: '#DFA0AA', bg: 'rgba(139,58,58,0.1)' },
-  completed: { label: 'Dokončená', color: '#845F4A', bg: 'rgba(58,90,124,0.1)' },
-  no_show:   { label: 'No-show',   color: '#DFA0AA', bg: 'rgba(139,58,58,0.1)' },
+  cancelled: { label: 'Zrušená',   color: '#C8A882', bg: 'rgba(139,58,58,0.1)' },
+  completed: { label: 'Dokončená', color: '#C8A882', bg: 'rgba(58,90,124,0.1)' },
+  no_show:   { label: 'No-show',   color: '#C8A882', bg: 'rgba(139,58,58,0.1)' },
 };
 
 const Bookings = () => {
@@ -247,7 +247,7 @@ const Bookings = () => {
                       </button>
                     )}
                     <button onClick={() => handleStatus(booking, BOOKING_STATUS.CANCELLED)}
-                      style={{ padding: '7px 14px', background: 'transparent', color: '#DFA0AA', border: '1px solid #8B3A3A', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                      style={{ padding: '7px 14px', background: 'transparent', color: '#C8A882', border: '1px solid #8B3A3A', borderRadius: '8px', fontSize: '11px', fontWeight: 500, cursor: 'pointer', fontFamily: 'Jost, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                       Zrušiť
                     </button>
                   </div>

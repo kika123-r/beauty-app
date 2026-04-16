@@ -5,7 +5,7 @@ import { getSalonBySlug } from '../services/salonService';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 
-const C = { green: '#7A9E7E', brown: '#F0EDDC', cream: '#F0EDDC', pink: '#DFA0AA', muted: '#845F4A', border: 'rgba(90,60,40,0.18)' };
+const C = { green: '#7A9E7E', brown: '#2D2D2D', cream: '#2D2D2D', pink: '#C8A882', muted: '#C8A882', border: 'rgba(255,244,225,0.1)' };
 
 const SalonRegister = () => {
   const { slug } = useParams();

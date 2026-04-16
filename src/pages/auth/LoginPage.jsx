@@ -2,15 +2,14 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../../firebase/auth';
 import { ROUTES } from '../../constants';
-import toast from 'react-hot-toast';
+
+const C = { bg: '#2D2D2D', card: '#383838', milk: '#FFF4E1', muted: '#C8B89A', faint: '#7A6A52', accent: '#C8A882', border: 'rgba(255,244,225,0.1)' };
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-
-  const handleChange = (e) => { setForm({ ...form, [e.target.name]: e.target.value }); setError(''); };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,45 +18,44 @@ const LoginPage = () => {
     try {
       await loginUser(form.email, form.password);
       navigate(ROUTES.HOME);
-    } catch {
-      setError('Nesprávny email alebo heslo.');
-    } finally { setLoading(false); }
+    } catch { setError('Nesprávny email alebo heslo.'); }
+    finally { setLoading(false); }
   };
 
+  const inp = { width: '100%', padding: '14px 18px', background: 'rgba(255,244,225,0.06)', border: `1px solid ${C.border}`, borderRadius: '6px', fontSize: '14px', color: C.milk, outline: 'none', fontFamily: 'Raleway, sans-serif', boxSizing: 'border-box', transition: 'border-color 0.2s' };
+  const lbl = { display: 'block', fontSize: '11px', fontWeight: 600, color: C.faint, marginBottom: '8px', letterSpacing: '0.15em', textTransform: 'uppercase' };
+
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#F0EDDC', padding: '24px' }}>
+    <div style={{ minHeight: '100vh', background: C.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', fontFamily: 'Raleway, sans-serif' }}>
       <div style={{ width: '100%', maxWidth: '400px' }}>
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: '#DFA0AA', margin: '0 auto 20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.6rem', color: '#F0EDDC', fontWeight: 400 }}>B</span>
-          </div>
-          <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#2A1A10', marginBottom: '8px', fontWeight: 400 }}>BeautyTime</h1>
-          <p style={{ fontSize: '13px', color: '#845F4A' }}>Prihláste sa do svojho účtu</p>
+          <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '32px', color: C.milk, fontWeight: 300, marginBottom: '8px' }}>BeautyTime</div>
+          <p style={{ fontSize: '13px', color: C.faint, letterSpacing: '0.05em' }}>Prihláste sa do svojho účtu</p>
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#845F4A', marginBottom: '8px', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Email</label>
-            <input type="email" name="email" placeholder="vas@email.com" value={form.email} onChange={handleChange}
-              style={{ width: '100%', padding: '14px 18px', background: 'rgba(90,60,40,0.08)', border: '1px solid rgba(90,60,40,0.18)', borderRadius: '10px', fontSize: '14px', color: '#2A1A10', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
-              onFocus={e => e.target.style.borderColor='#DFA0AA'} onBlur={e => e.target.style.borderColor='rgba(90,60,40,0.18)'} />
+          <div style={{ marginBottom: '20px' }}>
+            <label style={lbl}>Email</label>
+            <input type="email" value={form.email} onChange={e => setForm({...form, email: e.target.value})} placeholder="vas@email.com" style={inp}
+              onFocus={e => e.target.style.borderColor=C.accent} onBlur={e => e.target.style.borderColor=C.border} />
           </div>
           <div style={{ marginBottom: '28px' }}>
-            <label style={{ display: 'block', fontSize: '10px', fontWeight: 500, color: '#845F4A', marginBottom: '8px', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Heslo</label>
-            <input type="password" name="password" placeholder="••••••••" value={form.password} onChange={handleChange}
-              style={{ width: '100%', padding: '14px 18px', background: 'rgba(90,60,40,0.08)', border: '1px solid rgba(90,60,40,0.18)', borderRadius: '10px', fontSize: '14px', color: '#2A1A10', outline: 'none', fontFamily: 'Jost, sans-serif', boxSizing: 'border-box' }}
-              onFocus={e => e.target.style.borderColor='#DFA0AA'} onBlur={e => e.target.style.borderColor='rgba(90,60,40,0.18)'} />
+            <label style={lbl}>Heslo</label>
+            <input type="password" value={form.password} onChange={e => setForm({...form, password: e.target.value})} placeholder="••••••••" style={inp}
+              onFocus={e => e.target.style.borderColor=C.accent} onBlur={e => e.target.style.borderColor=C.border} />
           </div>
-          {error && <p style={{ fontSize: '13px', color: '#D4827A', marginBottom: '16px', padding: '12px 16px', background: 'rgba(212,130,122,0.08)', borderRadius: '8px', border: '1px solid rgba(212,130,122,0.2)' }}>{error}</p>}
-          <button type="submit" disabled={loading} style={{ width: '100%', padding: '15px', background: loading ? '#8A7260' : '#DFA0AA', color: '#F0EDDC', border: 'none', borderRadius: '10px', fontSize: '12px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif' }}>
+          {error && <p style={{ fontSize: '13px', color: '#C87070', marginBottom: '16px', padding: '12px 16px', background: 'rgba(200,112,112,0.08)', borderRadius: '6px', border: '1px solid rgba(200,112,112,0.2)' }}>{error}</p>}
+          <button type="submit" disabled={loading} style={{ width: '100%', padding: '15px', background: loading ? C.faint : C.accent, color: C.bg, border: 'none', borderRadius: '6px', fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'Raleway, sans-serif' }}>
             {loading ? 'Prihlasujem...' : 'Prihlásiť sa'}
           </button>
         </form>
 
-        <p style={{ textAlign: 'center', marginTop: '28px', fontSize: '13px', color: '#845F4A' }}>
-          Nemáte účet?{' '}
-          <Link to={ROUTES.REGISTER} style={{ color: '#DFA0AA', fontWeight: 500 }}>Zaregistrujte sa</Link>
-        </p>
+        <div style={{ marginTop: '32px', paddingTop: '24px', borderTop: `1px solid ${C.border}`, textAlign: 'center' }}>
+          <p style={{ fontSize: '13px', color: C.faint }}>
+            Nemáte účet?{' '}
+            <Link to={ROUTES.REGISTER} style={{ color: C.accent, fontWeight: 500 }}>Zaregistrujte sa</Link>
+          </p>
+        </div>
       </div>
     </div>
   );

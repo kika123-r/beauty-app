@@ -7,13 +7,13 @@ import { getRatings } from '../services/ratingService';
 import { SLOT_STATUS } from '../constants';
 
 const C = {
-  egg:    '#F0EDDC',
-  stone:  '#8A7260',
-  coffee: '#845F4A',
-  pink:   '#DFA0AA',
-  dark:   '#2A1A10',
-  light:  '#E4E0CC',
-  border: 'rgba(90,60,40,0.15)',
+  egg:    '#2D2D2D',
+  stone:  '#7A6A52',
+  coffee: '#C8A882',
+  pink:   '#C8A882',
+  dark:   '#FFF4E1',
+  light:  '#222222',
+  border: 'rgba(255,244,225,0.1)',
 };
 
 const DAY_KEYS = ['mon','tue','wed','thu','fri','sat','sun'];

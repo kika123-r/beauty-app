@@ -97,8 +97,8 @@ const Analytics = () => {
           {[
             { label: 'Celkové tržby', value: `${totalRevenue} €`, color: '#D4A85A' },
             { label: 'Dokončené rezervácie', value: completed, color: '#7A9E7E' },
-            { label: 'Úspešnosť', value: `${completionRate}%`, color: '#845F4A' },
-            { label: 'No-show', value: noShow, color: '#DFA0AA' },
+            { label: 'Úspešnosť', value: `${completionRate}%`, color: '#C8A882' },
+            { label: 'No-show', value: noShow, color: '#C8A882' },
             { label: 'Priemerné hodnotenie', value: `${avgRating} ★`, color: '#D4A85A' },
           ].map(stat => (
             <div key={stat.label} style={cardStyle}>

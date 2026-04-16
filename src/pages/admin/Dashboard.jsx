@@ -62,9 +62,9 @@ const AdminDashboard = () => {
 
   const STATUS_CONFIG = {
     confirmed: { label: 'Potvrdená', color: '#7A9E7E' },
-    completed: { label: 'Dokončená', color: '#845F4A' },
-    cancelled: { label: 'Zrušená',   color: '#DFA0AA' },
-    no_show:   { label: 'No-show',   color: '#DFA0AA' },
+    completed: { label: 'Dokončená', color: '#C8A882' },
+    cancelled: { label: 'Zrušená',   color: '#C8A882' },
+    no_show:   { label: 'No-show',   color: '#C8A882' },
     pending:   { label: 'Čaká',      color: '#D4A85A' },
   };
 
@@ -78,7 +78,7 @@ const AdminDashboard = () => {
       </div>
     );
     const pct = Math.min(Math.round((current / max) * 100), 100);
-    const color = pct >= 90 ? '#DFA0AA' : pct >= 70 ? '#D4A85A' : '#7A9E7E';
+    const color = pct >= 90 ? '#C8A882' : pct >= 70 ? '#D4A85A' : '#7A9E7E';
     return (
       <div style={{ padding: '10px 0', borderBottom: '1px solid var(--border-light)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
@@ -123,7 +123,7 @@ const AdminDashboard = () => {
           {[
             { label: 'Celkom rezervácií', value: totalBookings, color: 'var(--primary)' },
             { label: 'Dnes',              value: todayBookings,  color: '#7A9E7E' },
-            { label: 'Voľné sloty',       value: freeSlots,      color: '#845F4A' },
+            { label: 'Voľné sloty',       value: freeSlots,      color: '#C8A882' },
             { label: 'Tržby celkom',      value: `${revenue} €`, color: '#D4A85A' },
           ].map(stat => (
             <div key={stat.label} style={cardStyle}>

@@ -17,9 +17,9 @@ const getFirstDay = (y, m) => { const d = new Date(y, m, 1).getDay(); return d =
 
 const SLOT_COLORS = {
   available:   { bg: 'rgba(74,124,89,0.1)',   border: '#7A9E7E', text: '#7A9E7E',  label: 'Voľný' },
-  last_minute: { bg: 'rgba(212,197,176,0.3)', border: '#DFA0AA', text: '#DFA0AA', label: 'Last Minute' },
-  booked:      { bg: 'rgba(58,90,124,0.1)',   border: '#845F4A', text: '#845F4A',  label: 'Moja rezervácia' },
-  blocked:     { bg: 'rgba(180,172,163,0.15)',border: '#8A7260', text: '#845F4A',  label: 'Obsadený' },
+  last_minute: { bg: 'rgba(212,197,176,0.3)', border: '#C8A882', text: '#C8A882', label: 'Last Minute' },
+  booked:      { bg: 'rgba(58,90,124,0.1)',   border: '#C8A882', text: '#C8A882',  label: 'Moja rezervácia' },
+  blocked:     { bg: 'rgba(180,172,163,0.15)',border: '#7A6A52', text: '#C8A882',  label: 'Obsadený' },
 };
 
 const Calendar = () => {
@@ -89,9 +89,9 @@ const Calendar = () => {
   const selectedSlots = selectedDateStr ? getSlotsForDay(selectedDateStr) : [];
 
   return (
-    <div style={{ minHeight: '100vh', background: '#E4E0CC' }}>
-      <header style={{ background: '#FAFAF5', borderBottom: '1px solid #E2E2DE', padding: '0 24px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 100, boxShadow: '0 1px 12px rgba(28,28,27,0.04)' }}>
-        <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', color: '#DFA0AA' }}>BeautyTime</span>
+    <div style={{ minHeight: '100vh', background: '#222222' }}>
+      <header style={{ background: '#383838', borderBottom: '1px solid #E2E2DE', padding: '0 24px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 100, boxShadow: '0 1px 12px rgba(28,28,27,0.04)' }}>
+        <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', color: '#C8A882' }}>BeautyTime</span>
         <div style={{ display: 'flex', gap: '8px' }}>
           <button className="btn btn-ghost btn-sm" onClick={() => navigate(ROUTES.CLIENT_DASHBOARD)}>Dashboard</button>
           <button className="btn btn-ghost btn-sm" onClick={() => navigate('/marketplace')}>Marketplace</button>
@@ -101,27 +101,27 @@ const Calendar = () => {
 
       <div style={{ maxWidth: '680px', margin: '0 auto', padding: '40px 20px' }}>
         <div style={{ marginBottom: '32px' }}>
-          <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#845F4A', marginBottom: '8px' }}>Prehľad</p>
-          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#2A1A10' }}>Kalendár termínov</h2>
+          <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C8A882', marginBottom: '8px' }}>Prehľad</p>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#FFF4E1' }}>Kalendár termínov</h2>
         </div>
 
         <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '24px' }}>
           {Object.entries(SLOT_COLORS).map(([k, v]) => (
             <div key={k} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <div style={{ width: '10px', height: '10px', borderRadius: '3px', background: v.bg, border: `1.5px solid ${v.border}` }} />
-              <span style={{ fontSize: '11px', color: '#845F4A' }}>{v.label}</span>
+              <span style={{ fontSize: '11px', color: '#C8A882' }}>{v.label}</span>
             </div>
           ))}
         </div>
 
-        <div style={{ background: '#FAFAF5', border: '1px solid #E2E2DE', borderRadius: '24px', padding: '28px', marginBottom: '24px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' }}>
+        <div style={{ background: '#383838', border: '1px solid #E2E2DE', borderRadius: '24px', padding: '28px', marginBottom: '24px', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-            <button onClick={prevMonth} style={{ background: 'none', border: '1px solid #E2E2DE', borderRadius: '10px', width: '36px', height: '36px', cursor: 'pointer', color: '#DFA0AA', fontSize: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>←</button>
-            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#2A1A10' }}>{MONTHS[month]} {year}</p>
-            <button onClick={nextMonth} style={{ background: 'none', border: '1px solid #E2E2DE', borderRadius: '10px', width: '36px', height: '36px', cursor: 'pointer', color: '#DFA0AA', fontSize: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>→</button>
+            <button onClick={prevMonth} style={{ background: 'none', border: '1px solid #E2E2DE', borderRadius: '10px', width: '36px', height: '36px', cursor: 'pointer', color: '#C8A882', fontSize: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>←</button>
+            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#FFF4E1' }}>{MONTHS[month]} {year}</p>
+            <button onClick={nextMonth} style={{ background: 'none', border: '1px solid #E2E2DE', borderRadius: '10px', width: '36px', height: '36px', cursor: 'pointer', color: '#C8A882', fontSize: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>→</button>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: '4px', marginBottom: '8px' }}>
-            {DAYS.map(d => <div key={d} style={{ textAlign: 'center', fontSize: '11px', color: '#8A7260', fontWeight: 500, padding: '4px', letterSpacing: '0.08em' }}>{d}</div>)}
+            {DAYS.map(d => <div key={d} style={{ textAlign: 'center', fontSize: '11px', color: '#7A6A52', fontWeight: 500, padding: '4px', letterSpacing: '0.08em' }}>{d}</div>)}
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: '4px' }}>
             {Array.from({ length: firstDay }).map((_, i) => <div key={`e-${i}`} />)}
@@ -136,12 +136,12 @@ const Calendar = () => {
               const hasLastMinute = daySlots.some(s => s.status === SLOT_STATUS.LAST_MINUTE);
               const hasAvailable = daySlots.some(s => s.status === SLOT_STATUS.AVAILABLE);
               return (
-                <div key={day} onClick={() => setSelectedDate(day)} style={{ padding: '8px 4px', borderRadius: '10px', textAlign: 'center', cursor: hasSlots ? 'pointer' : 'default', background: isSelected ? '#DFA0AA' : isToday ? 'rgba(106,93,82,0.08)' : 'transparent', border: isToday && !isSelected ? '1.5px solid #D4C5B0' : '1.5px solid transparent', transition: 'all 0.15s' }}>
-                  <span style={{ fontSize: '13px', color: isSelected ? '#E4E0CC' : '#2A1A10', fontWeight: hasSlots ? 500 : 300, fontFamily: 'Jost, sans-serif' }}>{day}</span>
+                <div key={day} onClick={() => setSelectedDate(day)} style={{ padding: '8px 4px', borderRadius: '10px', textAlign: 'center', cursor: hasSlots ? 'pointer' : 'default', background: isSelected ? '#C8A882' : isToday ? 'rgba(106,93,82,0.08)' : 'transparent', border: isToday && !isSelected ? '1.5px solid #D4C5B0' : '1.5px solid transparent', transition: 'all 0.15s' }}>
+                  <span style={{ fontSize: '13px', color: isSelected ? '#222222' : '#FFF4E1', fontWeight: hasSlots ? 500 : 300, fontFamily: 'Jost, sans-serif' }}>{day}</span>
                   {hasSlots && (
                     <div style={{ display: 'flex', justifyContent: 'center', gap: '2px', marginTop: '3px' }}>
-                      {hasMyBooking && <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#845F4A' }} />}
-                      {hasLastMinute && <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#DFA0AA' }} />}
+                      {hasMyBooking && <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#C8A882' }} />}
+                      {hasLastMinute && <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#C8A882' }} />}
                       {hasAvailable && !hasMyBooking && <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#7A9E7E' }} />}
                     </div>
                   )}
@@ -153,13 +153,13 @@ const Calendar = () => {
 
         {selectedDateStr && (
           <div>
-            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#845F4A', marginBottom: '16px' }}>
+            <p style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C8A882', marginBottom: '16px' }}>
               {selectedDate}. {MONTHS[month]} {year}
             </p>
             {selectedSlots.length === 0 ? (
-              <div style={{ background: '#FAFAF5', border: '1px solid #E2E2DE', borderRadius: '20px', padding: '40px', textAlign: 'center', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' }}>
-                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.2rem', color: '#2A1A10', marginBottom: '6px' }}>Žiadne termíny</p>
-                <p style={{ fontSize: '13px', color: '#845F4A' }}>Pre tento deň nie sú žiadne sloty.</p>
+              <div style={{ background: '#383838', border: '1px solid #E2E2DE', borderRadius: '20px', padding: '40px', textAlign: 'center', boxShadow: '0 2px 12px rgba(28,28,27,0.04)' }}>
+                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.2rem', color: '#FFF4E1', marginBottom: '6px' }}>Žiadne termíny</p>
+                <p style={{ fontSize: '13px', color: '#C8A882' }}>Pre tento deň nie sú žiadne sloty.</p>
               </div>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -170,18 +170,18 @@ const Calendar = () => {
                   return (
                     <div key={slot.id} style={{ padding: '18px 20px', borderRadius: '16px', border: `1.5px solid ${color.border}`, background: color.bg, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <div>
-                        <p style={{ fontWeight: 500, color: '#2A1A10', marginBottom: '4px', fontFamily: 'Jost, sans-serif', fontSize: '14px' }}>{slot.time} — {getServiceName(slot.serviceId)}</p>
+                        <p style={{ fontWeight: 500, color: '#FFF4E1', marginBottom: '4px', fontFamily: 'Jost, sans-serif', fontSize: '14px' }}>{slot.time} — {getServiceName(slot.serviceId)}</p>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                           <span style={{ fontSize: '11px', color: color.text, fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase' }}>{color.label}</span>
-                          <span style={{ fontSize: '12px', color: '#845F4A' }}>{getServicePrice(slot.serviceId)}</span>
+                          <span style={{ fontSize: '12px', color: '#C8A882' }}>{getServicePrice(slot.serviceId)}</span>
                         </div>
                       </div>
                       {isBookable && (
-                        <button disabled={booking} onClick={() => handleBook(slot)} style={{ padding: '9px 18px', background: '#DFA0AA', color: '#E4E0CC', border: 'none', borderRadius: '10px', fontSize: '11px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: booking ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif', opacity: booking ? 0.6 : 1, flexShrink: 0 }}>
+                        <button disabled={booking} onClick={() => handleBook(slot)} style={{ padding: '9px 18px', background: '#C8A882', color: '#222222', border: 'none', borderRadius: '10px', fontSize: '11px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: booking ? 'not-allowed' : 'pointer', fontFamily: 'Jost, sans-serif', opacity: booking ? 0.6 : 1, flexShrink: 0 }}>
                           {booking ? '...' : 'Rezervovať'}
                         </button>
                       )}
-                      {isMyBooking && <span style={{ fontSize: '11px', color: '#845F4A', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', flexShrink: 0 }}>Tvoja rezervácia</span>}
+                      {isMyBooking && <span style={{ fontSize: '11px', color: '#C8A882', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', flexShrink: 0 }}>Tvoja rezervácia</span>}
                     </div>
                   );
                 })}

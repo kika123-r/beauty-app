@@ -7,7 +7,16 @@ import { TIER_CONFIG, TIERS } from '../../constants/tiers';
 import toast from 'react-hot-toast';
 
 // Colors
-const C = { green: '#7A9E7E', brown: '#F0EDDC', cream: '#F0EDDC', pink: '#DFA0AA', muted: '#845F4A', border: 'rgba(90,60,40,0.18)', white: '#FAFAF5', sidebar: '#E4E0CC' };
+const C = {
+  green: '#7AAA72',
+  brown: '#C8A882',
+  cream: '#FFF4E1',
+  pink: '#C8A882',
+  muted: '#C8B89A',
+  border: 'rgba(255,244,225,0.1)',
+  white: '#383838',
+  sidebar: '#222222',
+};
 
 const NAV_ITEMS = [
   { label: 'Dashboard',        path: ROUTES.ADMIN_DASHBOARD },
@@ -134,7 +143,7 @@ const AdminLayout = ({ children }) => {
       <div className="admin-main" style={{ flex: 1, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
 
         {/* Header */}
-        <header style={{ height: '60px', background: '#F0EDDC', borderBottom: `1px solid ${C.border}`, display: 'flex', alignItems: 'center', padding: '0 24px', position: 'sticky', top: 0, zIndex: 98, boxShadow: '0 1px 8px rgba(72,55,47,0.04)' }}>
+        <header style={{ height: '60px', background: '#2D2D2D', borderBottom: `1px solid ${C.border}`, display: 'flex', alignItems: 'center', padding: '0 24px', position: 'sticky', top: 0, zIndex: 98, boxShadow: '0 1px 8px rgba(72,55,47,0.04)' }}>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '6px', borderRadius: '8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
             {[0,1,2].map(i => <div key={i} style={{ width: '20px', height: '2px', background: C.brown, borderRadius: '1px' }} />)}
           </button>
