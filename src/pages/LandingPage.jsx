@@ -38,6 +38,41 @@ const PLANS = [
   { name: 'Business', tag: 'Sieť salónov', price: '19.90', desc: 'Pre majiteľov viacerých salónov s centrálnou správou a prioritnou podporou.', features: ['Všetko v Pro', 'Multi-salón správa', 'Prioritná podpora', 'Vlastná doména', 'API prístup'], cta: 'Vybrať Business', bg: '#1A1816' },
 ];
 
+const FeatureCard = ({ sol, index }) => {
+  const [ref, visible] = useInView(0.15);
+  const [hovered, setHovered] = useState(false);
+  const fromLeft = index % 2 === 0;
+
+  return (
+    <div ref={ref}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        background: '#FFFFFF',
+        borderRadius: '20px',
+        padding: '48px 44px',
+        border: '1px solid rgba(28,28,26,0.08)',
+        opacity: visible ? 1 : 0,
+        transform: visible
+          ? hovered
+            ? 'translateY(-8px) scale(1.01) perspective(1000px) rotateX(1deg)'
+            : 'translateX(0) translateY(0)'
+          : `translateX(${fromLeft ? '-100px' : '100px'})`,
+        transition: 'opacity 0.7s ease, transform 0.7s ease',
+        transitionDelay: visible ? '0s' : `${index * 0.12}s`,
+        boxShadow: hovered
+          ? '0 32px 80px rgba(28,28,26,0.12), 0 8px 24px rgba(28,28,26,0.08)'
+          : '0 4px 24px rgba(28,28,26,0.06)',
+        cursor: 'default',
+      }}>
+      <p style={{ fontSize: '11px', letterSpacing: '0.25em', color: '#C8A882', textTransform: 'uppercase', marginBottom: '20px', fontFamily: 'Julius Sans One, sans-serif' }}>{sol.num}</p>
+      <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '36px', color: '#1C1C1A', fontWeight: 400, marginBottom: '16px', lineHeight: 1.2 }}>{sol.title}</h3>
+      <div style={{ width: '32px', height: '1px', background: '#C8A882', marginBottom: '20px' }} />
+      <p style={{ fontSize: '14px', color: 'rgba(28,28,26,0.55)', lineHeight: 1.9, fontFamily: 'Julius Sans One, sans-serif' }}>{sol.desc}</p>
+    </div>
+  );
+};
+
 const SolutionRow = ({ sol, index }) => {
   const [ref, visible] = useInView(0.2);
   const fromLeft = index % 2 === 0;
@@ -208,9 +243,8 @@ const LandingPage = () => {
             <p style={{ fontSize: '14px', color: C.muted, maxWidth: '300px', lineHeight: 1.8, textAlign: 'right' }}>Kompletný ekosystém pre moderný beauty salón — od rezervácií po analytiku.</p>
           </div>
         </div>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          {SOLUTIONS.map((sol, i) => <SolutionRow key={i} sol={sol} index={i} />)}
-          <div style={{ borderTop: `1px solid ${C.border}` }} />
+        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', paddingBottom: '20px' }}>
+          {SOLUTIONS.map((sol, i) => <FeatureCard key={i} sol={sol} index={i} />)}
         </div>
       </section>
 
